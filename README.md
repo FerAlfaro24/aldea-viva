@@ -6,13 +6,17 @@ Juego de simulación de aldeas, pensado primero para Android.
 
 - TypeScript + Vite.
 - Desarrollo local con VS Code y Codex.
-- Base técnica preparada; mecánicas de la versión 0.1 pendientes.
+- Candidata 0.1 jugable: motor temporal, generación, interfaz y guardado de tres aldeas. PWA sin conexión comprobada en navegadores de escritorio y pruebas básicas de Android físico confirmadas por el usuario.
 
-Consulta las reglas acordadas y la hoja de ruta en el [documento maestro de diseño](docs/Aldea_Viva_Documento_Maestro.md).
+Empieza por [LEEME_PRIMERO.md](LEEME_PRIMERO.md), sigue con la [Biblia de diseño](docs/01_BIBLIA_DE_DISENO_0_1_A_1_0.md) y la [especificación ejecutable 0.1](docs/02_ESPECIFICACION_EJECUTABLE_0_1.md). El [documento maestro anterior](docs/Aldea_Viva_Documento_Maestro.md) se conserva como referencia.
+
+El [seguimiento de la 0.1](docs/07_SEGUIMIENTO_0_1.md) distingue lo implementado de los próximos hitos y documenta las decisiones técnicas.
+
+La [revisión de aceptación](docs/08_ACEPTACION_0_1.md) reúne los veinte criterios AV01, las 186 pruebas automáticas, la evidencia de Android y los límites pendientes. No hay etiqueta final de versión.
 
 ## Requisitos
 
-- Node.js 20.19 o superior en la rama 20, o Node.js 22.12 o superior.
+- Node.js 22.12 o superior (incluye el requisito de Vitest).
 - npm (incluido con Node.js).
 
 ## Ejecutar en tu PC
@@ -32,28 +36,69 @@ En PowerShell puedes usar `npm.cmd` en lugar de `npm` si Windows bloquea el arch
 
 ```sh
 npm run check
+npm test
 npm run build
 npm run preview
 ```
 
 - `check` revisa los tipos de TypeScript.
+- `test` ejecuta las pruebas del motor con Vitest, sin navegador. `npm run test:watch` las ejecuta durante el desarrollo.
 - `build` revisa TypeScript y genera la versión de producción en `dist/`.
 - `preview` sirve la compilación en http://127.0.0.1:4173.
 
-No hay pruebas automatizadas de las mecánicas, ESLint ni Prettier configurados todavía.
+No hay ESLint ni Prettier configurados todavía. Las pruebas cubren calendario, RNG, generación sobre 1000 semillas, familias, viviendas, proyecciones sin secretos, sesión, filtros, validación de guardados, transacciones, fallos, reintentos y conflictos entre pestañas. El seguimiento documenta por separado las comprobaciones en navegador.
 
 ## Organización
 
 - `src/main.ts`: punto de entrada.
-- `src/ui/`: interfaz; por ahora, pantalla inicial.
+- `src/app/`: coordinación de sesión, persistencia, pantallas y registro de la PWA.
+- `src/ui/`: bienvenida, espacios, aldea, habitantes, fichas, registro, formatos y estilos del juego.
+- `src/game/core/`: calendario, RNG y motor diario puros, sin DOM ni almacenamiento.
+- `src/game/models/`: contratos temporales y estado serializable mínimo.
+- `src/game/rules/`: constantes de calendario y edades laborales confirmadas.
+- `src/game/generation/`: habitantes, familias, nombres, pistas, alojamiento y creación de aldeas por semilla.
+- `src/game/validation/`: invariantes del dominio y de creación.
+- `src/storage/`: esquema de guardado validado con Zod y repositorio IndexedDB transaccional.
+- `src/game/selectors/`: datos derivados para la futura interfaz, sin exponer potenciales secretos.
 - `src/style.css`: estilos adaptables.
-- `public/`: recursos estáticos.
+- `public/`: recursos estáticos, manifiesto e iconos de instalación.
+- `vite.config.mjs`: ruta relativa y generación de una caché de aplicación versionada para producción.
 - `docs/`: diseño del juego.
+- `tests/`: pruebas del motor y datos sintéticos exclusivos de pruebas.
 
-La simulación y la persistencia se añadirán como módulos separados cuando se implemente la versión 0.1.
+El motor no guarda partidas ni depende de la interfaz. La aplicación confirma una transición solo cuando IndexedDB termina su transacción.
 
 ## Estado actual
 
-La pantalla inicial muestra la presentación del juego y permite abrir «Acerca del juego» con ratón, teclado o controles táctiles.
+La bienvenida conserva la presentación del juego y permite abrir «Acerca del juego» o empezar a explorar una aldea.
 
-Todavía no permite crear aldeas, avanzar el calendario ni guardar partidas. El funcionamiento sin conexión, la instalación y el empaquetado APK también están pendientes.
+M1 implementa internamente el calendario 12×28, edades derivadas, avisos de oficios, registro temporal, RNG versionado y avances diarios con interrupciones. M2 genera 15–20 habitantes con familias coherentes y características individuales, los aloja dentro de las 15 camas propuestas y registra a quienes no tienen vivienda. También crea las reservas y edificios iniciales.
+
+M3 conecta los dos bloques a pantallas reales. Puedes crear hasta tres aldeas durante una sesión, consultar viviendas, familias y fichas, filtrar habitantes, leer el registro y avanzar 1/7/28 días. Los rangos de generación, capacidades y recursos iniciales siguen siendo provisionales; consulta el seguimiento para ver las cifras y sus límites.
+
+M4 añade guardado automático al crear y avanzar, recuperación tras recargar/cerrar y estados reales de guardando/guardado/error. Reemplazar y borrar requieren confirmación. Los datos incompatibles se protegen, y los fallos permiten reintentar el mismo cambio o descartarlo y releer lo último confirmado. Una pestaña desactualizada no sobrescribe otra.
+
+Las partidas pertenecen a **este navegador y esta dirección**, incluyendo su puerto. Las direcciones de desarrollo (5173) y vista previa (4173) mantienen partidas distintas. Borrar los datos del sitio puede eliminarlas; no hay respaldo en la nube.
+
+## Qué puedes probar ahora
+
+1. Abre el proyecto con `npm run dev` y entra en http://127.0.0.1:5173.
+2. Pulsa «Explorar mi aldea», elige un espacio y pulsa «Crear aldea».
+3. Escribe una semilla o déjala vacía para obtener una nueva. Confirma «Fundar aldea».
+4. Revisa «Habitantes», abre una ficha y navega por sus familiares. Los filtros permiten buscar por nombre, familia, vivienda, edad y oficio sin avanzar el tiempo.
+5. Prueba +1/+7/+28 y consulta «Registro». Espera «Guardado», recarga y continúa desde «Tus aldeas»: la fecha y los habitantes se conservan.
+
+## Probar sin conexión
+
+1. Ejecuta `npm run build` y después `npm run preview`.
+2. Abre http://127.0.0.1:4173 y espera «Disponible sin conexión en este dispositivo».
+3. Crea una aldea, avanza y espera «Guardado». Recarga con la conexión desactivada desde las herramientas del navegador: puedes continuar y guardar localmente.
+4. Al detectar una nueva compilación aparece «Actualizar aplicación». La actualización se aplica con ese botón cuando no hay cambios pendientes y conserva las partidas.
+
+El modo de desarrollo no registra el service worker. Offline e instalación requieren HTTPS o localhost; abrir el HTML desde el disco no basta. El manifiesto pide orientación horizontal, su cumplimiento depende del dispositivo.
+
+El usuario confirmó en su Android con Brave la apertura desde el icono sin barra del navegador, orientación horizontal, recuperación de fecha exacta al cerrar desde recientes y reabrir en modo avión, y la independencia de las tres aldeas tras cerrar/reabrir. Son pruebas comunicadas por el usuario, no una inspección remota del teléfono. No se han probado todos los dispositivos, reinicio o cierre forzado del sistema, ni la comparación completa de un mismo mundo entre PC y Android físico.
+
+El enlace temporal de Cloudflare se habilitó con autorización para las pruebas. No hay alojamiento permanente ni APK, y la candidata todavía no tiene etiqueta final. Si cambia la dirección, las partidas no se trasladan automáticamente al nuevo origen.
+
+No hay trabajos, producción, consumo, construcción, combate ni mortalidad activos en este prototipo.

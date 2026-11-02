@@ -1,6 +1,8 @@
 node_modules/
 dist/
 .vite/
+.vitest/
+coverage/
 .playwright-mcp/
 *.tsbuildinfo
 *.log
