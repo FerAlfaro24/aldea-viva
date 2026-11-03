@@ -5,8 +5,9 @@ import { IndexedDbSaveRepository } from '../../src/storage/indexedDb';
 import { createSave } from '../../src/storage/schema';
 import { generateVillage } from '../../src/game/generation/village';
 import type { SaveRepository } from '../../src/storage/repository';
-import { advanceDays } from '../../src/game/core/tick';
+import { advanceVillageDays as advanceDays } from '../../src/game/core/workDay';
 import { selectResidentDetails } from '../../src/game/selectors/village';
+import { suppliedVillage } from '../fixtures/suppliedVillage';
 
 const create = { type: 'create', slot: 1, seed: 'persistencia', confirmReplacement: false } as const;
 function setup() {
@@ -39,8 +40,9 @@ describe('Sesión con guardado confirmado', () => {
   });
 
   it('E2E-02/06: un año en la ranura 2 no altera las otras ni duplica el registro al cargar', async () => {
-    const { session, factory } = setup(); await session.load();
-    for (const slot of [1, 2, 3] as const) await session.perform({ ...create, slot, seed: `aislamiento-anual-${slot}` });
+    const { session, factory, repository } = setup();
+    for (const slot of [1, 2, 3] as const) await repository.write(createSave(suppliedVillage(`aislamiento-anual-${slot}`), slot, 1, '2026-11-02T00:00:00Z'), null);
+    await session.load();
     const before = session.snapshot.session.slots;
     session.read({ type: 'continue', slot: 2 });
     for (let month = 0; month < 12; month++) await session.perform({ type: 'advance', days: 28 });
@@ -69,7 +71,9 @@ describe('Sesión con guardado confirmado', () => {
   });
 
   it('E2E-04: continuar a mitad de año equivale a 336 avances diarios continuos', async () => {
-    const { session, factory } = setup(); await session.load(); await session.perform(create);
+    const { session, factory, repository } = setup();
+    await repository.write(createSave(suppliedVillage(create.seed), 1, 1, '2026-11-02T00:00:00Z'), null);
+    await session.load(); session.read({ type: 'continue', slot: 1 });
     const initial = session.village!;
     let continuous = initial;
     for (let day = 0; day < 336; day++) continuous = advanceDays(continuous, 1).state;
@@ -111,7 +115,7 @@ describe('Sesión con guardado confirmado', () => {
     const candidate = write.mock.calls[0]![0];
     await session.retry();
     expect(write.mock.calls[1]![0]).toBe(candidate);
-    expect(session.village?.elapsedDays).toBe(28);
+    expect(session.village).toEqual(candidate.village);
     expect(session.hasUnsavedChanges).toBe(false);
     write.mockRestore(); session.dispose();
   });

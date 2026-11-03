@@ -3,7 +3,7 @@ export function renderWelcome(hasVillage: boolean): string {
     <main class="welcome" aria-labelledby="game-title">
       <header class="masthead">
         <span class="wordmark">AV<span aria-hidden="true">.</span></span>
-        <span class="development-status">Prototipo 0.1 · En desarrollo</span>
+        <span class="development-status">Candidata 1.0 · Una aldea, muchas historias</span>
       </header>
 
       <section class="introduction" aria-labelledby="game-title">
@@ -16,7 +16,7 @@ export function renderWelcome(hasVillage: boolean): string {
         </p>
 
         <div class="launch-actions"><button type="button" class="primary-button" data-action="navigate" data-route="slots">Explorar mi aldea <span aria-hidden="true">→</span></button>
-          ${hasVillage ? '<button type="button" class="text-button" data-action="navigate" data-route="village">Volver a mi aldea</button>' : ''}
+          ${hasVillage ? '<button type="button" class="text-button" data-action="navigate" data-route="village">Volver a mi aldea</button>' : ''}<button type="button" class="text-button" data-action="navigate" data-route="help">Cómo jugar</button>
         </div><p class="welcome-notice">Tres aldeas con guardado automático en este navegador. El tiempo solo avanza cuando tú lo decides.</p>
 
         <details class="about">
@@ -24,15 +24,15 @@ export function renderWelcome(hasVillage: boolean): string {
           <p>
             En Aldea Viva guiarás a una comunidad: asignarás trabajos,
             decidirás prioridades y afrontarás las consecuencias de tus decisiones.
-            Este prototipo permite conocer a los primeros habitantes y avanzar el calendario.
-            Los trabajos y la economía llegarán en próximas versiones.
+            Cultiva, construye y prepara el invierno. Afronta amenazas y oportunidades,
+            descubre aptitudes y conserva la memoria de quienes viven en tu aldea.
           </p>
         </details>
       </section>
 
       <footer class="welcome-footer">
         <span>Una aldea. Muchas historias.</span>
-        <span class="edition">Primeros habitantes</span>
+        <span class="edition">Gestión y supervivencia</span>
       </footer>
     </main>
   `;

@@ -2,17 +2,38 @@
 
 Juego de simulación de aldeas, pensado primero para Android.
 
+**Manual y referencia completa:** [Todo lo que contiene la candidata 1.0](ALDEA_VIVA_1_0_DOCUMENTACION_COMPLETA.md). Incluye pantallas, reglas, fórmulas, guardados, arquitectura, pruebas y pendientes.
+
 ## Base del proyecto
 
 - TypeScript + Vite.
 - Desarrollo local con VS Code y Codex.
-- Candidata 0.1 jugable: motor temporal, generación, interfaz y guardado de tres aldeas. PWA sin conexión comprobada en navegadores de escritorio y pruebas básicas de Android físico confirmadas por el usuario.
+- Candidata 1.0 local (`1.0.0-rc.2`): sistemas 0.1–0.7 integrados, guía opcional y mejoras de rendimiento. Ocho partidas de cinco años comprobadas; pendiente aceptación física en Android. Sin publicación ni APK nueva.
 
 Empieza por [LEEME_PRIMERO.md](LEEME_PRIMERO.md), sigue con la [Biblia de diseño](docs/01_BIBLIA_DE_DISENO_0_1_A_1_0.md) y la [especificación ejecutable 0.1](docs/02_ESPECIFICACION_EJECUTABLE_0_1.md). El [documento maestro anterior](docs/Aldea_Viva_Documento_Maestro.md) se conserva como referencia.
 
 El [seguimiento de la 0.1](docs/07_SEGUIMIENTO_0_1.md) distingue lo implementado de los próximos hitos y documenta las decisiones técnicas.
 
 La [revisión de aceptación](docs/08_ACEPTACION_0_1.md) reúne los veinte criterios AV01, las 186 pruebas automáticas, la evidencia de Android y los límites pendientes. No hay etiqueta final de versión.
+
+El [plan 0.2](docs/09_PLAN_DE_TRABAJO_0_2.md) recoge las decisiones aprobadas y el [seguimiento 0.2](docs/10_SEGUIMIENTO_0_2.md) documenta su cierre. El [seguimiento 0.3](docs/11_SEGUIMIENTO_0_3.md) conserva sus antecedentes. El [seguimiento 0.4](docs/12_SEGUIMIENTO_0_4.md) conserva las decisiones económicas y sus valores provisionales. Los resultados de Android de la 0.1 no se atribuyen automáticamente a versiones posteriores.
+
+El estado actual, las comprobaciones y los pendientes están en la [candidata 1.0](docs/16_CANDIDATA_1_0.md). El [seguimiento 0.7](docs/15_SEGUIMIENTO_0_7.md) conserva los antecedentes de sucesos. El [historial de cambios](CHANGELOG.md) resume las versiones. El [seguimiento 0.6](docs/14_SEGUIMIENTO_0_6.md) conserva los antecedentes de defensa. El [seguimiento 0.5](docs/13_SEGUIMIENTO_0_5.md) conserva los antecedentes de supervivencia.
+
+## Probar la candidata 1.0
+
+```sh
+npm run build -- --outDir dist-1-0.local
+npm run preview -- --outDir dist-1-0.local --port 4176
+```
+
+Abre http://127.0.0.1:4176, la misma dirección que 0.3–0.7. Recarga y pulsa «Actualizar aplicación» si aparece. «Ayuda» explica cómo jugar y «Primeros pasos» muestra consejos ligados a tu aldea. «Sucesos» reúne oportunidades, visitantes y descubrimientos; «Registro» permite filtrar por persona, familia, año y estación. Las decisiones importantes detienen el tiempo y se guardan al resolver. La práctica revela talentos en dos etapas. Los visitantes llegan muy raramente, sin oficio; puedes aceptar o rechazar el grupo y ver cuántas camas faltan antes de decidir.
+
+Se leen partidas v1–v9 y se guarda en v9. Las anteriores continúan sin regenerarse ni aplicar efectos retroactivos. Consultar no escribe ni consume azar. La primera comprobación de sucesos llega 14 días después de activarse; no hay una cuota obligatoria de eventos. Otras direcciones mantienen sus propios guardados. El enlace antiguo de Android conserva su compilación anterior.
+
+## Compilaciones anteriores
+
+Se conservan `dist/` (0.1 del teléfono), `dist-0-2.local` (0.2 en 4175), `dist-0-3.local`, `dist-0-4.local`, `dist-0-5.local`, `dist-0-6.local` y `dist-0-7.local`. No contienen automáticamente cambios posteriores. Reconstruir esas carpetas con el código actual generaría la versión actual. Las aplicaciones antiguas protegen los guardados nuevos como incompatibles en lugar de sobrescribirlos.
 
 ## Requisitos
 

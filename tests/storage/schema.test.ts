@@ -7,13 +7,13 @@ const timestamp = '2026-11-02T18:00:00.000Z';
 const save = () => createSave(generateVillage('formato-guardado'), 1, 1, timestamp);
 
 describe('Esquema y coherencia de partidas desconocidas', () => {
-  it('SAVE-01/10: el esquema 1 conocido conserva todos los datos sin migración ficticia', () => {
+  it('el esquema actual conserva todos los datos al serializar y validar', () => {
     const original = save();
     expect(parseSave(JSON.parse(JSON.stringify(original)), 1)).toEqual(original);
     expect(parseSave(original, 1)).not.toBe(original);
   });
 
-  it.each([null, [], {}, { format: 'otro', schemaVersion: 1 }, { ...save(), schemaVersion: 0 }, { ...save(), schemaVersion: 2 },
+  it.each([null, [], {}, { format: 'otro', schemaVersion: 1 }, { ...save(), schemaVersion: 0 }, { ...save(), schemaVersion: 99 },
     { ...save(), slot: 4 }, { ...save(), revision: 0 }, { ...save(), savedAt: 'sin-fecha' },
     { ...save(), village: { ...save().village, residents: 'no-es-lista' } },
     { ...save(), village: { ...save().village, elapsedDays: NaN } },

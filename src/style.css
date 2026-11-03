@@ -1,11 +1,30 @@
 :root {
+  --bg: #151b19;
+  --surface: #1e2723;
+  --surface-raised: #26332b;
+  --surface-hover: #2d3c32;
+  --input-bg: #17201c;
+  --text: #d5dccf;
+  --muted: #a4b2a3;
+  --accent: #9cbea6;
+  --accent-fill: #355846;
+  --accent-hover: #426a53;
+  --on-accent: #e3ece1;
+  --border: #405246;
+  --border-strong: #607b69;
+  --gold: #ccb586;
+  --gold-border: #756747;
+  --warning-bg: #302d23;
+  --danger: #e2aa98;
+  --danger-border: #9a6655;
+  --danger-bg: #342722;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  color: #244839;
-  background: #f3f1e7;
+  color: var(--text);
+  background: var(--bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 * {
@@ -23,8 +42,8 @@ summary {
 }
 
 ::selection {
-  color: #f3f1e7;
-  background: #244839;
+  color: var(--on-accent);
+  background: var(--accent-fill);
 }
 
 .welcome {
@@ -54,12 +73,12 @@ summary {
 }
 
 .wordmark span {
-  color: #926239;
+  color: var(--gold);
 }
 
 .development-status {
   padding: 0.4rem 0.75rem;
-  border: 1px solid #c1cabb;
+  border: 1px solid var(--border);
   border-radius: 100px;
   font-size: 0.75rem;
   font-weight: 600;
@@ -94,7 +113,7 @@ h1 {
 }
 
 h1 em {
-  color: #5a6c43;
+  color: var(--accent);
   font-weight: 400;
 }
 
@@ -107,7 +126,7 @@ h1 em {
 .description {
   max-width: 28rem;
   margin: 1.25rem 0 0;
-  color: #526052;
+  color: var(--muted);
   font-size: 0.95rem;
   line-height: 1.8;
   text-wrap: pretty;
@@ -116,7 +135,7 @@ h1 em {
 .about {
   width: min(100%, 29rem);
   margin-top: 2rem;
-  border-block: 1px solid #c1cabb;
+  border-block: 1px solid var(--border);
   text-align: left;
 }
 
@@ -138,11 +157,11 @@ h1 em {
 }
 
 .about summary:hover {
-  color: #684323;
+  color: var(--gold);
 }
 
 .about summary:focus-visible {
-  outline: 2px solid #244839;
+  outline: 2px solid var(--accent);
   outline-offset: 4px;
   border-radius: 2px;
 }
@@ -160,15 +179,15 @@ h1 em {
 .about p {
   margin: 0;
   padding: 0.25rem 0.25rem 1.25rem;
-  color: #526052;
+  color: var(--muted);
   font-size: 0.9rem;
   line-height: 1.8;
 }
 
 .welcome-footer {
   padding-top: 1.25rem;
-  border-top: 1px solid #c1cabb;
-  color: #526052;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
   font-size: 0.7rem;
   line-height: 1.6;
 }

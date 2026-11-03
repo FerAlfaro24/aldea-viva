@@ -1,0 +1,1474 @@
+{
+  "saveId": "00000000-0000-4000-8000-000000000001",
+  "format": "aldea-viva-save",
+  "schemaVersion": 1,
+  "gameVersion": "0.1.0-dev",
+  "savedAt": "2026-11-02T00:00:00.000Z",
+  "slot": 1,
+  "revision": 2,
+  "village": {
+    "id": "v0001",
+    "generationVersion": "families-v1",
+    "initialConfigId": "provisional-v1",
+    "grade": 1,
+    "elapsedDays": 28,
+    "residents": [
+      {
+        "id": "r0001",
+        "displayName": "Teresa del Brezo",
+        "familyId": "f0001",
+        "initialAge": 34,
+        "birthDayOfYear": 208,
+        "alive": true,
+        "profession": null,
+        "workplaceId": null,
+        "relations": {
+          "parentIds": [],
+          "childIds": [
+            "r0003",
+            "r0004",
+            "r0005"
+          ],
+          "siblingIds": [],
+          "partnerId": "r0002"
+        },
+        "attributes": {
+          "strength": 53,
+          "endurance": 30,
+          "agility": 71,
+          "dexterity": 63,
+          "vitality": 59
+        },
+        "skills": {
+          "farmer": {
+            "effective": 30,
+            "historicalBest": 30,
+            "experience": 0,
+            "potentialSecret": 44
+          },
+          "builder": {
+            "effective": 17,
+            "historicalBest": 17,
+            "experience": 0,
+            "potentialSecret": 34
+          },
+          "woodcutter": {
+            "effective": 4,
+            "historicalBest": 4,
+            "experience": 0,
+            "potentialSecret": 12
+          },
+          "warrior": {
+            "effective": 11,
+            "historicalBest": 11,
+            "experience": 0,
+            "potentialSecret": 37
+          }
+        },
+        "condition": {
+          "health": 100,
+          "hunger": 0
+        },
+        "initialClueIds": [
+          "unknown-aptitudes"
+        ],
+        "origin": "Su familia forma parte de los primeros habitantes de la aldea."
+      },
+      {
+        "id": "r0002",
+        "displayName": "Fabio del Brezo",
+        "familyId": "f0001",
+        "initialAge": 43,
+        "birthDayOfYear": 60,
+        "alive": true,
+        "profession": null,
+        "workplaceId": null,
+        "relations": {
+          "parentIds": [],
+          "childIds": [
+            "r0003",
+            "r0004",
+            "r0005"
+          ],
+          "siblingIds": [],
+          "partnerId": "r0001"
+        },
+        "attributes": {
+          "strength": 73,
+          "endurance": 63,
+          "agility": 73,
+          "dexterity": 63,
+          "vitality": 57
+        },
+        "skills": {
+          "farmer": {
+            "effective": 0,
+            "historicalBest": 0,
+            "experience": 0,
+            "potentialSecret": 35
+          },
+          "builder": {
+            "effective": 10,
+            "historicalBest": 10,
+            "experience": 0,
+            "potentialSecret": 56
+          },
+          "woodcutter": {
+            "effective": 0,
+            "historicalBest": 0,
+            "experience": 0,
+            "potentialSecret": 87
+          },
+          "warrior": {
+            "effective": 13,
+            "historicalBest": 13,
+            "experience": 0,
+            "potentialSecret": 75
+          }
+        },
+        "condition": {
+          "health": 100,
+          "hunger": 0
+        },
+        "initialClueIds": [
+          "strong-build",
+          "wood-learning",
+          "defense-learning"
+        ],
+        "origin": "Su familia forma parte de los primeros habitantes de la aldea."
+      },
+      {
+        "id": "r0003",
+        "displayName": "Yago del Brezo",
+        "familyId": "f0001",
+        "initialAge": 0,
+        "birthDayOfYear": 13,
+        "alive": true,
+        "profession": null,
+        "workplaceId": null,
+        "relations": {
+          "parentIds": [
+            "r0001",
+            "r0002"
+          ],
+          "childIds": [],
+          "siblingIds": [
+            "r0004",
+            "r0005"
+          ],
+          "partnerId": null
+        },
+        "attributes": {
+          "strength": 2,
+          "endurance": 2,
+          "agility": 2,
+          "dexterity": 0,
+          "vitality": 2
+        },
+        "skills": {
+          "farmer": {
+            "effective": 0,
+            "historicalBest": 0,
+            "experience": 0,
+            "potentialSecret": 70
+          },
+          "builder": {
+            "effective": 0,
+            "historicalBest": 0,
+            "experience": 0,
+            "potentialSecret": 46
+          },
+          "woodcutter": {
+            "effective": 0,
+            "historicalBest": 0,
+            "experience": 0,
+            "potentialSecret": 73
+          },
+          "warrior": {
+            "effective": 0,
+            "historicalBest": 0,
+            "experience": 0,
+            "potentialSecret": 32
+          }
+        },
+        "condition": {
+          "health": 100,
+          "hunger": 0
+        },
+        "initialClueIds": [
+          "unknown-aptitudes"
+        ],
+        "origin": "Su familia forma parte de los primeros habitantes de la aldea."
+      },
+      {
+        "id": "r0004",
+        "displayName": "Félix del Brezo",
+        "familyId": "f0001",
+        "initialAge": 3,
+        "birthDayOfYear": 265,
+        "alive": true,
+        "profession": null,
+        "workplaceId": null,
+        "relations": {
+          "parentIds": [
+            "r0001",
+            "r0002"
+          ],
+          "childIds": [],
+          "siblingIds": [
+            "r0003",
+            "r0005"
+          ],
+          "partnerId": null
+        },
+        "attributes": {
+          "strength": 6,
+          "endurance": 3,
+          "agility": 4,
+          "dexterity": 10,
+          "vitality": 0
+        },
+        "skills": {
+          "farmer": {
+            "effective": 0,
+            "historicalBest": 0,
+            "experience": 0,
+            "potentialSecret": 49
+          },
+          "builder": {
+            "effective": 2,
+            "historicalBest": 2,
+            "experience": 0,
+            "potentialSecret": 64
+          },
+          "woodcutter": {
+            "effective": 2,
+            "historicalBest": 2,
+            "experience": 0,
+            "potentialSecret": 76
+          },
+          "warrior": {
+            "effective": 2,
+            "historicalBest": 2,
+            "experience": 0,
+            "potentialSecret": 75
+          }
+        },
+        "condition": {
+          "health": 100,
+          "hunger": 0
+        },
+        "initialClueIds": [
+          "unknown-aptitudes"
+        ],
+        "origin": "Su familia forma parte de los primeros habitantes de la aldea."
+      },
+      {
+        "id": "r0005",
+        "displayName": "Inés del Brezo",
+        "familyId": "f0001",
+        "initialAge": 5,
+        "birthDayOfYear": 25,
+        "alive": true,
+        "profession": null,
+        "workplaceId": null,
+        "relations": {
+          "parentIds": [
+            "r0001",
+            "r0002"
+          ],
+          "childIds": [],
+          "siblingIds": [
+            "r0003",
+            "r0004"
+          ],
+          "partnerId": null
+        },
+        "attributes": {
+          "strength": 11,
+          "endurance": 13,
+          "agility": 10,
+          "dexterity": 7,
+          "vitality": 13
+        },
+        "skills": {
+          "farmer": {
+            "effective": 2,
+            "historicalBest": 2,
+            "experience": 0,
+            "potentialSecret": 26
+          },
+          "builder": {
+            "effective": 3,
+            "historicalBest": 3,
+            "experience": 0,
+            "potentialSecret": 44
+          },
+          "woodcutter": {
+            "effective": 3,
+            "historicalBest": 3,
+            "experience": 0,
+            "potentialSecret": 10
+          },
+          "warrior": {
+            "effective": 2,
+            "historicalBest": 2,
+            "experience": 0,
+            "potentialSecret": 16
+          }
+        },
+        "condition": {
+          "health": 100,
+          "hunger": 0
+        },
+        "initialClueIds": [
+          "unknown-aptitudes"
+        ],
+        "origin": "Su familia forma parte de los primeros habitantes de la aldea."
+      },
+      {
+        "id": "r0006",
+        "displayName": "Diego de la Ribera",
+        "familyId": "f0002",
+        "initialAge": 65,
+        "birthDayOfYear": 319,
+        "alive": true,
+        "profession": null,
+        "workplaceId": null,
+        "relations": {
+          "parentIds": [],
+          "childIds": [],
+          "siblingIds": [
+            "r0007"
+          ],
+          "partnerId": null
+        },
+        "attributes": {
+          "strength": 70,
+          "endurance": 36,
+          "agility": 51,
+          "dexterity": 36,
+          "vitality": 51
+        },
+        "skills": {
+          "farmer": {
+            "effective": 19,
+            "historicalBest": 19,
+            "experience": 0,
+            "potentialSecret": 52
+          },
+          "builder": {
+            "effective": 19,
+            "historicalBest": 19,
+            "experience": 0,
+            "potentialSecret": 58
+          },
+          "woodcutter": {
+            "effective": 24,
+            "historicalBest": 24,
+            "experience": 0,
+            "potentialSecret": 36
+          },
+          "warrior": {
+            "effective": 27,
+            "historicalBest": 27,
+            "experience": 0,
+            "potentialSecret": 11
+          }
+        },
+        "condition": {
+          "health": 100,
+          "hunger": 0
+        },
+        "initialClueIds": [
+          "strong-build"
+        ],
+        "origin": "Llegó con sus hermanos al fundarse la aldea."
+      },
+      {
+        "id": "r0007",
+        "displayName": "Iván de la Ribera",
+        "familyId": "f0002",
+        "initialAge": 67,
+        "birthDayOfYear": 282,
+        "alive": true,
+        "profession": null,
+        "workplaceId": null,
+        "relations": {
+          "parentIds": [],
+          "childIds": [],
+          "siblingIds": [
+            "r0006"
+          ],
+          "partnerId": null
+        },
+        "attributes": {
+          "strength": 53,
+          "endurance": 64,
+          "agility": 35,
+          "dexterity": 51,
+          "vitality": 46
+        },
+        "skills": {
+          "farmer": {
+            "effective": 34,
+            "historicalBest": 34,
+            "experience": 0,
+            "potentialSecret": 14
+          },
+          "builder": {
+            "effective": 21,
+            "historicalBest": 21,
+            "experience": 0,
+            "potentialSecret": 40
+          },
+          "woodcutter": {
+            "effective": 34,
+            "historicalBest": 34,
+            "experience": 0,
+            "potentialSecret": 17
+          },
+          "warrior": {
+            "effective": 26,
+            "historicalBest": 26,
+            "experience": 0,
+            "potentialSecret": 38
+          }
+        },
+        "condition": {
+          "health": 100,
+          "hunger": 0
+        },
+        "initialClueIds": [
+          "unknown-aptitudes"
+        ],
+        "origin": "Llegó con sus hermanos al fundarse la aldea."
+      },
+      {
+        "id": "r0008",
+        "displayName": "Martín del Robledal",
+        "familyId": "f0003",
+        "initialAge": 28,
+        "birthDayOfYear": 239,
+        "alive": true,
+        "profession": null,
+        "workplaceId": null,
+        "relations": {
+          "parentIds": [],
+          "childIds": [],
+          "siblingIds": [],
+          "partnerId": "r0009"
+        },
+        "attributes": {
+          "strength": 43,
+          "endurance": 52,
+          "agility": 75,
+          "dexterity": 68,
+          "vitality": 27
+        },
+        "skills": {
+          "farmer": {
+            "effective": 37,
+            "historicalBest": 37,
+            "experience": 0,
+            "potentialSecret": 77
+          },
+          "builder": {
+            "effective": 20,
+            "historicalBest": 20,
+            "experience": 0,
+            "potentialSecret": 66
+          },
+          "woodcutter": {
+            "effective": 18,
+            "historicalBest": 18,
+            "experience": 0,
+            "potentialSecret": 95
+          },
+          "warrior": {
+            "effective": 5,
+            "historicalBest": 5,
+            "experience": 0,
+            "potentialSecret": 93
+          }
+        },
+        "condition": {
+          "health": 100,
+          "hunger": 0
+        },
+        "initialClueIds": [
+          "steady-hands",
+          "field-learning",
+          "wood-learning",
+          "defense-learning"
+        ],
+        "origin": "Llegó con su pareja para comenzar una vida en la aldea."
+      },
+      {
+        "id": "r0009",
+        "displayName": "Clara del Robledal",
+        "familyId": "f0003",
+        "initialAge": 18,
+        "birthDayOfYear": 124,
+        "alive": true,
+        "profession": null,
+        "workplaceId": null,
+        "relations": {
+          "parentIds": [],
+          "childIds": [],
+          "siblingIds": [],
+          "partnerId": "r0008"
+        },
+        "attributes": {
+          "strength": 50,
+          "endurance": 25,
+          "agility": 59,
+          "dexterity": 29,
+          "vitality": 22
+        },
+        "skills": {
+          "farmer": {
+            "effective": 27,
+            "historicalBest": 27,
+            "experience": 0,
+            "potentialSecret": 94
+          },
+          "builder": {
+            "effective": 38,
+            "historicalBest": 38,
+            "experience": 0,
+            "potentialSecret": 11
+          },
+          "woodcutter": {
+            "effective": 28,
+            "historicalBest": 28,
+            "experience": 0,
+            "potentialSecret": 63
+          },
+          "warrior": {
+            "effective": 23,
+            "historicalBest": 23,
+            "experience": 0,
+            "potentialSecret": 65
+          }
+        },
+        "condition": {
+          "health": 100,
+          "hunger": 0
+        },
+        "initialClueIds": [
+          "unknown-aptitudes"
+        ],
+        "origin": "Llegó con su pareja para comenzar una vida en la aldea."
+      },
+      {
+        "id": "r0010",
+        "displayName": "Nuño de la Encina",
+        "familyId": "f0004",
+        "initialAge": 62,
+        "birthDayOfYear": 1,
+        "alive": true,
+        "profession": null,
+        "workplaceId": null,
+        "relations": {
+          "parentIds": [],
+          "childIds": [],
+          "siblingIds": [],
+          "partnerId": null
+        },
+        "attributes": {
+          "strength": 46,
+          "endurance": 52,
+          "agility": 59,
+          "dexterity": 56,
+          "vitality": 65
+        },
+        "skills": {
+          "farmer": {
+            "effective": 3,
+            "historicalBest": 3,
+            "experience": 0,
+            "potentialSecret": 55
+          },
+          "builder": {
+            "effective": 35,
+            "historicalBest": 35,
+            "experience": 0,
+            "potentialSecret": 53
+          },
+          "woodcutter": {
+            "effective": 39,
+            "historicalBest": 39,
+            "experience": 0,
+            "potentialSecret": 78
+          },
+          "warrior": {
+            "effective": 16,
+            "historicalBest": 16,
+            "experience": 0,
+            "potentialSecret": 88
+          }
+        },
+        "condition": {
+          "health": 100,
+          "hunger": 0
+        },
+        "initialClueIds": [
+          "wood-learning",
+          "defense-learning"
+        ],
+        "origin": "Llegó por su cuenta para formar parte de la nueva aldea."
+      },
+      {
+        "id": "r0011",
+        "displayName": "Pedro de la Loma",
+        "familyId": "f0005",
+        "initialAge": 60,
+        "birthDayOfYear": 51,
+        "alive": true,
+        "profession": null,
+        "workplaceId": null,
+        "relations": {
+          "parentIds": [],
+          "childIds": [],
+          "siblingIds": [],
+          "partnerId": "r0012"
+        },
+        "attributes": {
+          "strength": 61,
+          "endurance": 43,
+          "agility": 66,
+          "dexterity": 37,
+          "vitality": 65
+        },
+        "skills": {
+          "farmer": {
+            "effective": 36,
+            "historicalBest": 36,
+            "experience": 0,
+            "potentialSecret": 12
+          },
+          "builder": {
+            "effective": 28,
+            "historicalBest": 28,
+            "experience": 0,
+            "potentialSecret": 35
+          },
+          "woodcutter": {
+            "effective": 9,
+            "historicalBest": 9,
+            "experience": 0,
+            "potentialSecret": 95
+          },
+          "warrior": {
+            "effective": 14,
+            "historicalBest": 14,
+            "experience": 0,
+            "potentialSecret": 56
+          }
+        },
+        "condition": {
+          "health": 100,
+          "hunger": 0
+        },
+        "initialClueIds": [
+          "unknown-aptitudes"
+        ],
+        "origin": "Llegó con su pareja para comenzar una vida en la aldea."
+      },
+      {
+        "id": "r0012",
+        "displayName": "Gala de la Loma",
+        "familyId": "f0005",
+        "initialAge": 61,
+        "birthDayOfYear": 210,
+        "alive": true,
+        "profession": null,
+        "workplaceId": null,
+        "relations": {
+          "parentIds": [],
+          "childIds": [],
+          "siblingIds": [],
+          "partnerId": "r0011"
+        },
+        "attributes": {
+          "strength": 74,
+          "endurance": 42,
+          "agility": 45,
+          "dexterity": 62,
+          "vitality": 48
+        },
+        "skills": {
+          "farmer": {
+            "effective": 35,
+            "historicalBest": 35,
+            "experience": 0,
+            "potentialSecret": 33
+          },
+          "builder": {
+            "effective": 10,
+            "historicalBest": 10,
+            "experience": 0,
+            "potentialSecret": 67
+          },
+          "woodcutter": {
+            "effective": 31,
+            "historicalBest": 31,
+            "experience": 0,
+            "potentialSecret": 62
+          },
+          "warrior": {
+            "effective": 35,
+            "historicalBest": 35,
+            "experience": 0,
+            "potentialSecret": 72
+          }
+        },
+        "condition": {
+          "health": 100,
+          "hunger": 0
+        },
+        "initialClueIds": [
+          "strong-build",
+          "defense-learning"
+        ],
+        "origin": "Llegó con su pareja para comenzar una vida en la aldea."
+      },
+      {
+        "id": "r0013",
+        "displayName": "Úrsula del Valle",
+        "familyId": "f0006",
+        "initialAge": 36,
+        "birthDayOfYear": 47,
+        "alive": true,
+        "profession": null,
+        "workplaceId": null,
+        "relations": {
+          "parentIds": [],
+          "childIds": [],
+          "siblingIds": [],
+          "partnerId": null
+        },
+        "attributes": {
+          "strength": 35,
+          "endurance": 47,
+          "agility": 50,
+          "dexterity": 38,
+          "vitality": 20
+        },
+        "skills": {
+          "farmer": {
+            "effective": 39,
+            "historicalBest": 39,
+            "experience": 0,
+            "potentialSecret": 16
+          },
+          "builder": {
+            "effective": 29,
+            "historicalBest": 29,
+            "experience": 0,
+            "potentialSecret": 68
+          },
+          "woodcutter": {
+            "effective": 33,
+            "historicalBest": 33,
+            "experience": 0,
+            "potentialSecret": 87
+          },
+          "warrior": {
+            "effective": 21,
+            "historicalBest": 21,
+            "experience": 0,
+            "potentialSecret": 88
+          }
+        },
+        "condition": {
+          "health": 100,
+          "hunger": 0
+        },
+        "initialClueIds": [
+          "wood-learning",
+          "defense-learning"
+        ],
+        "origin": "Llegó por su cuenta para formar parte de la nueva aldea."
+      },
+      {
+        "id": "r0014",
+        "displayName": "Lope del Arroyo",
+        "familyId": "f0007",
+        "initialAge": 50,
+        "birthDayOfYear": 222,
+        "alive": true,
+        "profession": null,
+        "workplaceId": null,
+        "relations": {
+          "parentIds": [],
+          "childIds": [],
+          "siblingIds": [],
+          "partnerId": "r0015"
+        },
+        "attributes": {
+          "strength": 53,
+          "endurance": 49,
+          "agility": 24,
+          "dexterity": 31,
+          "vitality": 36
+        },
+        "skills": {
+          "farmer": {
+            "effective": 39,
+            "historicalBest": 39,
+            "experience": 0,
+            "potentialSecret": 10
+          },
+          "builder": {
+            "effective": 30,
+            "historicalBest": 30,
+            "experience": 0,
+            "potentialSecret": 64
+          },
+          "woodcutter": {
+            "effective": 1,
+            "historicalBest": 1,
+            "experience": 0,
+            "potentialSecret": 12
+          },
+          "warrior": {
+            "effective": 32,
+            "historicalBest": 32,
+            "experience": 0,
+            "potentialSecret": 59
+          }
+        },
+        "condition": {
+          "health": 100,
+          "hunger": 0
+        },
+        "initialClueIds": [
+          "unknown-aptitudes"
+        ],
+        "origin": "Llegó con su pareja para comenzar una vida en la aldea."
+      },
+      {
+        "id": "r0015",
+        "displayName": "Julia del Arroyo",
+        "familyId": "f0007",
+        "initialAge": 49,
+        "birthDayOfYear": 74,
+        "alive": true,
+        "profession": null,
+        "workplaceId": null,
+        "relations": {
+          "parentIds": [],
+          "childIds": [],
+          "siblingIds": [],
+          "partnerId": "r0014"
+        },
+        "attributes": {
+          "strength": 29,
+          "endurance": 34,
+          "agility": 38,
+          "dexterity": 30,
+          "vitality": 67
+        },
+        "skills": {
+          "farmer": {
+            "effective": 15,
+            "historicalBest": 15,
+            "experience": 0,
+            "potentialSecret": 49
+          },
+          "builder": {
+            "effective": 15,
+            "historicalBest": 15,
+            "experience": 0,
+            "potentialSecret": 69
+          },
+          "woodcutter": {
+            "effective": 21,
+            "historicalBest": 21,
+            "experience": 0,
+            "potentialSecret": 78
+          },
+          "warrior": {
+            "effective": 11,
+            "historicalBest": 11,
+            "experience": 0,
+            "potentialSecret": 38
+          }
+        },
+        "condition": {
+          "health": 100,
+          "hunger": 0
+        },
+        "initialClueIds": [
+          "unknown-aptitudes"
+        ],
+        "origin": "Llegó con su pareja para comenzar una vida en la aldea."
+      },
+      {
+        "id": "r0016",
+        "displayName": "Hugo del Fresno",
+        "familyId": "f0008",
+        "initialAge": 32,
+        "birthDayOfYear": 65,
+        "alive": true,
+        "profession": null,
+        "workplaceId": null,
+        "relations": {
+          "parentIds": [],
+          "childIds": [],
+          "siblingIds": [
+            "r0017",
+            "r0018"
+          ],
+          "partnerId": null
+        },
+        "attributes": {
+          "strength": 72,
+          "endurance": 75,
+          "agility": 43,
+          "dexterity": 21,
+          "vitality": 61
+        },
+        "skills": {
+          "farmer": {
+            "effective": 12,
+            "historicalBest": 12,
+            "experience": 0,
+            "potentialSecret": 65
+          },
+          "builder": {
+            "effective": 23,
+            "historicalBest": 23,
+            "experience": 0,
+            "potentialSecret": 66
+          },
+          "woodcutter": {
+            "effective": 30,
+            "historicalBest": 30,
+            "experience": 0,
+            "potentialSecret": 35
+          },
+          "warrior": {
+            "effective": 6,
+            "historicalBest": 6,
+            "experience": 0,
+            "potentialSecret": 36
+          }
+        },
+        "condition": {
+          "health": 100,
+          "hunger": 0
+        },
+        "initialClueIds": [
+          "strong-build"
+        ],
+        "origin": "Llegó con sus hermanos al fundarse la aldea."
+      },
+      {
+        "id": "r0017",
+        "displayName": "Jaime del Fresno",
+        "familyId": "f0008",
+        "initialAge": 34,
+        "birthDayOfYear": 40,
+        "alive": true,
+        "profession": null,
+        "workplaceId": null,
+        "relations": {
+          "parentIds": [],
+          "childIds": [],
+          "siblingIds": [
+            "r0016",
+            "r0018"
+          ],
+          "partnerId": null
+        },
+        "attributes": {
+          "strength": 25,
+          "endurance": 72,
+          "agility": 50,
+          "dexterity": 49,
+          "vitality": 38
+        },
+        "skills": {
+          "farmer": {
+            "effective": 11,
+            "historicalBest": 11,
+            "experience": 0,
+            "potentialSecret": 93
+          },
+          "builder": {
+            "effective": 37,
+            "historicalBest": 37,
+            "experience": 0,
+            "potentialSecret": 13
+          },
+          "woodcutter": {
+            "effective": 6,
+            "historicalBest": 6,
+            "experience": 0,
+            "potentialSecret": 23
+          },
+          "warrior": {
+            "effective": 27,
+            "historicalBest": 27,
+            "experience": 0,
+            "potentialSecret": 85
+          }
+        },
+        "condition": {
+          "health": 100,
+          "hunger": 0
+        },
+        "initialClueIds": [
+          "field-learning",
+          "defense-learning"
+        ],
+        "origin": "Llegó con sus hermanos al fundarse la aldea."
+      },
+      {
+        "id": "r0018",
+        "displayName": "Estela del Fresno",
+        "familyId": "f0008",
+        "initialAge": 36,
+        "birthDayOfYear": 210,
+        "alive": true,
+        "profession": null,
+        "workplaceId": null,
+        "relations": {
+          "parentIds": [],
+          "childIds": [],
+          "siblingIds": [
+            "r0016",
+            "r0017"
+          ],
+          "partnerId": null
+        },
+        "attributes": {
+          "strength": 34,
+          "endurance": 31,
+          "agility": 42,
+          "dexterity": 57,
+          "vitality": 33
+        },
+        "skills": {
+          "farmer": {
+            "effective": 4,
+            "historicalBest": 4,
+            "experience": 0,
+            "potentialSecret": 76
+          },
+          "builder": {
+            "effective": 5,
+            "historicalBest": 5,
+            "experience": 0,
+            "potentialSecret": 68
+          },
+          "woodcutter": {
+            "effective": 35,
+            "historicalBest": 35,
+            "experience": 0,
+            "potentialSecret": 37
+          },
+          "warrior": {
+            "effective": 24,
+            "historicalBest": 24,
+            "experience": 0,
+            "potentialSecret": 16
+          }
+        },
+        "condition": {
+          "health": 100,
+          "hunger": 0
+        },
+        "initialClueIds": [
+          "field-learning"
+        ],
+        "origin": "Llegó con sus hermanos al fundarse la aldea."
+      },
+      {
+        "id": "r0019",
+        "displayName": "Nora del Vado",
+        "familyId": "f0009",
+        "initialAge": 31,
+        "birthDayOfYear": 116,
+        "alive": true,
+        "profession": null,
+        "workplaceId": null,
+        "relations": {
+          "parentIds": [],
+          "childIds": [],
+          "siblingIds": [],
+          "partnerId": null
+        },
+        "attributes": {
+          "strength": 31,
+          "endurance": 49,
+          "agility": 66,
+          "dexterity": 51,
+          "vitality": 32
+        },
+        "skills": {
+          "farmer": {
+            "effective": 5,
+            "historicalBest": 5,
+            "experience": 0,
+            "potentialSecret": 38
+          },
+          "builder": {
+            "effective": 35,
+            "historicalBest": 35,
+            "experience": 0,
+            "potentialSecret": 32
+          },
+          "woodcutter": {
+            "effective": 38,
+            "historicalBest": 38,
+            "experience": 0,
+            "potentialSecret": 41
+          },
+          "warrior": {
+            "effective": 21,
+            "historicalBest": 21,
+            "experience": 0,
+            "potentialSecret": 67
+          }
+        },
+        "condition": {
+          "health": 100,
+          "hunger": 0
+        },
+        "initialClueIds": [
+          "unknown-aptitudes"
+        ],
+        "origin": "Llegó por su cuenta para formar parte de la nueva aldea."
+      }
+    ],
+    "families": [
+      {
+        "id": "f0001",
+        "displayName": "Hogar del Brezo",
+        "kind": "parents-and-children",
+        "memberIds": [
+          "r0001",
+          "r0002",
+          "r0003",
+          "r0004",
+          "r0005"
+        ]
+      },
+      {
+        "id": "f0002",
+        "displayName": "Hogar de la Ribera",
+        "kind": "siblings",
+        "memberIds": [
+          "r0006",
+          "r0007"
+        ]
+      },
+      {
+        "id": "f0003",
+        "displayName": "Hogar del Robledal",
+        "kind": "partners",
+        "memberIds": [
+          "r0008",
+          "r0009"
+        ]
+      },
+      {
+        "id": "f0004",
+        "displayName": "Hogar de la Encina",
+        "kind": "single",
+        "memberIds": [
+          "r0010"
+        ]
+      },
+      {
+        "id": "f0005",
+        "displayName": "Hogar de la Loma",
+        "kind": "partners",
+        "memberIds": [
+          "r0011",
+          "r0012"
+        ]
+      },
+      {
+        "id": "f0006",
+        "displayName": "Hogar del Valle",
+        "kind": "single",
+        "memberIds": [
+          "r0013"
+        ]
+      },
+      {
+        "id": "f0007",
+        "displayName": "Hogar del Arroyo",
+        "kind": "partners",
+        "memberIds": [
+          "r0014",
+          "r0015"
+        ]
+      },
+      {
+        "id": "f0008",
+        "displayName": "Hogar del Fresno",
+        "kind": "siblings",
+        "memberIds": [
+          "r0016",
+          "r0017",
+          "r0018"
+        ]
+      },
+      {
+        "id": "f0009",
+        "displayName": "Hogar del Vado",
+        "kind": "single",
+        "memberIds": [
+          "r0019"
+        ]
+      }
+    ],
+    "buildings": [
+      {
+        "id": "b-house-1",
+        "displayName": "Casa 1",
+        "type": "house",
+        "slotId": "s0001",
+        "condition": 100,
+        "housingCapacity": 5
+      },
+      {
+        "id": "b-house-2",
+        "displayName": "Casa 2",
+        "type": "house",
+        "slotId": "s0002",
+        "condition": 100,
+        "housingCapacity": 5
+      },
+      {
+        "id": "b-house-3",
+        "displayName": "Casa 3",
+        "type": "house",
+        "slotId": "s0003",
+        "condition": 100,
+        "housingCapacity": 5
+      },
+      {
+        "id": "b-orchard-1",
+        "displayName": "Huerto 1",
+        "type": "orchard",
+        "slotId": "s0004",
+        "condition": 100,
+        "workerCapacity": 2
+      },
+      {
+        "id": "b-orchard-2",
+        "displayName": "Huerto 2",
+        "type": "orchard",
+        "slotId": "s0005",
+        "condition": 100,
+        "workerCapacity": 2
+      },
+      {
+        "id": "b-warehouse-1",
+        "displayName": "Almacén",
+        "type": "warehouse",
+        "slotId": "s0006",
+        "condition": 100,
+        "storageCapacity": 600
+      }
+    ],
+    "constructionSlots": [
+      {
+        "id": "s0001",
+        "buildingId": "b-house-1"
+      },
+      {
+        "id": "s0002",
+        "buildingId": "b-house-2"
+      },
+      {
+        "id": "s0003",
+        "buildingId": "b-house-3"
+      },
+      {
+        "id": "s0004",
+        "buildingId": "b-orchard-1"
+      },
+      {
+        "id": "s0005",
+        "buildingId": "b-orchard-2"
+      },
+      {
+        "id": "s0006",
+        "buildingId": "b-warehouse-1"
+      },
+      {
+        "id": "s0007",
+        "buildingId": null
+      },
+      {
+        "id": "s0008",
+        "buildingId": null
+      },
+      {
+        "id": "s0009",
+        "buildingId": null
+      },
+      {
+        "id": "s0010",
+        "buildingId": null
+      }
+    ],
+    "housingAssignments": [
+      {
+        "residentId": "r0001",
+        "houseId": "b-house-1",
+        "source": "system",
+        "locked": false
+      },
+      {
+        "residentId": "r0002",
+        "houseId": "b-house-1",
+        "source": "system",
+        "locked": false
+      },
+      {
+        "residentId": "r0003",
+        "houseId": "b-house-1",
+        "source": "system",
+        "locked": false
+      },
+      {
+        "residentId": "r0004",
+        "houseId": "b-house-1",
+        "source": "system",
+        "locked": false
+      },
+      {
+        "residentId": "r0005",
+        "houseId": "b-house-1",
+        "source": "system",
+        "locked": false
+      },
+      {
+        "residentId": "r0006",
+        "houseId": "b-house-2",
+        "source": "system",
+        "locked": false
+      },
+      {
+        "residentId": "r0007",
+        "houseId": "b-house-2",
+        "source": "system",
+        "locked": false
+      },
+      {
+        "residentId": "r0008",
+        "houseId": "b-house-3",
+        "source": "system",
+        "locked": false
+      },
+      {
+        "residentId": "r0009",
+        "houseId": "b-house-3",
+        "source": "system",
+        "locked": false
+      },
+      {
+        "residentId": "r0010",
+        "houseId": null,
+        "source": "system",
+        "locked": false
+      },
+      {
+        "residentId": "r0011",
+        "houseId": "b-house-3",
+        "source": "system",
+        "locked": false
+      },
+      {
+        "residentId": "r0012",
+        "houseId": "b-house-3",
+        "source": "system",
+        "locked": false
+      },
+      {
+        "residentId": "r0013",
+        "houseId": null,
+        "source": "system",
+        "locked": false
+      },
+      {
+        "residentId": "r0014",
+        "houseId": "b-house-3",
+        "source": "system",
+        "locked": false
+      },
+      {
+        "residentId": "r0015",
+        "houseId": null,
+        "source": "system",
+        "locked": false
+      },
+      {
+        "residentId": "r0016",
+        "houseId": "b-house-2",
+        "source": "system",
+        "locked": false
+      },
+      {
+        "residentId": "r0017",
+        "houseId": "b-house-2",
+        "source": "system",
+        "locked": false
+      },
+      {
+        "residentId": "r0018",
+        "houseId": "b-house-2",
+        "source": "system",
+        "locked": false
+      },
+      {
+        "residentId": "r0019",
+        "houseId": null,
+        "source": "system",
+        "locked": false
+      }
+    ],
+    "inventory": {
+      "food": 219,
+      "wood": 96
+    },
+    "chronicle": [
+      {
+        "id": "founded:v0001",
+        "type": "founded",
+        "elapsedDay": 0,
+        "villageId": "v0001",
+        "population": 19
+      },
+      {
+        "id": "birthday:12:r0003",
+        "elapsedDay": 12,
+        "type": "birthday",
+        "residentId": "r0003",
+        "age": 1
+      },
+      {
+        "id": "birthday:24:r0005",
+        "elapsedDay": 24,
+        "type": "birthday",
+        "residentId": "r0005",
+        "age": 6
+      }
+    ],
+    "pendingDecision": null,
+    "rng": {
+      "algorithm": "xorshift32-fnv1a-utf16le-v1",
+      "seed": "partida-0.1-conservada",
+      "state": 3863968076
+    }
+  }
+}

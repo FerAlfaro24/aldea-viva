@@ -34,7 +34,7 @@ export function getCalendarDate(elapsedDays: number): CalendarDate {
 }
 
 export function getAge(
-  resident: Pick<ResidentClock, 'initialAge' | 'birthDayOfYear'>,
+  resident: Pick<ResidentClock, 'initialAge' | 'birthDayOfYear' | 'arrivedAt'>,
   elapsedDays: number,
 ): number {
   assertElapsedDays(elapsedDays);
@@ -52,7 +52,10 @@ export function getAge(
   const birthdays = elapsedDays < firstBirthday
     ? 0
     : Math.floor((elapsedDays - firstBirthday) / DAYS_PER_YEAR) + 1;
-  const age = initialAge + birthdays;
+  const arrivedAt = resident.arrivedAt ?? 0;
+  assertElapsedDays(arrivedAt);
+  const birthdaysAtArrival = arrivedAt < firstBirthday ? 0 : Math.floor((arrivedAt - firstBirthday) / DAYS_PER_YEAR) + 1;
+  const age = initialAge + birthdays - birthdaysAtArrival;
 
   if (!Number.isSafeInteger(age)) {
     throw new RangeError('La edad supera el rango de enteros seguros.');
@@ -67,10 +70,11 @@ export function getEligibleProfessions(age: number): readonly Profession[] {
   return PROFESSIONS.filter((profession) => age >= MINIMUM_WORK_AGES[profession]);
 }
 
-export function getBirthElapsedDay(resident: Pick<ResidentClock, 'initialAge' | 'birthDayOfYear'>): number {
-  getAge(resident, 0);
-  const yearsBack = resident.initialAge + (resident.birthDayOfYear === 1 ? 0 : 1);
-  const birthDay = resident.birthDayOfYear - 1 - yearsBack * DAYS_PER_YEAR;
+export function getBirthElapsedDay(resident: Pick<ResidentClock, 'initialAge' | 'birthDayOfYear' | 'arrivedAt'>): number {
+  const arrivedAt = resident.arrivedAt ?? 0;
+  getAge(resident, arrivedAt);
+  const sinceBirthday = ((arrivedAt % DAYS_PER_YEAR) - (resident.birthDayOfYear - 1) + DAYS_PER_YEAR) % DAYS_PER_YEAR;
+  const birthDay = arrivedAt - sinceBirthday - resident.initialAge * DAYS_PER_YEAR;
   if (!Number.isSafeInteger(birthDay)) throw new RangeError('La fecha de nacimiento excede el rango seguro.');
   return birthDay;
 }

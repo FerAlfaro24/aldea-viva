@@ -6,8 +6,11 @@ import { createSave, parseSave, SaveDataError } from '../storage/schema';
 import { activeVillage, createSession, reduceSession } from './session';
 import type { Session, SessionAction } from './session';
 
-export type PersistentAction = Extract<SessionAction, { type: 'create' | 'advance' | 'delete' }>;
+export type PersistentAction = Extract<SessionAction, { type: 'create' | 'advance' | 'delete' | 'move-resident' | 'prepare-construction' | 'change-construction' | 'expand-village' | 'set-maintenance' | 'set-maintenance-reserve' | 'assign-work' | 'set-economy-policy' | 'resolve-attack' | 'resolve-story' }>;
 export type ReadAction = Exclude<SessionAction, PersistentAction>;
+export function isPersistentAction(action: SessionAction): action is PersistentAction {
+  return ['create', 'advance', 'delete', 'move-resident', 'prepare-construction', 'change-construction', 'expand-village', 'set-maintenance', 'set-maintenance-reserve', 'assign-work', 'set-economy-policy', 'resolve-attack', 'resolve-story'].includes(action.type);
+}
 export type PersistencePhase = 'loading' | 'ready' | 'saving' | 'save-error' | 'load-error';
 
 export interface PersistenceSnapshot {
@@ -85,11 +88,12 @@ export class PersistentSession {
 
   async perform(action: PersistentAction): Promise<void> {
     if (this.current.phase !== 'ready' || this.pending) throw new Error('Ya hay una operación de almacenamiento pendiente.');
-    const slot = action.type === 'advance' ? this.current.session.activeSlot : action.slot;
+    const slot = action.type === 'create' || action.type === 'delete' ? action.slot : this.current.session.activeSlot;
     if (slot === null || !SLOT_IDS.includes(slot)) throw new Error('No hay un espacio válido para guardar.');
     const status = this.current.slots[slot];
     if (status.kind === 'invalid') throw new SaveDataError('Este espacio contiene datos incompatibles. No se pueden sobrescribir.');
     const next = reduceSession(this.current.session, action);
+    if (next === this.current.session) return;
     const expectedRevision = status.kind === 'ready' ? status.save : null;
     const world = next.slots[slot];
     const save = world ? createSave(world, slot, (expectedRevision?.revision ?? 0) + 1, this.clock()) : null;

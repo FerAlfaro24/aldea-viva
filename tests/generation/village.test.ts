@@ -91,9 +91,9 @@ describe('Generación reproducible — GEN-01..15', () => {
       }
 
       const housing = selectHousingSummary(village);
-      expect(housing.capacity).toBe(15);
-      expect(housing.housed).toBe(15);
-      expect(housing.unhousedIds.length).toBe(village.residents.length - 15);
+      expect(housing.capacity).toBe(20);
+      expect(housing.housed).toBe(village.residents.length);
+      expect(housing.unhousedIds.length).toBe(0);
       expect(village.housingAssignments).toHaveLength(village.residents.length);
       expect(village.housingAssignments.every((assignment) => assignment.source === 'system' && !assignment.locked)).toBe(true);
       for (const house of village.buildings.filter((building) => building.type === 'house')) {
@@ -111,12 +111,12 @@ describe('Generación reproducible — GEN-01..15', () => {
         familySizes.add(family.memberIds.length);
         expect(family.memberIds.every((id) => people.get(id)?.familyId === family.id)).toBe(true);
       }
-      expect(village.buildings.filter((building) => building.type === 'house')).toHaveLength(3);
+      expect(village.buildings.filter((building) => building.type === 'house')).toHaveLength(4);
       expect(village.buildings.filter((building) => building.type === 'orchard')).toHaveLength(2);
       expect(village.buildings.filter((building) => building.type === 'warehouse')).toHaveLength(1);
       expect(village.buildings.every((building) => building.condition === 100)).toBe(true);
       expect(village.constructionSlots).toHaveLength(10);
-      expect(village.constructionSlots.filter((slot) => slot.buildingId === null)).toHaveLength(4);
+      expect(village.constructionSlots.filter((slot) => slot.buildingId === null)).toHaveLength(3);
       expect(village.inventory.food).toBeGreaterThanOrEqual(INITIAL_CONFIG.food[0]);
       expect(village.inventory.food).toBeLessThanOrEqual(INITIAL_CONFIG.food[1]);
       expect(village.inventory.wood).toBeGreaterThanOrEqual(INITIAL_CONFIG.wood[0]);

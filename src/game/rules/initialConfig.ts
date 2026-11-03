@@ -1,6 +1,6 @@
 // Salvo población y calendario, estos valores son PROVISIONALES y no balance final.
 // Si cambia la generación, revisar initialConfigId/generationVersion antes de publicar.
-export const INITIAL_CONFIG = {
+export const INITIAL_CONFIG_V1 = {
   population: [15, 20],
   children: [2, 3],
   childAges: [0, 11],
@@ -29,3 +29,17 @@ export const INITIAL_CONFIG = {
   clueLearningAttributeThreshold: 45,
   cluePotentialThreshold: 70,
 } as const;
+
+export const INITIAL_CONFIG = { ...INITIAL_CONFIG_V1, houseCount: 4 } as const;
+export const CURRENT_INITIAL_CONFIG_ID = 'housing-20-v1' as const;
+export const INITIAL_CONFIGS = {
+  'provisional-v1': INITIAL_CONFIG_V1,
+  [CURRENT_INITIAL_CONFIG_ID]: INITIAL_CONFIG,
+} as const;
+export type InitialConfigId = keyof typeof INITIAL_CONFIGS;
+
+export function getInitialConfig(id: InitialConfigId) {
+  const config = INITIAL_CONFIGS[id];
+  if (!config) throw new Error('Configuración inicial desconocida.');
+  return config;
+}

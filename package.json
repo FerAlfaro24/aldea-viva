@@ -1,7 +1,7 @@
 {
   "name": "aldea-viva",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0-rc.2",
   "description": "Juego de gestión y supervivencia medieval orientado a Android.",
   "type": "module",
   "scripts": {

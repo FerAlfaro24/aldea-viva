@@ -1,5 +1,6 @@
+import { renderHelp } from '../ui/help';
 import { activeVillage, EMPTY_FILTERS } from './session';
-import { PersistentSession } from './persistence';
+import { PersistentSession, isPersistentAction } from './persistence';
 import { IndexedDbSaveRepository } from '../storage/indexedDb';
 import { registerOffline } from './offline';
 import type { OfflineState } from './offline';
@@ -9,6 +10,20 @@ import { dateLabel, html, SEASON_NAMES } from '../ui/format';
 import { renderResident, renderResidentResults, renderResidents } from '../ui/residents';
 import { renderChronicle, renderSlots, renderVillage } from '../ui/village';
 import { renderWelcome } from '../ui/welcome';
+import { renderCalendar } from '../ui/calendar';
+import { renderBuildings } from '../ui/buildings';
+import { renderProfessions } from '../ui/professions';
+import { renderEconomy } from '../ui/economy';
+import type { EconomyPolicy } from '../game/models/economy';
+import { renderSurvival } from '../ui/survival';
+import { renderDefense } from '../ui/defense';
+import { renderEvents } from '../ui/events';
+import type { StoryChoice } from '../game/models/story';
+import type { ChronicleFilters } from '../game/selectors/chronicle';
+import { TACTICS, type DefenseTactic } from '../game/models/defense';
+import { isGameOver } from '../game/selectors/survival';
+import { PROFESSIONS } from '../game/rules/calendar';
+import type { Profession } from '../game/models/simulation';
 
 function slotId(value: string | undefined): SlotId {
   if (value === '1' || value === '2' || value === '3') return Number(value) as SlotId;
@@ -20,7 +35,7 @@ function newSeed(): string {
   return `aldea-${values[0]?.toString(36)}-${values[1]?.toString(36)}`;
 }
 
-const ROUTES: readonly Route[] = ['home', 'slots', 'village', 'residents', 'resident', 'chronicle'];
+const ROUTES: readonly Route[] = ['home', 'slots', 'village', 'residents', 'resident', 'chronicle', 'calendar', 'buildings', 'professions', 'economy', 'survival', 'defense', 'events', 'help'];
 
 export function mountApp(root: HTMLElement): () => void {
   const storage = new PersistentSession(new IndexedDbSaveRepository());
@@ -45,45 +60,64 @@ export function mountApp(root: HTMLElement): () => void {
     const saveLabel = phase === 'saving' ? 'Guardando…' : phase === 'loading' ? 'Leyendo partidas…' : phase === 'save-error' ? 'Sin guardar' : phase === 'load-error' ? 'Lectura pendiente' : storage.hasSavedVillages ? 'Guardado' : 'Sin partidas';
     const recovery = error ? `<aside class="storage-notice" role="alert"><p>${html(error)}</p>${phase === 'save-error' ? '<p>El cambio pendiente todavía no está aplicado. Reintentar guarda exactamente ese cambio.</p><button type="button" data-action="retry-save">Reintentar guardado</button><button type="button" data-action="discard-pending">Descartar cambio pendiente y releer</button>' : '<button type="button" data-action="reload-saves">Reintentar lectura</button>'}</aside>` : '';
     const village = activeVillage(session);
-    const inGame = session.route !== 'home' && session.route !== 'slots' && village !== null;
+    const inGame = session.route !== 'home' && session.route !== 'slots' && session.route !== 'help' && village !== null;
     const header = `<div class="shell-top"><header class="game-header"><button type="button" class="brand-button" data-action="navigate" data-route="home" aria-label="Aldea Viva, ir al inicio"><span class="wordmark">AV<span aria-hidden="true">.</span></span><span>Aldea Viva</span></button>
-      ${inGame ? `<div class="game-date"><strong>${html(SEASON_NAMES[getCalendarDate(village.elapsedDays).season])}</strong><span data-current-date>${html(dateLabel(village.elapsedDays))}</span></div>` : '<span class="muted header-subtitle">Primeros habitantes</span>'}
+      ${inGame ? `<div class="game-date"><strong>${html(SEASON_NAMES[getCalendarDate(village.elapsedDays).season])}</strong><span data-current-date>${html(dateLabel(village.elapsedDays))}</span></div>` : '<span class="muted header-subtitle">Una aldea, muchas historias</span>'}
       <span class="memory-badge" role="status">${saveLabel}</span></header>
       <p class="session-notice">Guardado automático en este navegador · El tiempo no avanza al cerrar.</p>
-      <nav class="game-nav" aria-label="Secciones del juego">${(village ? [['village', 'Aldea'], ['residents', 'Habitantes'], ['chronicle', 'Registro'], ['slots', 'Tus aldeas']] : [['slots', 'Tus aldeas'], ['home', 'Inicio']]).map(([route, label]) => `<button type="button" data-action="navigate" data-route="${route}"${session.route === route || (route === 'residents' && session.route === 'resident') ? ' aria-current="page"' : ''}>${label}</button>`).join('')}</nav></div>`;
+      <nav class="game-nav" aria-label="Secciones del juego">${(village ? [['village', 'Aldea'], ['buildings', 'Edificios'], ['residents', 'Habitantes'], ['professions', 'Oficios'], ['economy', 'Economía'], ['survival', 'Salud'], ['defense', 'Defensa'], ['events', 'Sucesos'], ['calendar', 'Calendario'], ['chronicle', 'Registro'], ['slots', 'Tus aldeas'], ['help', 'Ayuda']] : [['slots', 'Tus aldeas'], ['help', 'Ayuda'], ['home', 'Inicio']]).map(([route, label]) => `<button type="button" data-action="navigate" data-route="${route}"${session.route === route || (route === 'residents' && session.route === 'resident') ? ' aria-current="page"' : ''}>${label}</button>`).join('')}</nav></div>`;
     let content: string;
     switch (session.route) {
+      case 'help': content = renderHelp(village !== null); break;
       case 'home': content = renderWelcome(village !== null); break;
       case 'slots': content = renderSlots(session, storage.snapshot.slots); break;
       case 'village': content = village ? renderVillage(village) : renderSlots(session); break;
       case 'residents': content = village ? renderResidents(village, session.filters) : renderSlots(session); break;
       case 'resident': content = village && session.selectedResidentId ? renderResident(village, session.selectedResidentId) : renderSlots(session); break;
-      case 'chronicle': content = village ? renderChronicle(village) : renderSlots(session); break;
+      case 'chronicle': content = village ? renderChronicle(village, session.chronicleFilters) : renderSlots(session); break;
+      case 'calendar': content = village ? renderCalendar(village, session.selectedCalendarDay) : renderSlots(session); break;
+      case 'buildings': content = village ? renderBuildings(village, session.selectedPlotId) : renderSlots(session); break;
+      case 'professions': content = village ? renderProfessions(village) : renderSlots(session); break;
+      case 'economy': content = village ? renderEconomy(village) : renderSlots(session); break;
+      case 'survival': content = village ? renderSurvival(village) : renderSlots(session); break;
+      case 'defense': content = village ? renderDefense(village) : renderSlots(session); break;
+      case 'events': content = village ? renderEvents(village) : renderSlots(session); break;
     }
     const advanceNotice = phase === 'save-error' ? 'Cambio pendiente de guardar.' : phase === 'saving' ? 'Guardando el cambio…' : notice || 'Cada día cuenta.';
-    const timeControls = inGame ? `<footer class="time-controls"><div><strong>Avanzar tiempo</strong><span id="advance-notice" role="status">${html(advanceNotice)}</span></div><div class="advance-buttons">${([1, 7, 28] as const).map((days) => `<button type="button" data-action="advance" data-days="${days}"${village.pendingDecision ? ' disabled' : ''}>+${days} ${days === 1 ? 'día' : 'días'}</button>`).join('')}</div></footer>` : '';
+    const timeControls = inGame ? `<footer class="time-controls"><div><strong>Avanzar tiempo</strong><span id="advance-notice" role="status">${html(isGameOver(village) ? 'Partida terminada. Su historia se conserva.' : village.pendingDecision?.type === 'bandit_attack' ? 'Asalto pendiente: elige una respuesta en Defensa.' : village.pendingDecision?.type === 'story_event' ? 'Decisión pendiente: revisa Sucesos.' : advanceNotice)}</span></div><div class="advance-buttons">${([1, 7, 28] as const).map((days) => `<button type="button" data-action="advance" data-days="${days}"${village.pendingDecision || isGameOver(village) ? ' disabled' : ''}>+${days} ${days === 1 ? 'día' : 'días'}</button>`).join('')}</div></footer>` : '';
     root.innerHTML = `${session.route === 'home' ? '' : '<a class="skip-link" href="#game-content">Saltar al contenido</a>'}<div id="app-error" class="app-error" role="alert"${errorMessage ? '' : ' hidden'}>${html(errorMessage)}</div>
-      ${recovery}<p class="storage-status" role="status">${html(phase === 'loading' || phase === 'saving' ? saveLabel : '')}</p>
+      ${recovery}${inGame && village.pendingDecision?.type === 'story_event' && session.route !== 'events' ? '<aside class="storage-notice" role="status">Una decisión espera. <button type="button" data-action="navigate" data-route="events">Ir a Sucesos</button></aside>' : ''}${inGame && village.pendingDecision?.type === 'bandit_attack' && session.route !== 'defense' ? '<aside class="storage-notice" role="status">Asalto en curso. <button type="button" data-action="navigate" data-route="defense">Elegir respuesta en Defensa</button></aside>' : ''}<p class="storage-status" role="status">${html(phase === 'loading' || phase === 'saving' ? saveLabel : '')}</p>
       <div id="offline-message">${offlineMessage()}</div>
       ${session.route === 'home' ? content : `<div class="game-shell">${header}<p class="orientation-hint">En móvil, gira la pantalla para explorar la aldea con más espacio.</p><main class="game-content" id="game-content" tabindex="-1">${content}</main>${timeControls}</div>`}
       <dialog id="create-dialog" class="create-dialog" aria-labelledby="create-title" aria-describedby="create-description"><form id="create-village-form"><p class="eyebrow" id="create-slot-label"></p><h2 id="create-title">Fundar una aldea</h2><p id="create-description"></p><label for="seed-input">Semilla opcional</label><input id="seed-input" name="seed" maxlength="128" placeholder="Ej. el-primer-arroyo" autocomplete="off" /><p class="small-note">La misma semilla crea los mismos habitantes y familias iniciales. Déjala vacía para elegir una nueva.</p><p class="small-note">La aldea aparecerá cuando se confirme su guardado.</p><p id="create-error" class="app-error" role="alert" hidden></p><div class="dialog-actions"><button type="button" data-action="cancel-create">Cancelar</button><button type="submit" class="primary-button" id="create-submit">Fundar aldea</button></div></form></dialog>`;
     if (!ready) root.querySelectorAll<HTMLButtonElement | HTMLInputElement | HTMLSelectElement>('button,input,select').forEach((element) => {
       if (!['retry-save', 'discard-pending', 'reload-saves'].includes(element.dataset.action ?? '')) element.disabled = true;
     });
+    if (inGame && isGameOver(village)) root.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLButtonElement>('#game-content form:not(.resident-filters):not(.chronicle-filters) input, #game-content form:not(.resident-filters):not(.chronicle-filters) select, #game-content form:not(.resident-filters):not(.chronicle-filters) button, [data-action="project-order"], [data-action="expand-village"]').forEach((element) => { element.disabled = true; });
+    if (inGame && village.pendingDecision) root.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLButtonElement>('#game-content form:not(.resident-filters):not(.chronicle-filters) input, #game-content form:not(.resident-filters):not(.chronicle-filters) select, #game-content form:not(.resident-filters):not(.chronicle-filters) button, [data-action="project-order"], [data-action="expand-village"]').forEach((element) => { element.disabled = true; });
     root.querySelector<HTMLDialogElement>('#create-dialog')?.addEventListener('close', () => dialogTrigger?.focus());
   };
 
   const dispatch = async (action: SessionAction, focusHeading = true) => {
     const previousDay = activeVillage(session)?.elapsedDays ?? 0;
-    if (action.type === 'create' || action.type === 'advance' || action.type === 'delete') await storage.perform(action);
+    if (isPersistentAction(action)) await storage.perform(action);
     else storage.read(action);
     const next = storage.snapshot.session;
     if (action.type === 'advance') {
       const processed = (activeVillage(next)?.elapsedDays ?? previousDay) - previousDay;
       notice = processed > 0
-        ? `${processed} ${processed === 1 ? 'día transcurrido' : 'días transcurridos'} · Guardado.`
-        : 'Avance detenido: hay una decisión pendiente.';
+        ? `${processed} ${processed === 1 ? 'día transcurrido' : 'días transcurridos'} · ${processed < action.days && !isGameOver(activeVillage(next)!) ? activeVillage(next)?.pendingDecision?.type === 'story_event' ? 'Avance detenido. Revisa Sucesos.' : activeVillage(next)?.defense?.threat ? 'Avance detenido. Revisa Defensa.' : 'Avance detenido por un aviso. Revisa Salud.' : 'Guardado.'}`
+        : isGameOver(activeVillage(next)!) ? 'La historia de esta aldea ha terminado.' : 'Avance detenido: hay una decisión pendiente.';
     }
+    if (action.type === 'resolve-attack') notice = 'Asalto resuelto y guardado. Revisa las consecuencias antes de continuar.';
+    if (action.type === 'resolve-story') notice = 'Decisión guardada. Sus consecuencias ya forman parte de la historia.';
+    if (action.type === 'move-resident') notice = 'Vivienda elegida y guardada.';
+    if (action.type === 'assign-work') notice = 'Oficio y destino guardados.';
+    if (action.type === 'set-economy-policy') notice = 'Raciones y prioridades guardadas.';
+    if (action.type === 'prepare-construction') notice = 'Obra preparada y materiales reservados. Guardado.';
+    if (action.type === 'change-construction') notice = action.action === 'cancel' ? 'Obra cancelada. Guardado.' : 'Orden de obra guardada.';
+    if (action.type === 'expand-village') notice = 'Grado 2: cuatro solares nuevos. Guardado.';
+    if (action.type === 'set-maintenance' || action.type === 'set-maintenance-reserve') notice = 'Configuración de mantenimiento guardada.';
     session = next;
     errorMessage = '';
     render();
@@ -120,7 +154,51 @@ export function mountApp(root: HTMLElement): () => void {
     if (!element || !root.contains(element)) return;
     try {
       switch (element.dataset.action) {
+        case 'resolve-story': {
+          const choice = element.dataset.choice;
+          if (!['decline', 'careful', 'bold', 'patch', 'reinforce', 'accept', 'reject'].includes(choice ?? '')) throw new Error('Respuesta no válida.');
+          await dispatch({ type: 'resolve-story', eventId: element.dataset.event ?? '', choice: choice as StoryChoice });
+          break;
+        }
+        case 'person-history': await dispatch({ type: 'person-history', residentId: element.dataset.person ?? '' }); break;
+        case 'chronicle-page': await dispatch({ type: 'chronicle-filter', filters: { page: Number(element.dataset.page) } }); break;
+        case 'resolve-attack': {
+          if (!TACTICS.includes(element.dataset.tactic as DefenseTactic)) throw new Error('Táctica no válida.');
+          await dispatch({ type: 'resolve-attack', threatId: element.dataset.threat ?? '', tactic: element.dataset.tactic as DefenseTactic });
+          break;
+        }
         case 'update-app': offline.activate(); break;
+        case 'expand-village': await dispatch({ type: 'expand-village' }); break;
+        case 'project-order': {
+          const order = element.dataset.order;
+          if (order !== 'pause' && order !== 'resume' && order !== 'cancel') throw new Error('Orden de obra no válida.');
+          await dispatch({ type: 'change-construction', projectId: element.dataset.project ?? '', action: order }, false);
+          const detail = root.querySelector<HTMLElement>('.plot-detail');
+          detail?.focus({ preventScroll: true });
+          break;
+        }
+        case 'inspect-plot': {
+          await dispatch({ type: 'inspect-plot', id: element.dataset.plot ?? '' }, false);
+          const detail = root.querySelector<HTMLElement>('.plot-detail');
+          detail?.focus({ preventScroll: true });
+          detail?.scrollIntoView({ block: 'nearest' });
+          break;
+        }
+        case 'calendar-month': {
+          const delta = Number(element.dataset.delta);
+          if (delta !== -1 && delta !== 1) throw new Error('Cambio de mes no válido.');
+          await dispatch({ type: 'calendar-month', delta }, false);
+          const button = root.querySelector<HTMLButtonElement>(`[data-delta="${delta}"]`);
+          (button?.disabled ? root.querySelector<HTMLElement>('#calendar-month-title') : button)?.focus({ preventScroll: true });
+          break;
+        }
+        case 'calendar-today': await dispatch({ type: 'calendar-today' }, false); root.querySelector<HTMLButtonElement>('[aria-current="date"]')?.focus({ preventScroll: true }); break;
+        case 'calendar-day': {
+          const elapsedDay = Number(element.dataset.day);
+          await dispatch({ type: 'calendar-day', elapsedDay }, false);
+          root.querySelector<HTMLButtonElement>(`[data-day="${elapsedDay}"]`)?.focus({ preventScroll: true });
+          break;
+        }
         case 'navigate': {
           const route = element.dataset.route;
           if (!ROUTES.includes(route as Route)) throw new Error('Sección desconocida.');
@@ -177,6 +255,84 @@ export function mountApp(root: HTMLElement): () => void {
 
   const onSubmit = async (event: SubmitEvent) => {
     event.preventDefault();
+    if (event.target instanceof HTMLFormElement && event.target.id === 'chronicle-filter-form') {
+      const data = new FormData(event.target);
+      try {
+        await dispatch({ type: 'chronicle-filter', filters: { residentId: String(data.get('residentId')), familyId: String(data.get('familyId')),
+          year: String(data.get('year')), season: String(data.get('season')) as ChronicleFilters['season'], kind: String(data.get('kind')) as ChronicleFilters['kind'], page: 0 } }, false);
+        root.querySelector<HTMLButtonElement>('#chronicle-filter-form button')?.focus({ preventScroll: true });
+      } catch (error) { showError(error); }
+      return;
+    }
+    if (event.target instanceof HTMLFormElement && event.target.id === 'economy-policy-form') {
+      const data = new FormData(event.target);
+      try {
+        await dispatch({ type: 'set-economy-policy', policy: {
+          ration: String(data.get('ration')) as EconomyPolicy['ration'], priority: String(data.get('priority')) as EconomyPolicy['priority'],
+          deliveryPriority: String(data.get('deliveryPriority')) as EconomyPolicy['deliveryPriority'], priorityHouseIds: data.getAll('houseId').map(String),
+        } }, false);
+        root.querySelector<HTMLElement>('#ration-select')?.focus({ preventScroll: true });
+      } catch (error) {
+        if (storage.snapshot.phase === 'save-error') root.querySelector<HTMLButtonElement>('[data-action="retry-save"]')?.focus();
+        else showError(error);
+      }
+      return;
+    }
+    if (event.target instanceof HTMLFormElement && event.target.hasAttribute('data-work-form')) {
+      const data = new FormData(event.target);
+      try {
+        const value = String(data.get('work') ?? '');
+        const separator = value.indexOf('|');
+        const profession = value ? value.slice(0, separator) : null;
+        if (profession !== null && (separator < 0 || !PROFESSIONS.includes(profession as Profession))) throw new Error('Elige un oficio válido.');
+        await dispatch({ type: 'assign-work', residentId: String(data.get('residentId') ?? ''), profession: profession as Profession | null,
+          workplaceId: value ? value.slice(separator + 1) : null }, false);
+        root.querySelector<HTMLElement>('#page-title')?.focus({ preventScroll: true });
+      } catch (error) {
+        if (storage.snapshot.phase === 'save-error') root.querySelector<HTMLButtonElement>('[data-action="retry-save"]')?.focus();
+        else showError(error);
+      }
+      return;
+    }
+    if (event.target instanceof HTMLFormElement && (event.target.id === 'maintenance-form' || event.target.id === 'maintenance-reserve-form')) {
+      const data = new FormData(event.target);
+      try {
+        if (event.target.id === 'maintenance-reserve-form') await dispatch({ type: 'set-maintenance-reserve', wood: Number(data.get('wood')) }, false);
+        else {
+          const priority = String(data.get('priority') ?? '');
+          if (priority !== '' && priority !== 'normal' && priority !== 'high') throw new Error('Prioridad no válida.');
+          await dispatch({ type: 'set-maintenance', buildingId: String(data.get('buildingId') ?? ''), priority: priority === '' ? null : priority }, false);
+        }
+        root.querySelector<HTMLElement>('.plot-detail')?.focus({ preventScroll: true });
+      } catch (error) {
+        if (storage.snapshot.phase === 'save-error') root.querySelector<HTMLButtonElement>('[data-action="retry-save"]')?.focus();
+        else showError(error);
+      }
+      return;
+    }
+    if (event.target instanceof HTMLFormElement && event.target.id === 'prepare-construction-form') {
+      const data = new FormData(event.target);
+      try {
+        const buildingType = String(data.get('buildingType') ?? '');
+        if (buildingType !== 'house' && buildingType !== 'orchard' && buildingType !== 'warehouse') throw new Error('Elige un edificio válido.');
+        await dispatch({ type: 'prepare-construction', slotId: String(data.get('slotId') ?? ''), buildingType }, false);
+        root.querySelector<HTMLElement>('.plot-detail')?.focus({ preventScroll: true });
+      } catch (error) {
+        if (storage.snapshot.phase === 'save-error') root.querySelector<HTMLButtonElement>('[data-action="retry-save"]')?.focus();
+        else showError(error);
+      }
+      return;
+    }
+    if (event.target instanceof HTMLFormElement && event.target.id === 'move-resident-form') {
+      const data = new FormData(event.target);
+      try {
+        await dispatch({ type: 'move-resident', residentId: String(data.get('residentId') ?? ''), houseId: String(data.get('houseId') ?? '') });
+      } catch (error) {
+        if (storage.snapshot.phase === 'save-error') root.querySelector<HTMLButtonElement>('[data-action="retry-save"]')?.focus();
+        else showError(error);
+      }
+      return;
+    }
     if (!(event.target instanceof HTMLFormElement) || event.target.id !== 'create-village-form') return;
     const input = root.querySelector<HTMLInputElement>('#seed-input');
     const raw = input?.value ?? '';

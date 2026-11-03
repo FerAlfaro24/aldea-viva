@@ -1,12 +1,12 @@
-import { createRng, randomInt } from '../core/rng';
+import { createRng, randomInt, restoreRng } from '../core/rng';
 import type { RngSnapshot } from '../models/simulation';
 
 // El estado mutable pertenece solo a una ejecución local del generador.
 export class GenerationRandom {
   private rng: RngSnapshot;
 
-  constructor(seed: string) {
-    this.rng = createRng(seed);
+  constructor(seed: string | RngSnapshot) {
+    this.rng = typeof seed === 'string' ? createRng(seed) : restoreRng(seed);
   }
 
   int(min: number, max: number): number {

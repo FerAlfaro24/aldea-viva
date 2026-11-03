@@ -15,7 +15,7 @@ describe('Filtros y presentación de datos reales', () => {
     const filtered = filterResidents(village, { ...EMPTY_FILTERS, family: family.id, age: 'children' });
     expect(filtered.length).toBeGreaterThanOrEqual(2);
     expect(filtered.every((person) => person.age < 18 && person.family.id === family.id && person.housing !== null)).toBe(true);
-    expect(filterResidents(village, { ...EMPTY_FILTERS, housing: 'unhoused' })).toHaveLength(village.residents.length - 15);
+    expect(filterResidents(village, { ...EMPTY_FILTERS, housing: 'unhoused' })).toHaveLength(0);
     expect(village.elapsedDays).toBe(0);
   });
 

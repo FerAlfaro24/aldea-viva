@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { activeVillage, createSession, EMPTY_FILTERS, reduceSession } from '../../src/app/session';
 import type { SlotId } from '../../src/app/session';
 import { freezeDeep } from '../fixtures/simulation';
+import { suppliedVillage } from '../fixtures/suppliedVillage';
 
 describe('Sesión de tres aldeas en memoria', () => {
   it('comienza con tres espacios vacíos y sin mundo activo', () => {
@@ -42,6 +43,7 @@ describe('Sesión de tres aldeas en memoria', () => {
     for (const slot of [1, 2, 3] as const) session = reduceSession(session, { type: 'create', slot, seed: `aldea-${slot}`, confirmReplacement: false });
     const first = session.slots[1];
     const third = session.slots[3];
+    session = { ...session, slots: { ...session.slots, 2: suppliedVillage('aldea-2') } };
     session = reduceSession(session, { type: 'continue', slot: 2 });
     session = reduceSession(session, { type: 'advance', days: 28 });
     session = reduceSession(session, { type: 'advance', days: 7 });
