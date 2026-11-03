@@ -8,6 +8,17 @@ import { html } from '../../src/ui/format';
 import { freezeDeep } from '../fixtures/simulation';
 
 describe('Filtros y presentación de datos reales', () => {
+  it('solo muestra el aviso de salud cuando hay habitantes vivos que necesitan atención', () => {
+    const village = freezeDeep(generateVillage('aviso-real'));
+    expect(renderVillage(village)).not.toContain('Revisar Salud →');
+    const hungry = { ...village, residents: village.residents.map((person, index) => index === 0
+      ? { ...person, condition: { health: 100, hunger: 30 } } : person) };
+    expect(renderVillage(hungry)).toContain('1 habitante necesita atención');
+    const injured = { ...village, residents: village.residents.map((person, index) => index === 0
+      ? { ...person, medical: { illnessActive: true, incapacityUntil: 20 } } : person) };
+    expect(renderVillage(injured)).toContain('1 habitante necesita atención');
+    expect(village.residents.every((person) => person.condition.hunger === 0)).toBe(true);
+  });
   it('combina familia, vivienda y edad sin alterar el mundo', () => {
     const village = freezeDeep(generateVillage('filtros-de-vistas'));
     const family = village.families.find((candidate) => candidate.kind === 'parents-and-children');

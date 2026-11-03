@@ -8,7 +8,7 @@ import { dateLabel, eventLabel, html, SEASON_NAMES, quantityLabel } from './form
 import type { SlotStatus } from '../storage/repository';
 import type { SlotId } from '../game/models/save';
 import { selectWorkOccupancy } from '../game/selectors/work';
-import { isGameOver, isStanding } from '../game/selectors/survival';
+import { isFitForWork, isGameOver, isStanding } from '../game/selectors/survival';
 import { renderFirstSteps } from './help';
 
 export function renderSlots(session: Session, statuses?: Readonly<Record<SlotId, SlotStatus>>): string {
@@ -26,6 +26,8 @@ export function renderSlots(session: Session, statuses?: Readonly<Record<SlotId,
 
 export function renderVillage(village: VillageState): string {
   const summary = selectVillageSummary(village);
+  const needingCare = village.residents.filter((person) => person.alive
+    && (person.condition.hunger >= 25 || person.condition.health < 75 || !isFitForWork(person, village.elapsedDays))).length;
   const freePlots = village.constructionSlots.filter((slot) => slot.buildingId === null && !(village.constructionProjects ?? []).some((project) => project.slotId === slot.id)).length;
   const people = village.residents.map((person) => selectResidentDetails(village, person.id));
   const residentLink = (id: string): string => {
@@ -40,7 +42,7 @@ export function renderVillage(village: VillageState): string {
       <section class="stat"><span>Alimentos</span><strong>${quantityLabel(summary.inventory.food)}</strong><small>Reserva actual · Consumo diario activo</small></section>
       <section class="stat"><span>Madera</span><strong>${quantityLabel(summary.inventory.wood)}</strong><small>Existencias actuales en el almacén</small></section>
     </div>
-    <div class="callout"><p>${isGameOver(village) ? 'La historia ha terminado: no queda ningún superviviente.' : 'La falta de alimento y refugio ya afecta a la salud. Revisa los avisos antes de avanzar muchos días.'}</p><button type="button" class="text-button" data-action="navigate" data-route="survival">Revisar Salud →</button></div>
+    ${isGameOver(village) || needingCare ? `<div class="callout"><p>${isGameOver(village) ? 'La historia ha terminado: no queda ningún superviviente.' : `${needingCare} ${needingCare === 1 ? 'habitante necesita' : 'habitantes necesitan'} atención por hambre, salud reducida o incapacidad. Revisa Salud antes de avanzar muchos días.`}</p><button type="button" class="text-button" data-action="navigate" data-route="survival">Revisar Salud →</button></div>` : ''}
     ${summary.housing.unhousedIds.length ? `<div class="callout housing-alert"><p><strong>${summary.housing.unhousedIds.length} ${summary.housing.unhousedIds.length === 1 ? 'persona sin refugio utilizable' : 'personas sin refugio utilizable'}.</strong> Hay ${summary.housing.capacity} camas utilizables para ${summary.population} habitantes. El frío del invierno es peligroso sin protección.</p><button type="button" class="text-button" data-action="navigate" data-route="survival">Ver riesgos</button></div>` : ''}
     <div class="overview-grid"><section class="panel"><div class="section-heading"><h2>Los primeros edificios</h2><span class="small-note">${freePlots} solares libres</span></div>
       <div class="buildings-grid">${village.buildings.filter(isStanding).map((building) => {

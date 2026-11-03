@@ -1,5 +1,16 @@
 # Cambios de Aldea Viva
 
+## Preparación de publicación de pruebas — Cloudflare Pages
+
+- Compilación desde el repositorio privado, Node fijado en `.node-version` y encabezados para revalidar las actualizaciones de la PWA.
+- Procedimiento y configuración en `docs/17_PUBLICACION_PAGES.md`. El éxito y la URL deben confirmarse en el panel de Cloudflare.
+
+### Corrección AV-UX-001
+
+- La portada de la aldea solo muestra el aviso de salud si hay personas vivas con hambre ≥25, salud <75 o incapacidad; el aviso de falta de refugio sigue usando las asignaciones reales.
+- Se conserva el resumen de final de partida. Corregido el mensaje que atribuía una crisis a todas las aldeas sanas.
+- Seis pruebas de vistas y compilación correctas. Reproducido y comprobado después de actualizar por el enlace temporal, sin desbordamiento a 844×390. No se han cambiado economía ni primeros pasos.
+
 ## 1.0.0-rc.2 — Interfaz oscura
 
 - Fondo verde carbón, texto suave y superficies diferenciadas; formularios, calendario, avisos y diálogos oscuros.
