@@ -88,9 +88,9 @@ describe('0.6: amenazas, decisiones y consecuencias', () => {
     const world = attacking(); const after = resolve(world, 'negotiate');
     const entry = after.chronicle.find((event) => event.type === 'bandit_resolved')!;
     if (entry.type !== 'bandit_resolved') throw new Error('Falta resolución');
-    expect(entry.paidFood).toBe(20); expect(entry.paidWood).toBe(10);
-    expect(after.inventory.food).toBeCloseTo(world.inventory.food - 20 - entry.stolenFood, 2);
-    expect(after.inventory.wood).toBeCloseTo(world.inventory.wood - 10 - entry.stolenWood, 2);
+    expect(entry.paidFood).toBe(600); expect(entry.paidWood).toBeGreaterThanOrEqual(10);
+    expect(after.inventory.food).toBeCloseTo(world.inventory.food - entry.paidFood - entry.stolenFood, 2);
+    expect(after.inventory.wood).toBeCloseTo(world.inventory.wood - entry.paidWood - entry.stolenWood, 2);
     if (entry.success) { expect(entry.injuredIds).toHaveLength(0); expect(entry.deadIds).toHaveLength(0); expect(entry.buildingDamage).toBe(0); expect(entry.stolenFood).toBe(0); }
   });
 

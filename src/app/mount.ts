@@ -24,6 +24,7 @@ import { TACTICS, type DefenseTactic } from '../game/models/defense';
 import { isGameOver } from '../game/selectors/survival';
 import { PROFESSIONS } from '../game/rules/calendar';
 import type { Profession } from '../game/models/simulation';
+import { renderAdvanceRecap } from '../ui/chapter';
 
 function slotId(value: string | undefined): SlotId {
   if (value === '1' || value === '2' || value === '3') return Number(value) as SlotId;
@@ -42,6 +43,8 @@ export function mountApp(root: HTMLElement): () => void {
   let session = storage.snapshot.session;
   let errorMessage = '';
   let notice = '';
+  let advanceRecap = '';
+  let recapVillageId: string | null = null;
   let targetSlot: SlotId = 1;
   let dialogTrigger: HTMLElement | null = null;
   let offlineState: OfflineState = { ready: false, update: false, error: false };
@@ -71,7 +74,7 @@ export function mountApp(root: HTMLElement): () => void {
       case 'help': content = renderHelp(village !== null); break;
       case 'home': content = renderWelcome(village !== null); break;
       case 'slots': content = renderSlots(session, storage.snapshot.slots); break;
-      case 'village': content = village ? renderVillage(village) : renderSlots(session); break;
+      case 'village': content = village ? renderVillage(village, recapVillageId === village.id ? advanceRecap : '') : renderSlots(session); break;
       case 'residents': content = village ? renderResidents(village, session.filters) : renderSlots(session); break;
       case 'resident': content = village && session.selectedResidentId ? renderResident(village, session.selectedResidentId) : renderSlots(session); break;
       case 'chronicle': content = village ? renderChronicle(village, session.chronicleFilters) : renderSlots(session); break;
@@ -99,20 +102,29 @@ export function mountApp(root: HTMLElement): () => void {
   };
 
   const dispatch = async (action: SessionAction, focusHeading = true) => {
+    if (action.type === 'create' || action.type === 'continue' || action.type === 'delete') { advanceRecap = ''; recapVillageId = null; }
+    const previousVillage = activeVillage(session);
     const previousDay = activeVillage(session)?.elapsedDays ?? 0;
+    const previousEntries = activeVillage(session)?.chronicle.length ?? 0;
     if (isPersistentAction(action)) await storage.perform(action);
     else storage.read(action);
     const next = storage.snapshot.session;
     if (action.type === 'advance') {
+      const after = activeVillage(next);
+      if (previousVillage && after && storage.snapshot.phase === 'ready') { advanceRecap = renderAdvanceRecap(previousVillage, after); recapVillageId = after.id; }
       const processed = (activeVillage(next)?.elapsedDays ?? previousDay) - previousDay;
       notice = processed > 0
         ? `${processed} ${processed === 1 ? 'día transcurrido' : 'días transcurridos'} · ${processed < action.days && !isGameOver(activeVillage(next)!) ? activeVillage(next)?.pendingDecision?.type === 'story_event' ? 'Avance detenido. Revisa Sucesos.' : activeVillage(next)?.defense?.threat ? 'Avance detenido. Revisa Defensa.' : 'Avance detenido por un aviso. Revisa Salud.' : 'Guardado.'}`
         : isGameOver(activeVillage(next)!) ? 'La historia de esta aldea ha terminado.' : 'Avance detenido: hay una decisión pendiente.';
+      const completed = activeVillage(next)?.chronicle.slice(previousEntries).filter((entry) => entry.type === 'construction_changed' && entry.action === 'completed') ?? [];
+      if (completed.length) notice += ` ${completed.length === 1 ? 'Obra terminada.' : `${completed.length} obras terminadas.`} Revisa tu siguiente paso en Aldea.`;
     }
     if (action.type === 'resolve-attack') notice = 'Asalto resuelto y guardado. Revisa las consecuencias antes de continuar.';
     if (action.type === 'resolve-story') notice = 'Decisión guardada. Sus consecuencias ya forman parte de la historia.';
     if (action.type === 'move-resident') notice = 'Vivienda elegida y guardada.';
     if (action.type === 'assign-work') notice = 'Oficio y destino guardados.';
+    if (action.type === 'assign-recommended-work') notice = 'Propuesta aplicada y guardada. Revisa tu siguiente paso en Aldea.';
+    if (action.type === 'adjust-work') notice = 'Cambios de tareas confirmados y guardados. Las demás órdenes se conservan.';
     if (action.type === 'set-economy-policy') notice = 'Raciones y prioridades guardadas.';
     if (action.type === 'prepare-construction') notice = 'Obra preparada y materiales reservados. Guardado.';
     if (action.type === 'change-construction') notice = action.action === 'cancel' ? 'Obra cancelada. Guardado.' : 'Orden de obra guardada.';
@@ -154,6 +166,34 @@ export function mountApp(root: HTMLElement): () => void {
     if (!element || !root.contains(element)) return;
     try {
       switch (element.dataset.action) {
+        case 'guide-wood-delivery': {
+          await dispatch({ type: 'navigate', route: 'economy' }, false);
+          const select = root.querySelector<HTMLSelectElement>('select[name="deliveryPriority"]');
+          if (select) { select.value = 'wood'; select.scrollIntoView({ block: 'center' }); select.focus(); }
+          break;
+        }
+        case 'review-work-adjustments': {
+          await dispatch({ type: 'navigate', route: 'professions' }, false);
+          const proposal = root.querySelector<HTMLDetailsElement>('#work-adjustments');
+          if (proposal) { proposal.open = true; proposal.scrollIntoView({ block: 'start' }); proposal.querySelector<HTMLElement>('summary')?.focus(); }
+          break;
+        }
+        case 'apply-work-adjustments': await dispatch({ type: 'adjust-work' }); break;
+        case 'review-work': {
+          await dispatch({ type: 'navigate', route: 'professions' }, false);
+          const proposal = root.querySelector<HTMLDetailsElement>('#work-proposal');
+          if (proposal) { proposal.open = true; proposal.scrollIntoView({ block: 'start' }); proposal.querySelector<HTMLElement>('summary')?.focus(); }
+          break;
+        }
+        case 'apply-recommended-work': await dispatch({ type: 'assign-recommended-work' }); break;
+        case 'guide-build': {
+          await dispatch({ type: 'inspect-plot', id: element.dataset.plot ?? '' }, false);
+          const select = root.querySelector<HTMLSelectElement>('#prepare-construction-form select[name="buildingType"]');
+          if (select && ['orchard', 'warehouse', 'house'].includes(element.dataset.building ?? '')) select.value = element.dataset.building!;
+          const detail = root.querySelector<HTMLElement>('.plot-detail');
+          detail?.focus({ preventScroll: true }); detail?.scrollIntoView({ block: 'start' });
+          break;
+        }
         case 'resolve-story': {
           const choice = element.dataset.choice;
           if (!['decline', 'careful', 'bold', 'patch', 'reinforce', 'accept', 'reject'].includes(choice ?? '')) throw new Error('Respuesta no válida.');

@@ -383,3 +383,21 @@ button:disabled { opacity: 0.48; }
 .calendar-day[aria-pressed='true'], .plot-card[aria-pressed='true'] { border-color: var(--accent); }
 input, select { caret-color: var(--accent); }
 @media (prefers-reduced-motion: reduce) { button { transition: none; } }
+
+/* En horizontal, deja espacio para la decisión antes que para encabezados repetidos. */
+@media (orientation: landscape) and (max-height: 500px) {
+  .session-notice { display: none; }
+  .game-content { padding-block: 0.5rem; }
+  .game-shell h1 { font-size: 1.45rem; }
+  .page-heading { margin-bottom: 0.6rem; }
+  .page-heading .eyebrow { margin-bottom: 0.25rem; }
+  .village-guide { padding: 0.75rem; }
+  .village-guide h2 { font-size: 1.15rem; margin-block: 0.35rem; }
+  .village-guide > p { font-size: 0.85rem; line-height: 1.5; }
+  .village-guide .section-heading { margin-bottom: 0.35rem; }
+  .village-guide .section-heading .eyebrow { display: none; }
+  .village-guide > .chapter-label { display: none; }
+  .chapter-label { margin-bottom: 0.25rem; }
+  .time-controls { padding-block: 0.25rem; }
+  #work-proposal, #work-adjustments, .plot-detail { scroll-margin-top: 110px; }
+}

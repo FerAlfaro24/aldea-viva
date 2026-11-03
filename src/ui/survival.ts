@@ -2,6 +2,7 @@ import type { VillageState } from '../game/models/village';
 import { getCalendarDate } from '../game/core/calendar';
 import { isBuildingUsable, isFitForWork, isGameOver, isStanding, selectWinter, shelterProtection } from '../game/selectors/survival';
 import { dateLabel, eventLabel, html, quantityLabel as q, WINTER_NAMES, HEALTH_NAMES, SURVIVAL_CAUSE_NAMES } from './format';
+import { renderWinterPlan } from './planning';
 
 export function renderSurvival(village: VillageState): string {
   const living = village.residents.filter((person) => person.alive);
@@ -12,6 +13,7 @@ export function renderSurvival(village: VillageState): string {
   const ruined = village.buildings.filter((building) => !isStanding(building));
   const events = village.chronicle.filter((entry) => ['resident_died', 'winter_outlook', 'winter_started', 'building_collapsed', 'health_warning', 'medical_episode'].includes(entry.type)).slice(-12).reverse();
   return `<header class="page-heading"><div><p class="eyebrow">Cuidar a quienes siguen aquí</p><h1 id="page-title" tabindex="-1">Salud y supervivencia</h1></div><p>${html(dateLabel(village.elapsedDays))}</p></header>
+    ${renderWinterPlan(village)}
     ${isGameOver(village) ? `<section class="panel ending-panel"><h2>La historia de esta aldea ha terminado</h2><p>Sobrevivió ${village.elapsedDays} días. Fallecieron sus ${deceased.length} habitantes; ${ruined.length} edificios se derrumbaron. El registro conserva sus nombres y lo ocurrido.</p><button type="button" class="primary-button" data-action="navigate" data-route="chronicle">Leer la crónica</button><button type="button" class="text-button" data-action="navigate" data-route="slots">Volver a tus aldeas</button></section>` : ''}
     <div class="stats-grid"><section class="stat"><span>Supervivientes</span><strong>${living.length}</strong><small>${deceased.length} fallecidos. La aldea continúa mientras viva alguien.</small></section><section class="stat"><span>Necesitan atención</span><strong>${vulnerable.length}</strong><small>Hambre, salud reducida o incapacidad.</small></section><section class="stat"><span>Sin refugio utilizable</span><strong>${outside.length}</strong><small>Una vivienda inutilizable no protege del frío.</small></section><section class="stat"><span>Edificios inutilizables</span><strong>${village.buildings.filter((building) => isStanding(building) && !isBuildingUsable(building)).length}</strong><small>${ruined.length} derrumbados; sus solares se pueden reutilizar.</small></section></div>
     <div class="survival-layout"><section class="panel"><h2>Prepararse para el invierno</h2><p>${winter.severity ? `El invierno de este año es <strong>${WINTER_NAMES[winter.severity].toLocaleLowerCase('es')}</strong>.` : winter.forecast ? `Indicios para este año: <strong>${WINTER_NAMES[winter.forecast].toLocaleLowerCase('es')}</strong>. Son señales imperfectas, no una garantía.` : 'Los primeros indicios del invierno llegarán en otoño.'}</p>

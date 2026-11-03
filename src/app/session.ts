@@ -11,6 +11,7 @@ import { prepareConstruction, changeConstruction } from '../game/commands/constr
 import { expandVillage } from '../game/commands/expansion';
 import { configureMaintenance } from '../game/commands/maintenance';
 import { assignWork } from '../game/commands/work';
+import { applyRecommendedWork, applyWorkAdjustments } from '../game/commands/recommendedWork';
 import { configureEconomy } from '../game/commands/economy';
 import type { EconomyPolicy } from '../game/models/economy';
 import { isGameOver } from '../game/selectors/survival';
@@ -63,6 +64,8 @@ export type SessionAction =
   | { readonly type: 'inspect-plot'; readonly id: string }
   | { readonly type: 'move-resident'; readonly residentId: string; readonly houseId: string }
   | { readonly type: 'assign-work'; readonly residentId: string; readonly profession: Profession | null; readonly workplaceId: string | null }
+  | { readonly type: 'assign-recommended-work' }
+  | { readonly type: 'adjust-work' }
   | { readonly type: 'set-economy-policy'; readonly policy: EconomyPolicy }
   | { readonly type: 'resolve-attack'; readonly threatId: string; readonly tactic: DefenseTactic }
   | { readonly type: 'resolve-story'; readonly eventId: string; readonly choice: StoryChoice }
@@ -89,12 +92,12 @@ function assertSlot(slot: SlotId): void {
 
 export function reduceSession(session: Session, action: SessionAction): Session {
   const world = activeVillage(session);
-  const management = ['assign-work', 'move-resident', 'prepare-construction', 'change-construction', 'expand-village', 'set-maintenance', 'set-maintenance-reserve', 'set-economy-policy'];
+  const management = ['assign-work', 'assign-recommended-work', 'adjust-work', 'move-resident', 'prepare-construction', 'change-construction', 'expand-village', 'set-maintenance', 'set-maintenance-reserve', 'set-economy-policy'];
   if (world?.pendingDecision?.type === 'story_event' && management.includes(action.type)) throw new Error('Resuelve el suceso pendiente antes de cambiar órdenes.');
   if (world && isGameOver(world) && action.type === 'resolve-story') throw new Error('Esta aldea ha terminado.');
   if (world?.pendingDecision?.type === 'bandit_attack' && management.includes(action.type)) throw new Error('El asalto está en curso. Resuelve la decisión en Defensa antes de cambiar órdenes.');
   if (world && isGameOver(world) && action.type === 'resolve-attack') throw new Error('Esta aldea ha terminado.');
-  if (world && isGameOver(world) && ['advance', 'assign-work', 'move-resident', 'prepare-construction', 'change-construction', 'expand-village', 'set-maintenance', 'set-maintenance-reserve', 'set-economy-policy'].includes(action.type)) {
+  if (world && isGameOver(world) && (action.type === 'advance' || management.includes(action.type))) {
     if (action.type === 'advance') return session;
     throw new Error('Esta aldea ha terminado. Puedes consultar su historia o fundar otra en Tus aldeas.');
   }
@@ -152,6 +155,8 @@ export function reduceSession(session: Session, action: SessionAction): Session 
     case 'resolve-attack':
     case 'resolve-story':
     case 'assign-work':
+    case 'assign-recommended-work':
+    case 'adjust-work':
     case 'set-economy-policy':
     case 'set-maintenance':
     case 'set-maintenance-reserve':
@@ -166,6 +171,8 @@ export function reduceSession(session: Session, action: SessionAction): Session 
       else if (action.type === 'change-construction') next = changeConstruction(village, action.projectId, action.action);
       else if (action.type === 'expand-village') next = expandVillage(village);
       else if (action.type === 'assign-work') next = assignWork(village, action.residentId, action.profession, action.workplaceId);
+      else if (action.type === 'assign-recommended-work') next = applyRecommendedWork(village);
+      else if (action.type === 'adjust-work') next = applyWorkAdjustments(village);
       else if (action.type === 'set-economy-policy') next = configureEconomy(village, action.policy);
       else if (action.type === 'set-maintenance') next = configureMaintenance(village, action.buildingId, action.priority);
       else next = configureMaintenance(village, null, null, action.wood);

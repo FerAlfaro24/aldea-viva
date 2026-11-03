@@ -1,16 +1,32 @@
 import type { VillageState } from '../game/models/village';
-import { selectEconomyForecast } from '../game/selectors/economy';
-import { selectStorage } from '../game/selectors/storage';
-import { isFitForWork, isGameOver } from '../game/selectors/survival';
-import { quantityLabel as q } from './format';
+import { selectGuidance, type VillageAdvice } from '../game/selectors/guidance';
+import { quantityLabel as q, html } from './format';
+import { isGameOver } from '../game/selectors/survival';
+import { renderWinterPlan } from './planning';
 
 export function renderFirstSteps(village: VillageState): string {
-  if (isGameOver(village)) return '';
-  const farmers = village.residents.filter((person) => person.profession === 'farmer' && isFitForWork(person, village.elapsedDays)).length;
-  const builders = village.residents.filter((person) => person.profession === 'builder' && isFitForWork(person, village.elapsedDays)).length;
-  const forecast = selectEconomyForecast(village);
-  const storage = selectStorage(village);
-  return `<details class="panel first-steps"${village.elapsedDays === 0 ? ' open' : ''}><summary>Primeros pasos · Tú eliges el ritmo</summary><ol class="help-checklist"><li><strong>${farmers ? `${farmers} ${farmers === 1 ? 'agricultor apto' : 'agricultores aptos'}` : 'Empieza por la comida'}</strong><p>Asigna agricultores a los huertos desde Oficios. Cada destino tiene plazas limitadas. Nadie empieza trabajando sin tu orden.</p><button type="button" class="text-button" data-action="navigate" data-route="professions">Elegir oficios →</button></li><li><strong>Prepara reservas, no solo la próxima comida</strong><p>Consumo previsto: ${q(forecast.minimum)}–${q(forecast.maximum)} alimentos en el próximo día. Tus reservas cubrirían ${forecast.daysWithoutHarvest.minimum ?? '—'} días sin nuevas cosechas. El invierno dura 84 días y los huertos producen muy poco.</p><button type="button" class="text-button" data-action="navigate" data-route="economy">Revisar economía →</button></li><li><strong>Haz sitio para el invierno</strong><p>Alimentos y madera comparten ${q(storage.capacity)} plazas de almacén. Más huertos y almacenes necesitan madera, constructores y tiempo. ${builders ? 'Ya tienes construcción asignada: autoriza las tareas necesarias.' : 'Asigna también algún constructor y prepara la obra que necesites.'} La tala excesiva puede ocupar el espacio de los alimentos.</p><button type="button" class="text-button" data-action="navigate" data-route="buildings">Planear obras y mantenimiento →</button></li></ol><button type="button" class="text-button" data-action="navigate" data-route="help">Leer la guía completa →</button></details>`;
+  const guide = selectGuidance(village);
+  if (isGameOver(village)) return `<section class="panel village-guide ending-panel"><p class="eyebrow">Memoria de la comunidad</p><h2 id="guide-title">${html(guide.advice.title)}</h2><p>${html(guide.advice.description)}</p>${renderAdviceButton(guide.advice)}<button type="button" class="text-button" data-action="navigate" data-route="slots">Fundar otra aldea →</button></section>`;
+  const signed = (value: number) => `${value > 0 ? '+' : ''}${q(value)}`;
+  const balance = guide.storage.free < guide.forecast.production.food ? 'El almacén limita la cosecha'
+    : guide.minimumBalance >= 0 ? 'La comida puede crecer' : guide.maximumBalance < 0 ? 'Consumes más de lo que produces' : 'Comida muy ajustada';
+  return `<section class="panel village-guide" aria-labelledby="guide-title"><p class="chapter-label">${html(guide.chapter)}</p><div class="section-heading"><p class="eyebrow">Tu siguiente paso</p><span class="guide-status">${html(balance)}</span></div>
+    <h2 id="guide-title">${html(guide.advice.title)}</h2>${renderAdviceButton(guide.advice)}<p>${html(guide.advice.description)}</p>
+    <div class="guide-figures"><span><strong>${signed(guide.minimumBalance)} a ${signed(guide.maximumBalance)}</strong> alimentos / día previstos</span><span><strong>${guide.forecast.daysWithoutHarvest.minimum ?? '—'} días</strong> de reserva sin cosechas</span></div>
+    <p class="small-note">Producción prevista: ${q(guide.forecast.production.food)} · Consumo según tu ración: ${q(guide.forecast.minimum)}–${q(guide.forecast.maximum)}. Antes del límite del almacén.</p>
+    ${village.elapsedDays === 0 ? `<details class="guide-progress"><summary>Después: preparar el primer invierno</summary>${renderWinterPlan(village)}</details>` : renderWinterPlan(village)}
+    <details class="guide-progress"><summary>Tu progreso y cómo continuar</summary><ul>${guide.milestones.map((step) => `<li>${step.done ? '✓' : '○'} ${html(step.label)}</li>`).join('')}</ul><p>El invierno dura 84 días y apenas hay cosechas. Cubrir el consumo de hoy es el primer paso; después necesitas acumular reservas.</p><button type="button" class="text-button" data-action="navigate" data-route="help">Leer la guía completa →</button></details></section>`;
+}
+
+export function renderAdviceButton(advice: VillageAdvice): string {
+  const attributes = advice.action === 'work' ? 'data-action="review-work"'
+    : advice.action === 'delivery' ? 'data-action="guide-wood-delivery"'
+    : advice.action === 'adjust' ? 'data-action="review-work-adjustments"'
+    : advice.action === 'advance' ? `data-action="advance" data-days="${advice.days ?? 1}"`
+      : advice.action === 'plot' ? `data-action="inspect-plot" data-plot="${html(advice.plotId ?? '')}"`
+        : advice.action === 'build' ? `data-action="guide-build" data-plot="${html(advice.plotId ?? '')}" data-building="${advice.buildingType}"`
+          : `data-action="navigate" data-route="${advice.route}"`;
+  return `<button type="button" class="primary-button" ${attributes}>${html(advice.label)} →</button>`;
 }
 
 export function renderHelp(hasVillage: boolean): string {

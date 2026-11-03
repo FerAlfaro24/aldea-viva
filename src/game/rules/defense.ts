@@ -5,6 +5,9 @@ export const DEFENSE_RULES = {
   attackChance: 45,
   baseDetectionChance: 40,
   forestDetectionBonus: 20,
+  negotiationReserveShare: 0.06,
+  firstYearTheftPercent: [10, 25],
+  laterTheftPercent: [15, 40],
   tactics: {
     defend: { power: 1, theft: 1, injuryWin: 12, injuryLoss: 35, deathWin: 2, deathLoss: 8 },
     'protect-storage': { power: 0.9, theft: 0.45, injuryWin: 15, injuryLoss: 45, deathWin: 3, deathLoss: 10 },

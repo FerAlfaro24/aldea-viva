@@ -10,6 +10,7 @@ import type { SlotId } from '../game/models/save';
 import { selectWorkOccupancy } from '../game/selectors/work';
 import { isFitForWork, isGameOver, isStanding } from '../game/selectors/survival';
 import { renderFirstSteps } from './help';
+import { renderYearStory } from './chapter';
 
 export function renderSlots(session: Session, statuses?: Readonly<Record<SlotId, SlotStatus>>): string {
   return `<header class="page-heading"><div><p class="eyebrow">Tres comienzos posibles</p><h1 id="page-title" tabindex="-1">Tus aldeas</h1></div><p>Continúa una historia o comienza otra.</p></header>
@@ -18,13 +19,13 @@ export function renderSlots(session: Session, statuses?: Readonly<Record<SlotId,
       const village = session.slots[id];
       const status = statuses?.[id];
       if (status?.kind === 'invalid') return `<section class="slot-card"><p class="eyebrow">Espacio ${id}</p><h2>Partida protegida</h2><p>${html(status.error)}</p><p class="small-note">Puedes seguir usando los otros espacios.</p><button type="button" data-action="reload-saves">Volver a leer</button></section>`;
-      return `<section class="slot-card"><p class="eyebrow">Espacio ${id}</p><h2>${village ? 'Una historia en marcha' : 'Una nueva aldea'}</h2>
+      return `<section class="slot-card"><p class="eyebrow">Espacio ${id}</p><h2>${village ? isGameOver(village) ? 'Una historia concluida' : 'Una historia en marcha' : 'Una nueva aldea'}</h2>
         ${village ? `<p>${village.residents.filter((person) => person.alive).length} vivos · ${village.residents.filter((person) => !person.alive).length} fallecidos</p><p class="small-note">${html(dateLabel(village.elapsedDays))}</p><p class="seed-value">Semilla: ${html(village.rng.seed)}</p><button type="button" class="primary-button" data-action="continue" data-slot="${id}">${isGameOver(village) ? 'Consultar historia' : 'Continuar'}</button><button type="button" class="text-button" data-action="new" data-slot="${id}">Reemplazar esta aldea</button><button type="button" class="text-button delete-button" data-action="delete" data-slot="${id}">Borrar aldea</button>`
           : '<p class="muted">Elige una semilla para conocer a tus primeros habitantes.</p>' + `<button type="button" class="primary-button" data-action="new" data-slot="${id}">Crear aldea</button>`}</section>`;
     }).join('')}</div>`;
 }
 
-export function renderVillage(village: VillageState): string {
+export function renderVillage(village: VillageState, advanceRecap = ''): string {
   const summary = selectVillageSummary(village);
   const needingCare = village.residents.filter((person) => person.alive
     && (person.condition.hunger >= 25 || person.condition.health < 75 || !isFitForWork(person, village.elapsedDays))).length;
@@ -36,6 +37,7 @@ export function renderVillage(village: VillageState): string {
   };
   return `<header class="page-heading"><div><p class="eyebrow">Grado ${summary.grade} · ${village.families.length} hogares</p><h1 id="page-title" tabindex="-1">La aldea</h1></div><p>${html(SEASON_NAMES[summary.date.season])} · Año ${summary.date.year}</p></header>
     ${renderFirstSteps(village)}
+    ${advanceRecap}
     <div class="stats-grid" aria-label="Estado de la aldea">
       <section class="stat"><span>Habitantes</span><strong>${summary.population}</strong><small>Personas que cuentan una historia</small></section>
       <section class="stat"><span>Viviendas</span><strong>${summary.housing.housed}<span> / ${summary.housing.capacity}</span></strong><small>Camas ocupadas / disponibles</small></section>
@@ -44,15 +46,17 @@ export function renderVillage(village: VillageState): string {
     </div>
     ${isGameOver(village) || needingCare ? `<div class="callout"><p>${isGameOver(village) ? 'La historia ha terminado: no queda ningún superviviente.' : `${needingCare} ${needingCare === 1 ? 'habitante necesita' : 'habitantes necesitan'} atención por hambre, salud reducida o incapacidad. Revisa Salud antes de avanzar muchos días.`}</p><button type="button" class="text-button" data-action="navigate" data-route="survival">Revisar Salud →</button></div>` : ''}
     ${summary.housing.unhousedIds.length ? `<div class="callout housing-alert"><p><strong>${summary.housing.unhousedIds.length} ${summary.housing.unhousedIds.length === 1 ? 'persona sin refugio utilizable' : 'personas sin refugio utilizable'}.</strong> Hay ${summary.housing.capacity} camas utilizables para ${summary.population} habitantes. El frío del invierno es peligroso sin protección.</p><button type="button" class="text-button" data-action="navigate" data-route="survival">Ver riesgos</button></div>` : ''}
+    ${renderYearStory(village)}
     <div class="overview-grid"><section class="panel"><div class="section-heading"><h2>Los primeros edificios</h2><span class="small-note">${freePlots} solares libres</span></div>
-      <div class="buildings-grid">${village.buildings.filter(isStanding).map((building) => {
+      <div class="buildings-grid">${village.buildings.filter(isStanding).filter((building) => building.type !== 'warehouse' || building.id === village.buildings.find((candidate) => candidate.type === 'warehouse' && isStanding(candidate))?.id).map((building) => {
         const occupants = village.housingAssignments.filter((assignment) => assignment.houseId === building.id);
         const detail = building.type === 'house'
           ? `<p>${occupants.length} de ${building.housingCapacity} plazas ocupadas</p><details><summary>Ver residentes</summary><div class="occupants">${occupants.map((assignment) => residentLink(assignment.residentId)).join('')}</div></details>`
           : building.type === 'orchard' ? `<p>${selectWorkOccupancy(village, building.id)} / ${building.workerCapacity} puestos ocupados</p><button type="button" class="text-button" data-action="navigate" data-route="professions">Gestionar agricultores →</button>`
             : `<p>${quantityLabel(summary.inventory.food + summary.inventory.wood)} / ${summary.warehouseCapacity} unidades</p><p class="small-note">Capacidad compartida entre alimentos y madera.</p>`;
         const icon = building.type === 'house' ? 'favicon' : building.type === 'orchard' ? 'orchard' : 'warehouse';
-        return `<article class="building-card"><img src="${import.meta.env.BASE_URL}${icon}.svg" alt="" width="32" height="32" /><h3>${html(building.displayName)}</h3>${detail}<small class="building-condition">Conservación ${building.condition} / 100</small></article>`;
+        const warehouseCount = village.buildings.filter((candidate) => candidate.type === 'warehouse' && isStanding(candidate)).length;
+        return `<article class="building-card"><img src="${import.meta.env.BASE_URL}${icon}.svg" alt="" width="32" height="32" /><h3>${building.type === 'warehouse' && warehouseCount > 1 ? `${warehouseCount} almacenes · Reserva compartida` : html(building.displayName)}</h3>${detail}<small class="building-condition">${building.type === 'warehouse' && warehouseCount > 1 ? 'Consulta la conservación de cada edificio en Edificios.' : `Conservación ${quantityLabel(building.condition)} / 100`}</small></article>`;
       }).join('')}</div>
       <p class="small-note">Agricultores y leñadores producen; los habitantes consumen cada día. Consulta raciones, prioridades y balances en Economía. El equilibrio sigue siendo provisional.</p><button type="button" class="text-button" data-action="navigate" data-route="economy">Gestionar economía →</button>
     </section><section class="panel"><h2>Hogares de la aldea</h2><p class="small-note">Conoce a quienes han llegado juntos.</p><ul class="family-list">${village.families.map((family) => `<li><button type="button" data-action="family" data-family="${html(family.id)}"><span>${html(family.displayName)}</span><small>${family.memberIds.length} ${family.memberIds.length === 1 ? 'integrante' : 'integrantes'} <span aria-hidden="true">↗</span></small></button></li>`).join('')}</ul>

@@ -1,0 +1,55 @@
+{
+  "seed": "analisis-inicio-7",
+  "day": 251,
+  "food": 1196.89,
+  "wood": 140.85,
+  "buildings": 10,
+  "plots": 14,
+  "naturalAdvice": {
+    "title": "Hay habitantes que necesitan atención",
+    "description": "Revisa hambre, salud y reposo antes de avanzar varios días. La comida y el refugio sostienen su recuperación.",
+    "label": "Revisar salud",
+    "action": "navigate",
+    "route": "survival"
+  },
+  "controlledNoInjuries": true,
+  "controlledAdvice": {
+    "title": "Construye otro huerto",
+    "description": "Los huertos actuales no cubren el consumo previsto. Otro huerto cuesta 20 de madera y añade dos puestos; necesitará constructores y luego agricultores.",
+    "label": "Preparar un huerto",
+    "action": "build",
+    "plotId": "s0011",
+    "buildingType": "orchard"
+  },
+  "forecast": {
+    "production": {
+      "food": 1.19,
+      "wood": 9.6,
+      "farmers": 6,
+      "woodcutters": 2,
+      "orchards": [
+        {
+          "id": "b-orchard-1",
+          "produced": 0.44,
+          "workers": 2
+        },
+        {
+          "id": "b-orchard-2",
+          "produced": 0.39,
+          "workers": 2
+        },
+        {
+          "id": "built:project:s0008:0:19",
+          "produced": 0.36,
+          "workers": 2
+        }
+      ]
+    },
+    "minimum": 15.81,
+    "maximum": 17.49,
+    "daysWithoutHarvest": {
+      "minimum": 68,
+      "maximum": 75
+    }
+  }
+}

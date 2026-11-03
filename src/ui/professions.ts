@@ -4,6 +4,32 @@ import type { VillageState } from '../game/models/village';
 import { MINIMUM_WORK_AGES, PROFESSIONS } from '../game/rules/calendar';
 import { selectWorkAssignment, selectWorkOccupancy, selectWorkplaceLabel, selectWorksites } from '../game/selectors/work';
 import { html, PROFESSION_NAMES } from './format';
+import { quantityLabel as q } from './format';
+import { selectRecommendedWork } from '../game/selectors/recommendedWork';
+import { selectEconomyForecast } from '../game/selectors/economy';
+import { selectGuidance } from '../game/selectors/guidance';
+import { renderAdviceButton } from './help';
+import { selectWorkAdjustments } from '../game/selectors/workAdjustments';
+import { isFitForWork } from '../game/selectors/survival';
+
+function renderAdjustments(village: VillageState): string {
+  const changes = selectWorkAdjustments(village);
+  if (!changes.length) return '';
+  return `<section class="panel work-adjustments"><h2>Ajustar las tareas actuales</h2><p>Estos cambios sí modifican los puestos indicados. Revisa a cada persona antes de aplicarlos; el resto conserva tus órdenes.</p><details id="work-adjustments"><summary>Revisar ${changes.length} ${changes.length === 1 ? 'ajuste propuesto' : 'ajustes propuestos'}</summary><ul class="proposal-list">${changes.map((change) => `<li><strong>${html(village.residents.find((person) => person.id === change.residentId)!.displayName)}</strong><span>${html(change.reason)}</span></li>`).join('')}</ul><button type="button" class="primary-button" data-action="apply-work-adjustments">Confirmar estos cambios de tareas</button></details></section>`;
+}
+
+function renderRecommendedWork(village: VillageState): string {
+  const plan = selectRecommendedWork(village);
+  const current = selectEconomyForecast(village);
+  return `<section class="panel recommended-work"><h2>Una ayuda para repartir el trabajo</h2><p>Primero los huertos, después hasta dos constructores si hacen falta, tala y guardia. Se elige por capacidad actual entre habitantes aptos sin oficio. Tus nombramientos se conservan.</p>
+    <details id="work-proposal"><summary>Ver propuesta de oficios · ${plan.assignments.length} asignaciones</summary>
+    ${plan.assignments.length ? `<ul class="proposal-list">${plan.assignments.map((order) => `<li><strong>${html(village.residents.find((person) => person.id === order.residentId)!.displayName)}</strong><span>${html(PROFESSION_NAMES[order.profession])} · ${html(selectWorksites(village, order.profession).find((site) => site.id === order.workplaceId)!.label)}</span></li>`).join('')}</ul>
+    <p>Comida prevista: de <strong>${q(current.production.food)}</strong> a <strong>${q(plan.forecast.production.food)}</strong> al día. Consumo tras asignar: ${q(plan.forecast.minimum)}–${q(plan.forecast.maximum)}.</p>
+    ${plan.forecast.production.food < plan.forecast.maximum ? '<p class="callout">La propuesta todavía no garantiza cubrir la comida. Puede hacer falta otro huerto, más trabajadores disponibles o revisar la producción en esta estación.</p>' : ''}
+    <p class="small-note">Solo se aplicará este reparto una vez. Cada persona conserva su habilidad y podrás cambiar su oficio después.</p>
+    <button type="button" class="primary-button" data-action="apply-recommended-work">Aplicar estas asignaciones</button>` : `<p>${plan.canApply ? 'No hay asignaciones nuevas que proponer con los puestos y habitantes disponibles. Puedes revisar los oficios manualmente si necesitas cambiar el reparto.' : 'Resuelve la decisión pendiente antes de cambiar oficios.'}</p>`}</details>
+    <button type="button" class="text-button" data-action="navigate" data-route="village">Volver a mi siguiente paso →</button></section>`;
+}
 
 const DESCRIPTIONS: Readonly<Record<Profession, string>> = {
   farmer: 'Producen alimentos y aprenden en el huerto que elijas. La estación y la conservación del huerto influyen en la cosecha.',
@@ -34,8 +60,14 @@ export function renderWorkChoices(village: VillageState, residentId: string): st
 export function renderProfessions(village: VillageState): string {
   const living = village.residents.filter((person) => person.alive);
   const unemployed = living.filter((person) => person.profession === null).length;
+  const conflicts = (village.workAssignments ?? []).filter((order) => order.status === 'conflict').length;
+  const resting = living.filter((person) => person.profession !== null && !isFitForWork(person, village.elapsedDays)).length;
   return `<header class="page-heading"><div><p class="eyebrow">Personas que sostienen la aldea</p><h1 id="page-title" tabindex="-1">Oficios</h1></div><p>${living.length - unemployed} con oficio · ${unemployed} sin asignar</p></header>
     <p class="small-note">Tú eliges cada nombramiento. Los cumpleaños habilitan opciones y nadie es contratado automáticamente.</p>
+    ${conflicts || resting ? `<aside class="callout"><p><strong>${conflicts} destinos pendientes · ${resting} personas con oficio en reposo.</strong> Tener oficio no significa estar trabajando. Revisa los ajustes y la salud de quienes faltan.</p></aside>` : ''}
+    ${renderAdjustments(village)}
+    ${renderRecommendedWork(village)}
+    <aside class="work-next-step"><strong>Siguiente paso: ${html(selectGuidance(village).advice.title)}</strong>${renderAdviceButton(selectGuidance(village).advice)}</aside>
     <div class="profession-grid">${PROFESSIONS.map((profession) => {
       const assigned = living.filter((person) => person.profession === profession);
       const candidates = living.filter((person) => person.profession === null && getAge(person, village.elapsedDays) >= MINIMUM_WORK_AGES[profession]);

@@ -50,7 +50,10 @@ export function processStoryDay(village: VillageState, previous: VillageState): 
     const generated = generateVisitors({ ...next, rng }, base.id); rng = generated.rng;
     pending = { ...base, kind: 'visitors' as const, residents: generated.residents, family: generated.family };
   } else {
-    const eligible = eligibleStories(next);
+    const allEligible = eligibleStories(next);
+    const lastOffered = [...next.chronicle].reverse().find((entry) => entry.type === 'story_offered');
+    const different = allEligible.filter((event) => lastOffered?.type !== 'story_offered' || event.kind !== lastOffered.kind);
+    const eligible = different.length ? different : allEligible;
     if (roll < R.opportunityChance && eligible.length) pending = eligible[draw(0, eligible.length - 1)]!;
   }
   if (pending) return { ...next, rng, story: { ...story, nextCheckDay, pending, ...(pending.kind === 'visitors' ? { lastVisitorDay: next.elapsedDays } : {}) },

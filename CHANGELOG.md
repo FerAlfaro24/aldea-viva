@@ -1,5 +1,23 @@
 # Cambios de Aldea Viva
 
+## 1.0.0-rc.3 — Primer año guiado
+
+- Plan de invierno con comida, capacidad, madera real acumulada y margen del 20 %; reserva nutritiva independiente de raciones reducidas.
+- Guía sin ampliaciones imposibles ni huertos de última hora; reparaciones y materiales concretos para desbloquear el siguiente paso. Ajustes de tala/destinos requieren revisar y confirmar.
+- Capítulos por estación, hitos y resumen del avance con nombres; almacenes agrupados y final de partida coherente. Impacto de visitantes sobre la reserva explicado antes de aceptar.
+- Sucesos separados 14–24 días y alternancia de tipos elegibles. Negociación ligada al 6 % de reservas libres; comparación de comida restante si falla cada táctica. Robo base del primer año limitado al 10–25 %; 15–40 % desde el segundo.
+- Grado 2 tras el primer mes; se conservan los grados existentes. Mismos guardados v9 y generación inicial, sin nuevas dependencias.
+- 298 pruebas y build aprobados, incluida aceptación reproducible de seis primeros años sin hambre al cierre y recorrido de un año en Brave, con actualización, móvil horizontal y recuperación offline. Detalle, límites y resultados en `docs/19_PRIMER_ANO_RC3.md`.
+
+## Base de rc.3 — Orientación inicial y oficios recomendados
+
+- «Tu siguiente paso» permanece visible en Aldea y responde al estado real: puestos libres, déficit de comida, obras, madera, almacén, salud, refugio y amenazas. Incluye balance previsto, reservas y progreso; no se oculta tras el primer día.
+- Propuesta revisable de oficios, aplicada una vez: prioriza agricultura, hasta dos constructores según necesidad, un leñador si procede y guardia. Usa capacidad actual pública, edades y aptitud; completa puestos con habitantes sin oficio y conserva todos los nombramientos previos. No cambia órdenes al avanzar, no consulta potenciales ocultos ni promete un óptimo global.
+- Accesos a la obra recomendada con solar y tipo preseleccionados, sin gastar hasta preparar; ampliación al grado 2 después del plano y aviso al terminar una obra.
+- Lector/escritor v9 conservados, sin nuevas dependencias ni cambios en reglas económicas. El reparto completo se guarda en una única operación y conserva el reintento existente.
+- Archivos: `src/game/selectors/guidance.ts`, `src/game/selectors/recommendedWork.ts`, `src/game/commands/recommendedWork.ts`; integración en `src/app/{session,persistence,mount}.ts`, `src/ui/{help,professions,buildings}.ts` y `src/style.css`; pruebas en `tests/app/guidance.test.ts` y `tests/ui/help.test.ts`.
+- Comprobados 21 casos pertinentes y compilación. Recorrido real en Brave aislado escritorio y móvil horizontal: revisar/aplicar, preparar huerto, terminar, ocupar nuevos puestos y recuperar el día 4 tras recargar. Sin publicar todavía; pendiente prueba física en Android.
+
 ## Publicación de pruebas — Cloudflare Pages
 
 - Compilación desde el repositorio privado, Node fijado en `.node-version` y encabezados para revalidar las actualizaciones de la PWA.

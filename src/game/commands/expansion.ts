@@ -5,7 +5,7 @@ import { roundResource } from '../rules/resources';
 import { isStanding } from '../selectors/survival';
 
 // Valores provisionales aprobados para el paso de grado 1 a 2.
-export const EXPANSION_RULES = { population: 15, food: 150, condition: 80, wood: 50, addedSlots: 4 } as const;
+export const EXPANSION_RULES = { population: 15, food: 150, condition: 80, wood: 50, addedSlots: 4, firstMonth: 28 } as const;
 
 export function selectExpansion(village: VillageState) {
   const r = EXPANSION_RULES;
@@ -14,6 +14,7 @@ export function selectExpansion(village: VillageState) {
     { label: `Al menos ${r.food} alimentos almacenados`, met: village.inventory.food >= r.food },
     { label: `Todos los edificios al ${r.condition} % o más`, met: village.buildings.some(isStanding) && village.buildings.filter(isStanding).every((building) => building.condition >= r.condition) },
     { label: `${r.wood} de madera disponible (coste)`, met: selectStorage(village).availableWood >= r.wood },
+    { label: 'Primer mes completado (28 días)', met: village.elapsedDays >= r.firstMonth },
   ];
   return { requirements, completed: village.grade >= 2, allowed: village.grade === 1 && requirements.every((entry) => entry.met) };
 }

@@ -2,6 +2,7 @@ import type { VillageState } from '../game/models/village';
 import { selectEconomyForecast, selectEconomyPolicy } from '../game/selectors/economy';
 import { selectStorage } from '../game/selectors/storage';
 import { dateLabel, html, quantityLabel, RATION_NAMES, FOOD_PRIORITY_NAMES } from './format';
+import { renderWinterPlan } from './planning';
 
 const q = quantityLabel;
 const option = (value: string, label: string, selected: string) => `<option value="${value}"${value === selected ? ' selected' : ''}>${html(label)}</option>`;
@@ -16,6 +17,7 @@ export function renderEconomy(village: VillageState): string {
   const recent = village.chronicle.filter((entry) => entry.type === 'economy_day' && entry.elapsedDay > village.elapsedDays - 7);
   const missing = recent.reduce((sum, entry) => sum + (entry.type === 'economy_day' ? entry.foodMissing : 0), 0);
   return `<header class="page-heading"><div><p class="eyebrow">Cada reserva tiene una causa</p><h1 id="page-title" tabindex="-1">Economía y alimentos</h1></div><p>${html(dateLabel(village.elapsedDays))}</p></header>
+    ${renderWinterPlan(village)}
     ${!forecast.production.farmers ? '<aside class="callout"><p><strong>No hay agricultores trabajando.</strong> La aldea depende de sus reservas.</p><button type="button" class="text-button" data-action="navigate" data-route="professions">Asignar oficios →</button></aside>' : ''}
     ${storage.free === 0 ? '<aside class="callout"><p><strong>Almacén lleno.</strong> Las entregas que no quepan se rechazan; consulta qué recurso entra primero o prepara espacio.</p></aside>' : ''}
     ${reserve.minimum !== null && reserve.minimum < 7 ? `<aside class="callout"><p><strong>Reserva alimentaria corta:</strong> ${days} sin nuevas cosechas con la ración actual. Prepara la próxima estación y revisa los huertos.</p></aside>` : ''}

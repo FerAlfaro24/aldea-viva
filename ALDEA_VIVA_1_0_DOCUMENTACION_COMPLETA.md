@@ -2,6 +2,8 @@
 
 **Corte documentado:** `1.0.0-rc.2`, candidata a la versión 1.0.
 
+**Actualización local posterior:** [Primer año — rc.3](docs/19_PRIMER_ANO_RC3.md) recoge las mejoras de orientación, planificación y equilibrio posteriores a este corte. Las fórmulas y parámetros de este manual describen rc.2.
+
 **Fecha del corte:** 2 de noviembre de 2026.
 
 **Repositorio:** [FerAlfaro24/aldea-viva](https://github.com/FerAlfaro24/aldea-viva), privado.

@@ -6,11 +6,15 @@ Juego de simulación de aldeas, pensado primero para Android.
 
 **Manual y referencia completa:** [Todo lo que contiene la candidata 1.0](ALDEA_VIVA_1_0_DOCUMENTACION_COMPLETA.md). Incluye pantallas, reglas, fórmulas, guardados, arquitectura, pruebas y pendientes.
 
+**Análisis de jugabilidad:** [Informe del 3 de noviembre de 2026](docs/18_INFORME_JUGABILIDAD_2026-11-03.md), con tres partidas de navegador, once recorridos del motor, problemas reproducidos y prioridades de mejora sobre la versión local con guía.
+
+**Candidata actual:** [Primer año — rc.3](docs/19_PRIMER_ANO_RC3.md): arreglos del informe, planificación de invierno, ritmo, decisiones y comprobaciones. La subida a `main` inicia la actualización automática de Pages; no supone aceptación final de la jugabilidad.
+
 ## Base del proyecto
 
 - TypeScript + Vite.
 - Desarrollo local con VS Code y Codex.
-- Candidata 1.0 (`1.0.0-rc.2`): sistemas 0.1–0.7 integrados, guía opcional y mejoras de rendimiento. Ocho partidas de cinco años comprobadas; publicada para pruebas en Pages, pendiente aceptación física en Android. Sin APK nueva.
+- Candidata `1.0.0-rc.3`, centrada en el primer año. Pendientes mejoras de jugabilidad y aceptación física en Android. Sin APK nueva. Las ocho partidas antiguas de cinco años corresponden al equilibrio anterior.
 
 Empieza por [LEEME_PRIMERO.md](LEEME_PRIMERO.md), sigue con la [Biblia de diseño](docs/01_BIBLIA_DE_DISENO_0_1_A_1_0.md) y la [especificación ejecutable 0.1](docs/02_ESPECIFICACION_EJECUTABLE_0_1.md). El [documento maestro anterior](docs/Aldea_Viva_Documento_Maestro.md) se conserva como referencia.
 

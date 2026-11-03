@@ -1,7 +1,7 @@
 // Provisional: contexto primero, nunca llenar una cuota de decisiones.
 export const STORY_RULES = {
   firstCheckAfter: 14,
-  interval: [7, 14],
+  interval: [14, 24],
   visitorChance: 1, // Por comprobación, no por día.
   visitorCooldown: 336,
   opportunityChance: 75,

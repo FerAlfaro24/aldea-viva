@@ -23,7 +23,8 @@ export function resolveBanditAttack(village: VillageState, threatId: string, tac
   const rule = R.tactics[tactic];
   const available = { food: round(village.inventory.food - option.foodCost), wood: round(village.inventory.wood - option.woodCost) };
   // Negociar entrega el tributo aunque los bandoleros incumplan su palabra.
-  const theftRate = success ? (tactic === 'negotiate' ? 0 : draw(0, 5) / 100) : draw(15, 40) / 100 * rule.theft;
+  const theftRange = village.elapsedDays < 336 ? R.firstYearTheftPercent : R.laterTheftPercent;
+  const theftRate = success ? (tactic === 'negotiate' ? 0 : draw(0, 5) / 100) : draw(theftRange[0], theftRange[1]) / 100 * rule.theft;
   const stolenFood = round(available.food * theftRate);
   const stolenWood = round(available.wood * theftRate);
   const inventory = { food: round(available.food - stolenFood), wood: round(available.wood - stolenWood) };

@@ -1,0 +1,2857 @@
+{
+  "version": "1.0.0-rc.2 + guia y propuesta local sin publicar",
+  "fecha": "2026-11-03",
+  "metodo": "Simulaciones por ordenes publicas: no son partidas interactuadas en el navegador.",
+  "muestra": [
+    {
+      "seed": "analisis-inicio-0",
+      "population": 16,
+      "food": 216,
+      "wood": 86,
+      "assignments": 7,
+      "foodProduction": 18.68,
+      "foodMinimum": 14.38,
+      "foodMaximum": 15.89,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-1",
+      "population": 16,
+      "food": 210,
+      "wood": 88,
+      "assignments": 5,
+      "foodProduction": 16.46,
+      "foodMinimum": 14.93,
+      "foodMaximum": 16.49,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-2",
+      "population": 18,
+      "food": 213,
+      "wood": 93,
+      "assignments": 5,
+      "foodProduction": 17.99,
+      "foodMinimum": 16.47,
+      "foodMaximum": 18.19,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-3",
+      "population": 17,
+      "food": 217,
+      "wood": 85,
+      "assignments": 7,
+      "foodProduction": 17.22,
+      "foodMinimum": 15.58,
+      "foodMaximum": 17.22,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-4",
+      "population": 16,
+      "food": 202,
+      "wood": 88,
+      "assignments": 7,
+      "foodProduction": 17.26,
+      "foodMinimum": 14.94,
+      "foodMaximum": 16.51,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-5",
+      "population": 19,
+      "food": 210,
+      "wood": 89,
+      "assignments": 7,
+      "foodProduction": 17.92,
+      "foodMinimum": 17.14,
+      "foodMaximum": 18.94,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-6",
+      "population": 19,
+      "food": 193,
+      "wood": 91,
+      "assignments": 7,
+      "foodProduction": 15.93,
+      "foodMinimum": 17.34,
+      "foodMaximum": 19.16,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-7",
+      "population": 16,
+      "food": 192,
+      "wood": 89,
+      "assignments": 7,
+      "foodProduction": 16.95,
+      "foodMinimum": 15.04,
+      "foodMaximum": 16.62,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-8",
+      "population": 19,
+      "food": 184,
+      "wood": 95,
+      "assignments": 7,
+      "foodProduction": 17.85,
+      "foodMinimum": 17.87,
+      "foodMaximum": 19.74,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-9",
+      "population": 17,
+      "food": 189,
+      "wood": 98,
+      "assignments": 7,
+      "foodProduction": 16,
+      "foodMinimum": 15.43,
+      "foodMaximum": 17.05,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-10",
+      "population": 20,
+      "food": 187,
+      "wood": 94,
+      "assignments": 7,
+      "foodProduction": 17.14,
+      "foodMinimum": 17.71,
+      "foodMaximum": 19.57,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-11",
+      "population": 17,
+      "food": 220,
+      "wood": 93,
+      "assignments": 7,
+      "foodProduction": 18.12,
+      "foodMinimum": 15.37,
+      "foodMaximum": 16.98,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-12",
+      "population": 19,
+      "food": 202,
+      "wood": 81,
+      "assignments": 7,
+      "foodProduction": 17.35,
+      "foodMinimum": 17.45,
+      "foodMaximum": 19.28,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-13",
+      "population": 19,
+      "food": 214,
+      "wood": 93,
+      "assignments": 7,
+      "foodProduction": 17.2,
+      "foodMinimum": 18.04,
+      "foodMaximum": 19.94,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-14",
+      "population": 15,
+      "food": 213,
+      "wood": 92,
+      "assignments": 7,
+      "foodProduction": 17.78,
+      "foodMinimum": 13.72,
+      "foodMaximum": 15.16,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-15",
+      "population": 16,
+      "food": 195,
+      "wood": 97,
+      "assignments": 7,
+      "foodProduction": 17.3,
+      "foodMinimum": 14.52,
+      "foodMaximum": 16.04,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-16",
+      "population": 16,
+      "food": 182,
+      "wood": 90,
+      "assignments": 7,
+      "foodProduction": 18.03,
+      "foodMinimum": 14.82,
+      "foodMaximum": 16.38,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-17",
+      "population": 16,
+      "food": 214,
+      "wood": 96,
+      "assignments": 7,
+      "foodProduction": 16.45,
+      "foodMinimum": 14.89,
+      "foodMaximum": 16.45,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-18",
+      "population": 15,
+      "food": 201,
+      "wood": 88,
+      "assignments": 7,
+      "foodProduction": 18,
+      "foodMinimum": 14.46,
+      "foodMaximum": 15.98,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-19",
+      "population": 15,
+      "food": 211,
+      "wood": 94,
+      "assignments": 7,
+      "foodProduction": 17.33,
+      "foodMinimum": 13.75,
+      "foodMaximum": 15.19,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-20",
+      "population": 15,
+      "food": 214,
+      "wood": 90,
+      "assignments": 7,
+      "foodProduction": 16.98,
+      "foodMinimum": 13.46,
+      "foodMaximum": 14.87,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-21",
+      "population": 20,
+      "food": 193,
+      "wood": 90,
+      "assignments": 7,
+      "foodProduction": 18.33,
+      "foodMinimum": 18.34,
+      "foodMaximum": 20.27,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-22",
+      "population": 18,
+      "food": 203,
+      "wood": 83,
+      "assignments": 7,
+      "foodProduction": 17.78,
+      "foodMinimum": 16.14,
+      "foodMaximum": 17.83,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-23",
+      "population": 19,
+      "food": 185,
+      "wood": 81,
+      "assignments": 7,
+      "foodProduction": 17.67,
+      "foodMinimum": 16.65,
+      "foodMaximum": 18.4,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-24",
+      "population": 18,
+      "food": 183,
+      "wood": 93,
+      "assignments": 5,
+      "foodProduction": 17.86,
+      "foodMinimum": 16.25,
+      "foodMaximum": 17.94,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-25",
+      "population": 19,
+      "food": 216,
+      "wood": 94,
+      "assignments": 7,
+      "foodProduction": 18.28,
+      "foodMinimum": 17.18,
+      "foodMaximum": 18.98,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-26",
+      "population": 19,
+      "food": 195,
+      "wood": 98,
+      "assignments": 7,
+      "foodProduction": 18.1,
+      "foodMinimum": 17.55,
+      "foodMaximum": 19.39,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-27",
+      "population": 18,
+      "food": 208,
+      "wood": 81,
+      "assignments": 7,
+      "foodProduction": 17.37,
+      "foodMinimum": 15.69,
+      "foodMaximum": 17.33,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-28",
+      "population": 17,
+      "food": 200,
+      "wood": 88,
+      "assignments": 7,
+      "foodProduction": 18.01,
+      "foodMinimum": 15.85,
+      "foodMaximum": 17.52,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-29",
+      "population": 17,
+      "food": 213,
+      "wood": 93,
+      "assignments": 7,
+      "foodProduction": 17.39,
+      "foodMinimum": 15.87,
+      "foodMaximum": 17.54,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-30",
+      "population": 20,
+      "food": 191,
+      "wood": 97,
+      "assignments": 7,
+      "foodProduction": 17.82,
+      "foodMinimum": 18.5,
+      "foodMaximum": 20.44,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-31",
+      "population": 20,
+      "food": 214,
+      "wood": 98,
+      "assignments": 7,
+      "foodProduction": 17.72,
+      "foodMinimum": 18,
+      "foodMaximum": 19.89,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-32",
+      "population": 19,
+      "food": 210,
+      "wood": 92,
+      "assignments": 7,
+      "foodProduction": 17.28,
+      "foodMinimum": 17.66,
+      "foodMaximum": 19.51,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-33",
+      "population": 19,
+      "food": 218,
+      "wood": 95,
+      "assignments": 7,
+      "foodProduction": 18.06,
+      "foodMinimum": 17.77,
+      "foodMaximum": 19.64,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-34",
+      "population": 17,
+      "food": 192,
+      "wood": 82,
+      "assignments": 7,
+      "foodProduction": 18.15,
+      "foodMinimum": 15.61,
+      "foodMaximum": 17.25,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-35",
+      "population": 15,
+      "food": 180,
+      "wood": 88,
+      "assignments": 7,
+      "foodProduction": 18.02,
+      "foodMinimum": 14.04,
+      "foodMaximum": 15.51,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-36",
+      "population": 16,
+      "food": 216,
+      "wood": 100,
+      "assignments": 7,
+      "foodProduction": 17.28,
+      "foodMinimum": 14.69,
+      "foodMaximum": 16.23,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-37",
+      "population": 16,
+      "food": 220,
+      "wood": 88,
+      "assignments": 7,
+      "foodProduction": 17.57,
+      "foodMinimum": 14.58,
+      "foodMaximum": 16.11,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-38",
+      "population": 15,
+      "food": 200,
+      "wood": 89,
+      "assignments": 7,
+      "foodProduction": 16.72,
+      "foodMinimum": 13.63,
+      "foodMaximum": 15.05,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-39",
+      "population": 20,
+      "food": 203,
+      "wood": 83,
+      "assignments": 7,
+      "foodProduction": 18.18,
+      "foodMinimum": 18.5,
+      "foodMaximum": 20.45,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-40",
+      "population": 15,
+      "food": 193,
+      "wood": 95,
+      "assignments": 7,
+      "foodProduction": 17.52,
+      "foodMinimum": 13.97,
+      "foodMaximum": 15.44,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-41",
+      "population": 18,
+      "food": 183,
+      "wood": 85,
+      "assignments": 7,
+      "foodProduction": 17.55,
+      "foodMinimum": 15.83,
+      "foodMaximum": 17.49,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-42",
+      "population": 16,
+      "food": 218,
+      "wood": 86,
+      "assignments": 7,
+      "foodProduction": 18.79,
+      "foodMinimum": 15.11,
+      "foodMaximum": 16.69,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-43",
+      "population": 19,
+      "food": 188,
+      "wood": 90,
+      "assignments": 7,
+      "foodProduction": 18.12,
+      "foodMinimum": 17.24,
+      "foodMaximum": 19.05,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-44",
+      "population": 20,
+      "food": 220,
+      "wood": 84,
+      "assignments": 7,
+      "foodProduction": 18.35,
+      "foodMinimum": 18.5,
+      "foodMaximum": 20.44,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-45",
+      "population": 19,
+      "food": 204,
+      "wood": 86,
+      "assignments": 7,
+      "foodProduction": 17.64,
+      "foodMinimum": 17.52,
+      "foodMaximum": 19.35,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-46",
+      "population": 17,
+      "food": 213,
+      "wood": 98,
+      "assignments": 7,
+      "foodProduction": 18.43,
+      "foodMinimum": 15.64,
+      "foodMaximum": 17.28,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-47",
+      "population": 18,
+      "food": 198,
+      "wood": 81,
+      "assignments": 7,
+      "foodProduction": 16.97,
+      "foodMinimum": 16.28,
+      "foodMaximum": 17.98,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-48",
+      "population": 15,
+      "food": 194,
+      "wood": 94,
+      "assignments": 7,
+      "foodProduction": 17.58,
+      "foodMinimum": 14.27,
+      "foodMaximum": 15.77,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-49",
+      "population": 17,
+      "food": 190,
+      "wood": 90,
+      "assignments": 7,
+      "foodProduction": 16.89,
+      "foodMinimum": 15.56,
+      "foodMaximum": 17.19,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-50",
+      "population": 18,
+      "food": 212,
+      "wood": 89,
+      "assignments": 7,
+      "foodProduction": 17.53,
+      "foodMinimum": 16.59,
+      "foodMaximum": 18.32,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-51",
+      "population": 20,
+      "food": 200,
+      "wood": 95,
+      "assignments": 7,
+      "foodProduction": 17.17,
+      "foodMinimum": 18.65,
+      "foodMaximum": 20.61,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-52",
+      "population": 16,
+      "food": 219,
+      "wood": 89,
+      "assignments": 7,
+      "foodProduction": 18.11,
+      "foodMinimum": 14.5,
+      "foodMaximum": 16.02,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-53",
+      "population": 20,
+      "food": 203,
+      "wood": 81,
+      "assignments": 7,
+      "foodProduction": 18.22,
+      "foodMinimum": 17.81,
+      "foodMaximum": 19.68,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-54",
+      "population": 15,
+      "food": 195,
+      "wood": 90,
+      "assignments": 7,
+      "foodProduction": 18.49,
+      "foodMinimum": 13.07,
+      "foodMaximum": 14.43,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-55",
+      "population": 19,
+      "food": 207,
+      "wood": 94,
+      "assignments": 7,
+      "foodProduction": 18.15,
+      "foodMinimum": 17.99,
+      "foodMaximum": 19.88,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-56",
+      "population": 15,
+      "food": 203,
+      "wood": 99,
+      "assignments": 7,
+      "foodProduction": 17.82,
+      "foodMinimum": 13.3,
+      "foodMaximum": 14.7,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-57",
+      "population": 15,
+      "food": 208,
+      "wood": 85,
+      "assignments": 7,
+      "foodProduction": 17.49,
+      "foodMinimum": 13.18,
+      "foodMaximum": 14.56,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-58",
+      "population": 19,
+      "food": 203,
+      "wood": 99,
+      "assignments": 7,
+      "foodProduction": 18.77,
+      "foodMinimum": 17.25,
+      "foodMaximum": 19.06,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-59",
+      "population": 18,
+      "food": 204,
+      "wood": 80,
+      "assignments": 7,
+      "foodProduction": 17.83,
+      "foodMinimum": 15.98,
+      "foodMaximum": 17.65,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-60",
+      "population": 17,
+      "food": 185,
+      "wood": 84,
+      "assignments": 7,
+      "foodProduction": 16.95,
+      "foodMinimum": 15.36,
+      "foodMaximum": 16.97,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-61",
+      "population": 17,
+      "food": 208,
+      "wood": 94,
+      "assignments": 7,
+      "foodProduction": 17.15,
+      "foodMinimum": 15.38,
+      "foodMaximum": 17,
+      "deficit": false
+    },
+    {
+      "seed": "analisis-inicio-62",
+      "population": 20,
+      "food": 206,
+      "wood": 88,
+      "assignments": 7,
+      "foodProduction": 17.95,
+      "foodMinimum": 18.63,
+      "foodMaximum": 20.59,
+      "deficit": true
+    },
+    {
+      "seed": "analisis-inicio-63",
+      "population": 15,
+      "food": 186,
+      "wood": 91,
+      "assignments": 7,
+      "foodProduction": 16.3,
+      "foodMinimum": 13.75,
+      "foodMaximum": 15.19,
+      "deficit": false
+    }
+  ],
+  "partidas": [
+    {
+      "strategy": "guia",
+      "seed": "opinion-jugador-2026-11-02",
+      "initialPopulation": 20,
+      "day": 336,
+      "living": 20,
+      "food": 1293.63,
+      "wood": 1200.08,
+      "capacity": 4200,
+      "grade": 2,
+      "buildings": 14,
+      "health": 100,
+      "hunger": 0,
+      "jobs": {
+        "farmer": 6,
+        "builder": 2,
+        "woodcutter": 1,
+        "warrior": 4
+      },
+      "production": 30.39,
+      "consumption": [
+        19.86,
+        21.97
+      ],
+      "raids": 5,
+      "stories": 19,
+      "arrivals": 0,
+      "talents": 5,
+      "deaths": [],
+      "foodRejected": 1831.02,
+      "firstHungerDay": null,
+      "eventKinds": [
+        "harvest-trial",
+        "visitors",
+        "forest-route"
+      ],
+      "checkpoints": [
+        {
+          "day": 0,
+          "living": 20,
+          "dead": 0,
+          "food": 184,
+          "wood": 99,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 0,
+            "builder": 0,
+            "woodcutter": 0,
+            "warrior": 0
+          },
+          "production": 0,
+          "consumption": [
+            18.06,
+            19.95
+          ],
+          "free": 317,
+          "guide": "Primero, pon los huertos a trabajar"
+        },
+        {
+          "day": 28,
+          "living": 20,
+          "dead": 0,
+          "food": 396.35,
+          "wood": 173.05,
+          "capacity": 1200,
+          "grade": 1,
+          "buildings": 9,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 6,
+            "builder": 2,
+            "woodcutter": 1,
+            "warrior": 2
+          },
+          "production": 31.07,
+          "consumption": [
+            19.39,
+            21.44
+          ],
+          "free": 630.6,
+          "guide": "Buen comienzo: la aldea cubre su comida diaria"
+        },
+        {
+          "day": 84,
+          "living": 20,
+          "dead": 0,
+          "food": 1293.37,
+          "wood": 370.39,
+          "capacity": 1800,
+          "grade": 2,
+          "buildings": 10,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 6,
+            "builder": 2,
+            "woodcutter": 1,
+            "warrior": 2
+          },
+          "production": 60.62,
+          "consumption": [
+            19.39,
+            21.44
+          ],
+          "free": 136.24,
+          "guide": "Haz espacio para las cosechas"
+        },
+        {
+          "day": 168,
+          "living": 20,
+          "dead": 0,
+          "food": 3673.8,
+          "wood": 505.84,
+          "capacity": 4200,
+          "grade": 2,
+          "buildings": 14,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 6,
+            "builder": 2,
+            "woodcutter": 1,
+            "warrior": 2
+          },
+          "production": 50.22,
+          "consumption": [
+            19.58,
+            21.65
+          ],
+          "free": 20.36,
+          "guide": "Necesitas espacio para seguir creciendo"
+        },
+        {
+          "day": 252,
+          "living": 20,
+          "dead": 0,
+          "food": 2964.55,
+          "wood": 666.12,
+          "capacity": 4200,
+          "grade": 2,
+          "buildings": 14,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 6,
+            "builder": 2,
+            "woodcutter": 1,
+            "warrior": 4
+          },
+          "production": 1.26,
+          "consumption": [
+            19.86,
+            21.97
+          ],
+          "free": 569.33,
+          "guide": "El invierno se sostiene con tus reservas"
+        },
+        {
+          "day": 280,
+          "living": 20,
+          "dead": 0,
+          "food": 2387.9,
+          "wood": 847.36,
+          "capacity": 4200,
+          "grade": 2,
+          "buildings": 14,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 6,
+            "builder": 2,
+            "woodcutter": 1,
+            "warrior": 4
+          },
+          "production": 1.32,
+          "consumption": [
+            19.86,
+            21.97
+          ],
+          "free": 964.74,
+          "guide": "El invierno se sostiene con tus reservas"
+        },
+        {
+          "day": 308,
+          "living": 20,
+          "dead": 0,
+          "food": 1836.05,
+          "wood": 1030.6,
+          "capacity": 4200,
+          "grade": 2,
+          "buildings": 14,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 6,
+            "builder": 2,
+            "woodcutter": 1,
+            "warrior": 4
+          },
+          "production": 1.31,
+          "consumption": [
+            19.86,
+            21.97
+          ],
+          "free": 1333.35,
+          "guide": "El invierno se sostiene con tus reservas"
+        },
+        {
+          "day": 336,
+          "living": 20,
+          "dead": 0,
+          "food": 1293.63,
+          "wood": 1200.08,
+          "capacity": 4200,
+          "grade": 2,
+          "buildings": 14,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 6,
+            "builder": 2,
+            "woodcutter": 1,
+            "warrior": 4
+          },
+          "production": 30.39,
+          "consumption": [
+            19.86,
+            21.97
+          ],
+          "free": 1706.29,
+          "guide": "Buen comienzo: la aldea cubre su comida diaria"
+        }
+      ],
+      "annual": null,
+      "reopenings": 7
+    },
+    {
+      "strategy": "solo-propuesta",
+      "seed": "opinion-jugador-2026-11-02",
+      "initialPopulation": 20,
+      "day": 310,
+      "living": 0,
+      "food": 0,
+      "wood": 599.75,
+      "capacity": 600,
+      "grade": 1,
+      "buildings": 7,
+      "health": 0,
+      "hunger": 0,
+      "jobs": {
+        "farmer": 0,
+        "builder": 0,
+        "woodcutter": 0,
+        "warrior": 0
+      },
+      "production": 0,
+      "consumption": [
+        0,
+        0
+      ],
+      "raids": 1,
+      "stories": 15,
+      "arrivals": 0,
+      "talents": 2,
+      "deaths": [
+        {
+          "day": 309,
+          "id": "r0003",
+          "cause": "combined"
+        },
+        {
+          "day": 309,
+          "id": "r0004",
+          "cause": "combined"
+        },
+        {
+          "day": 309,
+          "id": "r0020",
+          "cause": "combined"
+        },
+        {
+          "day": 310,
+          "id": "r0001",
+          "cause": "combined"
+        },
+        {
+          "day": 310,
+          "id": "r0002",
+          "cause": "combined"
+        },
+        {
+          "day": 310,
+          "id": "r0005",
+          "cause": "combined"
+        },
+        {
+          "day": 310,
+          "id": "r0006",
+          "cause": "combined"
+        },
+        {
+          "day": 310,
+          "id": "r0007",
+          "cause": "combined"
+        },
+        {
+          "day": 310,
+          "id": "r0008",
+          "cause": "combined"
+        },
+        {
+          "day": 310,
+          "id": "r0009",
+          "cause": "combined"
+        },
+        {
+          "day": 310,
+          "id": "r0010",
+          "cause": "combined"
+        },
+        {
+          "day": 310,
+          "id": "r0011",
+          "cause": "combined"
+        },
+        {
+          "day": 310,
+          "id": "r0012",
+          "cause": "combined"
+        },
+        {
+          "day": 310,
+          "id": "r0013",
+          "cause": "combined"
+        },
+        {
+          "day": 310,
+          "id": "r0014",
+          "cause": "combined"
+        },
+        {
+          "day": 310,
+          "id": "r0015",
+          "cause": "combined"
+        },
+        {
+          "day": 310,
+          "id": "r0016",
+          "cause": "combined"
+        },
+        {
+          "day": 310,
+          "id": "r0017",
+          "cause": "combined"
+        },
+        {
+          "day": 310,
+          "id": "r0018",
+          "cause": "combined"
+        },
+        {
+          "day": 310,
+          "id": "r0019",
+          "cause": "combined"
+        }
+      ],
+      "foodRejected": 1952.36,
+      "firstHungerDay": 263,
+      "eventKinds": [
+        "harvest-trial",
+        "visitors",
+        "forest-route"
+      ],
+      "checkpoints": [
+        {
+          "day": 0,
+          "living": 20,
+          "dead": 0,
+          "food": 184,
+          "wood": 99,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 0,
+            "builder": 0,
+            "woodcutter": 0,
+            "warrior": 0
+          },
+          "production": 0,
+          "consumption": [
+            18.06,
+            19.95
+          ],
+          "free": 317,
+          "guide": "Primero, pon los huertos a trabajar"
+        },
+        {
+          "day": 28,
+          "living": 20,
+          "dead": 0,
+          "food": 169.21,
+          "wood": 233.05,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 4,
+            "builder": 2,
+            "woodcutter": 1,
+            "warrior": 0
+          },
+          "production": 20.68,
+          "consumption": [
+            18.91,
+            20.9
+          ],
+          "free": 197.74,
+          "guide": "Construye otro huerto"
+        },
+        {
+          "day": 84,
+          "living": 20,
+          "dead": 0,
+          "food": 228.14,
+          "wood": 352.25,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 4,
+            "builder": 2,
+            "woodcutter": 1,
+            "warrior": 0
+          },
+          "production": 39.88,
+          "consumption": [
+            18.91,
+            20.9
+          ],
+          "free": 19.61,
+          "guide": "Haz espacio para las cosechas"
+        },
+        {
+          "day": 168,
+          "living": 20,
+          "dead": 0,
+          "food": 224.18,
+          "wood": 355.89,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 0,
+          "health": 99.97,
+          "jobs": {
+            "farmer": 4,
+            "builder": 2,
+            "woodcutter": 1,
+            "warrior": 0
+          },
+          "production": 32.2,
+          "consumption": [
+            19.1,
+            21.11
+          ],
+          "free": 19.93,
+          "guide": "Haz espacio para las cosechas"
+        },
+        {
+          "day": 252,
+          "living": 20,
+          "dead": 0,
+          "food": 106.56,
+          "wood": 459.81,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 4,
+            "builder": 2,
+            "woodcutter": 1,
+            "warrior": 0
+          },
+          "production": 0.81,
+          "consumption": [
+            19.1,
+            21.11
+          ],
+          "free": 33.63,
+          "guide": "Haz espacio para las cosechas"
+        },
+        {
+          "day": 280,
+          "living": 20,
+          "dead": 0,
+          "food": 0,
+          "wood": 595.1,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 100,
+          "health": 75.26,
+          "jobs": {
+            "farmer": 4,
+            "builder": 2,
+            "woodcutter": 1,
+            "warrior": 0
+          },
+          "production": 0.31,
+          "consumption": [
+            20.09,
+            22.12
+          ],
+          "free": 4.9,
+          "guide": "Hay habitantes que necesitan atención"
+        },
+        {
+          "day": 308,
+          "living": 20,
+          "dead": 0,
+          "food": 0,
+          "wood": 599.75,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 100,
+          "health": 2.69,
+          "jobs": {
+            "farmer": 4,
+            "builder": 2,
+            "woodcutter": 1,
+            "warrior": 0
+          },
+          "production": 0,
+          "consumption": [
+            21.71,
+            24.02
+          ],
+          "free": 0.25,
+          "guide": "Hay habitantes que necesitan atención"
+        }
+      ],
+      "annual": null,
+      "reopenings": 6
+    },
+    {
+      "strategy": "guia",
+      "seed": "analisis-inicio-7",
+      "initialPopulation": 16,
+      "day": 336,
+      "living": 16,
+      "food": 2153.39,
+      "wood": 1387.68,
+      "capacity": 4800,
+      "grade": 2,
+      "buildings": 14,
+      "health": 100,
+      "hunger": 0,
+      "jobs": {
+        "farmer": 4,
+        "builder": 2,
+        "woodcutter": 1,
+        "warrior": 4
+      },
+      "production": 19.8,
+      "consumption": [
+        15.58,
+        17.24
+      ],
+      "raids": 3,
+      "stories": 26,
+      "arrivals": 0,
+      "talents": 8,
+      "deaths": [],
+      "foodRejected": 22.49,
+      "firstHungerDay": null,
+      "eventKinds": [
+        "harvest-trial",
+        "forest-route"
+      ],
+      "checkpoints": [
+        {
+          "day": 0,
+          "living": 16,
+          "dead": 0,
+          "food": 192,
+          "wood": 89,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 0,
+            "builder": 0,
+            "woodcutter": 0,
+            "warrior": 0
+          },
+          "production": 0,
+          "consumption": [
+            14.17,
+            15.65
+          ],
+          "free": 319,
+          "guide": "Primero, pon los huertos a trabajar"
+        },
+        {
+          "day": 28,
+          "living": 16,
+          "dead": 0,
+          "food": 271.71,
+          "wood": 223.96,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 4,
+            "builder": 0,
+            "woodcutter": 1,
+            "warrior": 2
+          },
+          "production": 20.23,
+          "consumption": [
+            15.04,
+            16.62
+          ],
+          "free": 104.33,
+          "guide": "Buen comienzo: la aldea cubre su comida diaria"
+        },
+        {
+          "day": 84,
+          "living": 16,
+          "dead": 0,
+          "food": 710.33,
+          "wood": 413.88,
+          "capacity": 1200,
+          "grade": 1,
+          "buildings": 8,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 4,
+            "builder": 2,
+            "woodcutter": 1,
+            "warrior": 2
+          },
+          "production": 40.32,
+          "consumption": [
+            15.32,
+            16.94
+          ],
+          "free": 75.79,
+          "guide": "Tu almacén está en construcción"
+        },
+        {
+          "day": 168,
+          "living": 16,
+          "dead": 0,
+          "food": 2809.68,
+          "wood": 634.24,
+          "capacity": 3600,
+          "grade": 2,
+          "buildings": 12,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 4,
+            "builder": 2,
+            "woodcutter": 1,
+            "warrior": 2
+          },
+          "production": 34.13,
+          "consumption": [
+            15.32,
+            16.94
+          ],
+          "free": 156.08,
+          "guide": "Buen comienzo: la aldea cubre su comida diaria"
+        },
+        {
+          "day": 252,
+          "living": 16,
+          "dead": 0,
+          "food": 3509.32,
+          "wood": 967.96,
+          "capacity": 4800,
+          "grade": 2,
+          "buildings": 14,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 4,
+            "builder": 2,
+            "woodcutter": 1,
+            "warrior": 2
+          },
+          "production": 0.87,
+          "consumption": [
+            15.32,
+            16.94
+          ],
+          "free": 322.72,
+          "guide": "El invierno se sostiene con tus reservas"
+        },
+        {
+          "day": 280,
+          "living": 16,
+          "dead": 0,
+          "food": 3039.72,
+          "wood": 1103.2,
+          "capacity": 4800,
+          "grade": 2,
+          "buildings": 14,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 4,
+            "builder": 2,
+            "woodcutter": 1,
+            "warrior": 4
+          },
+          "production": 0.86,
+          "consumption": [
+            15.58,
+            17.24
+          ],
+          "free": 657.08,
+          "guide": "El invierno se sostiene con tus reservas"
+        },
+        {
+          "day": 308,
+          "living": 16,
+          "dead": 0,
+          "food": 2595.02,
+          "wood": 1246.44,
+          "capacity": 4800,
+          "grade": 2,
+          "buildings": 14,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 4,
+            "builder": 2,
+            "woodcutter": 1,
+            "warrior": 4
+          },
+          "production": 0.85,
+          "consumption": [
+            15.58,
+            17.24
+          ],
+          "free": 958.54,
+          "guide": "El invierno se sostiene con tus reservas"
+        },
+        {
+          "day": 336,
+          "living": 16,
+          "dead": 0,
+          "food": 2153.39,
+          "wood": 1387.68,
+          "capacity": 4800,
+          "grade": 2,
+          "buildings": 14,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 4,
+            "builder": 2,
+            "woodcutter": 1,
+            "warrior": 4
+          },
+          "production": 19.8,
+          "consumption": [
+            15.58,
+            17.24
+          ],
+          "free": 1258.93,
+          "guide": "Buen comienzo: la aldea cubre su comida diaria"
+        }
+      ],
+      "annual": null,
+      "reopenings": 7
+    },
+    {
+      "strategy": "solo-propuesta",
+      "seed": "analisis-inicio-7",
+      "initialPopulation": 16,
+      "day": 323,
+      "living": 0,
+      "food": 0,
+      "wood": 450.39,
+      "capacity": 600,
+      "grade": 1,
+      "buildings": 7,
+      "health": 0,
+      "hunger": 0,
+      "jobs": {
+        "farmer": 0,
+        "builder": 0,
+        "woodcutter": 0,
+        "warrior": 0
+      },
+      "production": 0,
+      "consumption": [
+        0,
+        0
+      ],
+      "raids": 2,
+      "stories": 20,
+      "arrivals": 0,
+      "talents": 6,
+      "deaths": [
+        {
+          "day": 322,
+          "id": "r0003",
+          "cause": "combined"
+        },
+        {
+          "day": 322,
+          "id": "r0004",
+          "cause": "combined"
+        },
+        {
+          "day": 323,
+          "id": "r0001",
+          "cause": "combined"
+        },
+        {
+          "day": 323,
+          "id": "r0002",
+          "cause": "combined"
+        },
+        {
+          "day": 323,
+          "id": "r0005",
+          "cause": "combined"
+        },
+        {
+          "day": 323,
+          "id": "r0006",
+          "cause": "combined"
+        },
+        {
+          "day": 323,
+          "id": "r0007",
+          "cause": "combined"
+        },
+        {
+          "day": 323,
+          "id": "r0008",
+          "cause": "combined"
+        },
+        {
+          "day": 323,
+          "id": "r0009",
+          "cause": "combined"
+        },
+        {
+          "day": 323,
+          "id": "r0010",
+          "cause": "combined"
+        },
+        {
+          "day": 323,
+          "id": "r0011",
+          "cause": "combined"
+        },
+        {
+          "day": 323,
+          "id": "r0012",
+          "cause": "combined"
+        },
+        {
+          "day": 323,
+          "id": "r0013",
+          "cause": "combined"
+        },
+        {
+          "day": 323,
+          "id": "r0014",
+          "cause": "combined"
+        },
+        {
+          "day": 323,
+          "id": "r0015",
+          "cause": "combined"
+        },
+        {
+          "day": 323,
+          "id": "r0016",
+          "cause": "combined"
+        }
+      ],
+      "foodRejected": 3293.2,
+      "firstHungerDay": 276,
+      "eventKinds": [
+        "harvest-trial",
+        "forest-route"
+      ],
+      "checkpoints": [
+        {
+          "day": 0,
+          "living": 16,
+          "dead": 0,
+          "food": 192,
+          "wood": 89,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 0,
+            "builder": 0,
+            "woodcutter": 0,
+            "warrior": 0
+          },
+          "production": 0,
+          "consumption": [
+            14.17,
+            15.65
+          ],
+          "free": 319,
+          "guide": "Primero, pon los huertos a trabajar"
+        },
+        {
+          "day": 28,
+          "living": 16,
+          "dead": 0,
+          "food": 271.71,
+          "wood": 223.96,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 4,
+            "builder": 0,
+            "woodcutter": 1,
+            "warrior": 2
+          },
+          "production": 20.23,
+          "consumption": [
+            15.04,
+            16.62
+          ],
+          "free": 104.33,
+          "guide": "Buen comienzo: la aldea cubre su comida diaria"
+        },
+        {
+          "day": 84,
+          "living": 16,
+          "dead": 0,
+          "food": 321.31,
+          "wood": 262.81,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 4,
+            "builder": 0,
+            "woodcutter": 1,
+            "warrior": 2
+          },
+          "production": 40.32,
+          "consumption": [
+            15.04,
+            16.62
+          ],
+          "free": 15.88,
+          "guide": "Haz espacio para las cosechas"
+        },
+        {
+          "day": 168,
+          "living": 16,
+          "dead": 0,
+          "food": 328.51,
+          "wood": 255.64,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 4,
+            "builder": 0,
+            "woodcutter": 1,
+            "warrior": 2
+          },
+          "production": 34.13,
+          "consumption": [
+            15.04,
+            16.62
+          ],
+          "free": 15.85,
+          "guide": "Haz espacio para las cosechas"
+        },
+        {
+          "day": 252,
+          "living": 16,
+          "dead": 0,
+          "food": 300.22,
+          "wood": 273.85,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 4,
+            "builder": 0,
+            "woodcutter": 1,
+            "warrior": 2
+          },
+          "production": 0.87,
+          "consumption": [
+            15.04,
+            16.62
+          ],
+          "free": 25.93,
+          "guide": "Haz espacio para las cosechas"
+        },
+        {
+          "day": 280,
+          "living": 16,
+          "dead": 0,
+          "food": 0,
+          "wood": 402.41,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 44.66,
+          "health": 98.59,
+          "jobs": {
+            "farmer": 4,
+            "builder": 0,
+            "woodcutter": 1,
+            "warrior": 2
+          },
+          "production": 0.66,
+          "consumption": [
+            15.06,
+            16.62
+          ],
+          "free": 197.59,
+          "guide": "Hay habitantes que necesitan atención"
+        },
+        {
+          "day": 308,
+          "living": 16,
+          "dead": 0,
+          "food": 0,
+          "wood": 450.39,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 100,
+          "health": 37.2,
+          "jobs": {
+            "farmer": 4,
+            "builder": 0,
+            "woodcutter": 1,
+            "warrior": 2
+          },
+          "production": 0,
+          "consumption": [
+            15.94,
+            17.58
+          ],
+          "free": 149.61,
+          "guide": "Hay habitantes que necesitan atención"
+        }
+      ],
+      "annual": null,
+      "reopenings": 6
+    },
+    {
+      "strategy": "abandono",
+      "seed": "opinion-jugador-2026-11-02",
+      "initialPopulation": 20,
+      "day": 63,
+      "living": 0,
+      "food": 0,
+      "wood": 98.01,
+      "capacity": 600,
+      "grade": 1,
+      "buildings": 7,
+      "health": 0,
+      "hunger": 0,
+      "jobs": {
+        "farmer": 0,
+        "builder": 0,
+        "woodcutter": 0,
+        "warrior": 0
+      },
+      "production": 0,
+      "consumption": [
+        0,
+        0
+      ],
+      "raids": 1,
+      "stories": 0,
+      "arrivals": 0,
+      "talents": 0,
+      "deaths": [
+        {
+          "day": 63,
+          "id": "r0001",
+          "cause": "hunger"
+        },
+        {
+          "day": 63,
+          "id": "r0002",
+          "cause": "hunger"
+        },
+        {
+          "day": 63,
+          "id": "r0003",
+          "cause": "hunger"
+        },
+        {
+          "day": 63,
+          "id": "r0004",
+          "cause": "hunger"
+        },
+        {
+          "day": 63,
+          "id": "r0005",
+          "cause": "hunger"
+        },
+        {
+          "day": 63,
+          "id": "r0006",
+          "cause": "hunger"
+        },
+        {
+          "day": 63,
+          "id": "r0007",
+          "cause": "hunger"
+        },
+        {
+          "day": 63,
+          "id": "r0008",
+          "cause": "hunger"
+        },
+        {
+          "day": 63,
+          "id": "r0009",
+          "cause": "hunger"
+        },
+        {
+          "day": 63,
+          "id": "r0010",
+          "cause": "hunger"
+        },
+        {
+          "day": 63,
+          "id": "r0011",
+          "cause": "hunger"
+        },
+        {
+          "day": 63,
+          "id": "r0012",
+          "cause": "hunger"
+        },
+        {
+          "day": 63,
+          "id": "r0013",
+          "cause": "hunger"
+        },
+        {
+          "day": 63,
+          "id": "r0014",
+          "cause": "hunger"
+        },
+        {
+          "day": 63,
+          "id": "r0015",
+          "cause": "hunger"
+        },
+        {
+          "day": 63,
+          "id": "r0016",
+          "cause": "hunger"
+        },
+        {
+          "day": 63,
+          "id": "r0017",
+          "cause": "hunger"
+        },
+        {
+          "day": 63,
+          "id": "r0018",
+          "cause": "hunger"
+        },
+        {
+          "day": 63,
+          "id": "r0019",
+          "cause": "hunger"
+        },
+        {
+          "day": 63,
+          "id": "r0020",
+          "cause": "hunger"
+        }
+      ],
+      "foodRejected": 0,
+      "firstHungerDay": 15,
+      "eventKinds": [],
+      "checkpoints": [
+        {
+          "day": 0,
+          "living": 20,
+          "dead": 0,
+          "food": 184,
+          "wood": 99,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 0,
+            "builder": 0,
+            "woodcutter": 0,
+            "warrior": 0
+          },
+          "production": 0,
+          "consumption": [
+            18.06,
+            19.95
+          ],
+          "free": 317,
+          "guide": "Primero, pon los huertos a trabajar"
+        },
+        {
+          "day": 28,
+          "living": 20,
+          "dead": 0,
+          "food": 0,
+          "wood": 99,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 91.6,
+          "health": 86.57,
+          "jobs": {
+            "farmer": 0,
+            "builder": 0,
+            "woodcutter": 0,
+            "warrior": 0
+          },
+          "production": 0,
+          "consumption": [
+            18.61,
+            20.52
+          ],
+          "free": 501,
+          "guide": "Hay habitantes que necesitan atención"
+        }
+      ],
+      "annual": null,
+      "reopenings": 1
+    },
+    {
+      "strategy": "tala-excesiva",
+      "seed": "opinion-jugador-2026-11-02",
+      "initialPopulation": 20,
+      "day": 293,
+      "living": 0,
+      "food": 0,
+      "wood": 599.75,
+      "capacity": 600,
+      "grade": 1,
+      "buildings": 7,
+      "health": 0,
+      "hunger": 0,
+      "jobs": {
+        "farmer": 0,
+        "builder": 0,
+        "woodcutter": 0,
+        "warrior": 0
+      },
+      "production": 0,
+      "consumption": [
+        0,
+        0
+      ],
+      "raids": 2,
+      "stories": 15,
+      "arrivals": 0,
+      "talents": 6,
+      "deaths": [
+        {
+          "day": 293,
+          "id": "r0001",
+          "cause": "combined"
+        },
+        {
+          "day": 293,
+          "id": "r0002",
+          "cause": "combined"
+        },
+        {
+          "day": 293,
+          "id": "r0003",
+          "cause": "combined"
+        },
+        {
+          "day": 293,
+          "id": "r0004",
+          "cause": "combined"
+        },
+        {
+          "day": 293,
+          "id": "r0005",
+          "cause": "combined"
+        },
+        {
+          "day": 293,
+          "id": "r0006",
+          "cause": "combined"
+        },
+        {
+          "day": 293,
+          "id": "r0007",
+          "cause": "combined"
+        },
+        {
+          "day": 293,
+          "id": "r0008",
+          "cause": "combined"
+        },
+        {
+          "day": 293,
+          "id": "r0009",
+          "cause": "combined"
+        },
+        {
+          "day": 293,
+          "id": "r0010",
+          "cause": "combined"
+        },
+        {
+          "day": 293,
+          "id": "r0011",
+          "cause": "combined"
+        },
+        {
+          "day": 293,
+          "id": "r0012",
+          "cause": "combined"
+        },
+        {
+          "day": 293,
+          "id": "r0013",
+          "cause": "combined"
+        },
+        {
+          "day": 293,
+          "id": "r0014",
+          "cause": "combined"
+        },
+        {
+          "day": 293,
+          "id": "r0015",
+          "cause": "combined"
+        },
+        {
+          "day": 293,
+          "id": "r0016",
+          "cause": "combined"
+        },
+        {
+          "day": 293,
+          "id": "r0017",
+          "cause": "combined"
+        },
+        {
+          "day": 293,
+          "id": "r0018",
+          "cause": "combined"
+        },
+        {
+          "day": 293,
+          "id": "r0019",
+          "cause": "combined"
+        },
+        {
+          "day": 293,
+          "id": "r0020",
+          "cause": "combined"
+        }
+      ],
+      "foodRejected": 1897.59,
+      "firstHungerDay": 241,
+      "eventKinds": [
+        "forest-route",
+        "harvest-trial"
+      ],
+      "checkpoints": [
+        {
+          "day": 0,
+          "living": 20,
+          "dead": 0,
+          "food": 184,
+          "wood": 99,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 0,
+            "builder": 0,
+            "woodcutter": 0,
+            "warrior": 0
+          },
+          "production": 0,
+          "consumption": [
+            18.06,
+            19.95
+          ],
+          "free": 317,
+          "guide": "Primero, pon los huertos a trabajar"
+        },
+        {
+          "day": 28,
+          "living": 20,
+          "dead": 0,
+          "food": 99.78,
+          "wood": 478.15,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 4,
+            "builder": 2,
+            "woodcutter": 12,
+            "warrior": 0
+          },
+          "production": 20.68,
+          "consumption": [
+            21,
+            23.21
+          ],
+          "free": 22.07,
+          "guide": "Construye otro huerto"
+        },
+        {
+          "day": 84,
+          "living": 20,
+          "dead": 0,
+          "food": 55.21,
+          "wood": 522.88,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 4,
+            "builder": 2,
+            "woodcutter": 12,
+            "warrior": 0
+          },
+          "production": 39.78,
+          "consumption": [
+            21,
+            23.21
+          ],
+          "free": 21.91,
+          "guide": "Haz espacio para las cosechas"
+        },
+        {
+          "day": 168,
+          "living": 20,
+          "dead": 0,
+          "food": 22.72,
+          "wood": 554.88,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 4,
+            "builder": 2,
+            "woodcutter": 12,
+            "warrior": 0
+          },
+          "production": 32.23,
+          "consumption": [
+            21.19,
+            23.42
+          ],
+          "free": 22.4,
+          "guide": "Haz espacio para las cosechas"
+        },
+        {
+          "day": 252,
+          "living": 20,
+          "dead": 0,
+          "food": 0,
+          "wood": 599.39,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 54.12,
+          "health": 97.37,
+          "jobs": {
+            "farmer": 4,
+            "builder": 2,
+            "woodcutter": 12,
+            "warrior": 0
+          },
+          "production": 0.58,
+          "consumption": [
+            21.34,
+            23.56
+          ],
+          "free": 0.61,
+          "guide": "Hay habitantes que necesitan atención"
+        },
+        {
+          "day": 280,
+          "living": 20,
+          "dead": 0,
+          "food": 0,
+          "wood": 599.75,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 100,
+          "health": 32.56,
+          "jobs": {
+            "farmer": 4,
+            "builder": 2,
+            "woodcutter": 12,
+            "warrior": 0
+          },
+          "production": 0,
+          "consumption": [
+            20.73,
+            22.86
+          ],
+          "free": 0.25,
+          "guide": "Hay habitantes que necesitan atención"
+        }
+      ],
+      "annual": null,
+      "reopenings": 5
+    },
+    {
+      "strategy": "arriesgada",
+      "seed": "analisis-inicio-7",
+      "initialPopulation": 16,
+      "day": 336,
+      "living": 18,
+      "food": 719.83,
+      "wood": 1421.45,
+      "capacity": 3600,
+      "grade": 2,
+      "buildings": 14,
+      "health": 99.99,
+      "hunger": 0,
+      "jobs": {
+        "farmer": 8,
+        "builder": 2,
+        "woodcutter": 1,
+        "warrior": 4
+      },
+      "production": 35.39,
+      "consumption": [
+        22.02,
+        24.39
+      ],
+      "raids": 2,
+      "stories": 24,
+      "arrivals": 1,
+      "talents": 10,
+      "deaths": [],
+      "foodRejected": 0,
+      "firstHungerDay": null,
+      "eventKinds": [
+        "harvest-trial",
+        "forest-route",
+        "visitors"
+      ],
+      "checkpoints": [
+        {
+          "day": 0,
+          "living": 16,
+          "dead": 0,
+          "food": 192,
+          "wood": 89,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 0,
+            "builder": 0,
+            "woodcutter": 0,
+            "warrior": 0
+          },
+          "production": 0,
+          "consumption": [
+            14.17,
+            15.65
+          ],
+          "free": 319,
+          "guide": "Primero, pon los huertos a trabajar"
+        },
+        {
+          "day": 28,
+          "living": 16,
+          "dead": 0,
+          "food": 279.07,
+          "wood": 223.96,
+          "capacity": 600,
+          "grade": 1,
+          "buildings": 7,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 4,
+            "builder": 0,
+            "woodcutter": 1,
+            "warrior": 2
+          },
+          "production": 20.37,
+          "consumption": [
+            15.04,
+            16.62
+          ],
+          "free": 96.97,
+          "guide": "Buen comienzo: la aldea cubre su comida diaria"
+        },
+        {
+          "day": 84,
+          "living": 16,
+          "dead": 0,
+          "food": 732.6,
+          "wood": 413.88,
+          "capacity": 1200,
+          "grade": 1,
+          "buildings": 8,
+          "hunger": 0,
+          "health": 98.6,
+          "jobs": {
+            "farmer": 4,
+            "builder": 2,
+            "woodcutter": 1,
+            "warrior": 2
+          },
+          "production": 29.93,
+          "consumption": [
+            19.08,
+            21.1
+          ],
+          "free": 53.52,
+          "guide": "Hay habitantes que necesitan atención"
+        },
+        {
+          "day": 168,
+          "living": 16,
+          "dead": 0,
+          "food": 2044.23,
+          "wood": 670.42,
+          "capacity": 3000,
+          "grade": 2,
+          "buildings": 11,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 4,
+            "builder": 2,
+            "woodcutter": 1,
+            "warrior": 4
+          },
+          "production": 34.36,
+          "consumption": [
+            19.47,
+            21.54
+          ],
+          "free": 285.35,
+          "guide": "Buen comienzo: la aldea cubre su comida diaria"
+        },
+        {
+          "day": 252,
+          "living": 18,
+          "dead": 0,
+          "food": 2541.93,
+          "wood": 996.14,
+          "capacity": 3600,
+          "grade": 2,
+          "buildings": 14,
+          "hunger": 0,
+          "health": 99.74,
+          "jobs": {
+            "farmer": 8,
+            "builder": 2,
+            "woodcutter": 1,
+            "warrior": 4
+          },
+          "production": 1.35,
+          "consumption": [
+            21.93,
+            24.28
+          ],
+          "free": 61.93,
+          "guide": "Hay habitantes que necesitan atención"
+        },
+        {
+          "day": 280,
+          "living": 18,
+          "dead": 0,
+          "food": 1915.07,
+          "wood": 1191.38,
+          "capacity": 3600,
+          "grade": 2,
+          "buildings": 14,
+          "hunger": 0,
+          "health": 100,
+          "jobs": {
+            "farmer": 8,
+            "builder": 2,
+            "woodcutter": 1,
+            "warrior": 4
+          },
+          "production": 1.49,
+          "consumption": [
+            22.02,
+            24.39
+          ],
+          "free": 493.55,
+          "guide": "El invierno se sostiene con tus reservas"
+        },
+        {
+          "day": 308,
+          "living": 18,
+          "dead": 0,
+          "food": 1299.07,
+          "wood": 1274.04,
+          "capacity": 3600,
+          "grade": 2,
+          "buildings": 14,
+          "hunger": 0,
+          "health": 99.39,
+          "jobs": {
+            "farmer": 8,
+            "builder": 2,
+            "woodcutter": 1,
+            "warrior": 4
+          },
+          "production": 1.49,
+          "consumption": [
+            22.06,
+            24.42
+          ],
+          "free": 1026.89,
+          "guide": "El invierno se sostiene con tus reservas"
+        },
+        {
+          "day": 336,
+          "living": 18,
+          "dead": 0,
+          "food": 719.83,
+          "wood": 1421.45,
+          "capacity": 3600,
+          "grade": 2,
+          "buildings": 14,
+          "hunger": 0,
+          "health": 99.99,
+          "jobs": {
+            "farmer": 8,
+            "builder": 2,
+            "woodcutter": 1,
+            "warrior": 4
+          },
+          "production": 35.39,
+          "consumption": [
+            22.02,
+            24.39
+          ],
+          "free": 1458.72,
+          "guide": "Buen comienzo: la aldea cubre su comida diaria"
+        }
+      ],
+      "annual": null,
+      "reopenings": 7
+    },
+    {
+      "strategy": "gestion-activa-reserves",
+      "seed": "opinion-jugador-2026-11-02",
+      "initialPopulation": 20,
+      "day": 355,
+      "living": 0,
+      "food": 0,
+      "wood": 128.51,
+      "capacity": 1800,
+      "grade": 2,
+      "buildings": 10,
+      "health": 0,
+      "hunger": 0,
+      "jobs": {
+        "farmer": 0,
+        "builder": 0,
+        "woodcutter": 0,
+        "warrior": 0
+      },
+      "production": 0,
+      "consumption": [
+        0,
+        0
+      ],
+      "raids": 4,
+      "stories": 19,
+      "arrivals": 0,
+      "talents": 9,
+      "deaths": [
+        {
+          "day": 334,
+          "id": "r0011",
+          "cause": "hunger"
+        },
+        {
+          "day": 335,
+          "id": "r0015",
+          "cause": "hunger"
+        },
+        {
+          "day": 347,
+          "id": "r0010",
+          "cause": "hunger"
+        },
+        {
+          "day": 347,
+          "id": "r0013",
+          "cause": "hunger"
+        },
+        {
+          "day": 355,
+          "id": "r0001",
+          "cause": "hunger"
+        },
+        {
+          "day": 355,
+          "id": "r0002",
+          "cause": "hunger"
+        },
+        {
+          "day": 355,
+          "id": "r0003",
+          "cause": "hunger"
+        },
+        {
+          "day": 355,
+          "id": "r0004",
+          "cause": "hunger"
+        },
+        {
+          "day": 355,
+          "id": "r0005",
+          "cause": "hunger"
+        },
+        {
+          "day": 355,
+          "id": "r0006",
+          "cause": "hunger"
+        },
+        {
+          "day": 355,
+          "id": "r0007",
+          "cause": "hunger"
+        },
+        {
+          "day": 355,
+          "id": "r0008",
+          "cause": "hunger"
+        },
+        {
+          "day": 355,
+          "id": "r0009",
+          "cause": "hunger"
+        },
+        {
+          "day": 355,
+          "id": "r0012",
+          "cause": "hunger"
+        },
+        {
+          "day": 355,
+          "id": "r0014",
+          "cause": "hunger"
+        },
+        {
+          "day": 355,
+          "id": "r0016",
+          "cause": "hunger"
+        },
+        {
+          "day": 355,
+          "id": "r0017",
+          "cause": "hunger"
+        },
+        {
+          "day": 355,
+          "id": "r0018",
+          "cause": "hunger"
+        },
+        {
+          "day": 355,
+          "id": "r0019",
+          "cause": "hunger"
+        },
+        {
+          "day": 355,
+          "id": "r0020",
+          "cause": "hunger"
+        }
+      ],
+      "foodRejected": 4004.03,
+      "firstHungerDay": 307,
+      "eventKinds": [
+        "harvest-trial",
+        "forest-route"
+      ],
+      "checkpoints": null,
+      "annual": [
+        {
+          "day": 336,
+          "living": 18,
+          "food": 0,
+          "wood": 128.51,
+          "hunger": 100,
+          "buildings": 10
+        }
+      ],
+      "reopenings": 1
+    },
+    {
+      "strategy": "gestion-activa-fields",
+      "seed": "opinion-jugador-2026-11-02",
+      "initialPopulation": 20,
+      "day": 672,
+      "living": 20,
+      "food": 1.39,
+      "wood": 192.32,
+      "capacity": 1800,
+      "grade": 2,
+      "buildings": 11,
+      "health": 87.13,
+      "hunger": 75.94,
+      "jobs": {
+        "farmer": 8,
+        "builder": 1,
+        "woodcutter": 0,
+        "warrior": 2
+      },
+      "production": 20.69,
+      "consumption": [
+        19.71,
+        21.74
+      ],
+      "raids": 7,
+      "stories": 40,
+      "arrivals": 0,
+      "talents": 9,
+      "deaths": [],
+      "foodRejected": 17352.11,
+      "firstHungerDay": 660,
+      "eventKinds": [
+        "harvest-trial",
+        "forest-route",
+        "visitors"
+      ],
+      "checkpoints": null,
+      "annual": [
+        {
+          "day": 336,
+          "living": 20,
+          "food": 62.82,
+          "wood": 192.4,
+          "hunger": 0,
+          "buildings": 11
+        },
+        {
+          "day": 672,
+          "living": 20,
+          "food": 1.39,
+          "wood": 192.32,
+          "hunger": 75.94,
+          "buildings": 11
+        }
+      ],
+      "reopenings": 2
+    },
+    {
+      "strategy": "gestion-activa-reserves",
+      "seed": "analisis-inicio-7",
+      "initialPopulation": 16,
+      "day": 672,
+      "living": 16,
+      "food": 387.64,
+      "wood": 188.9,
+      "capacity": 1800,
+      "grade": 2,
+      "buildings": 10,
+      "health": 100,
+      "hunger": 0,
+      "jobs": {
+        "farmer": 6,
+        "builder": 1,
+        "woodcutter": 0,
+        "warrior": 4
+      },
+      "production": 29.23,
+      "consumption": [
+        15.62,
+        17.28
+      ],
+      "raids": 8,
+      "stories": 32,
+      "arrivals": 0,
+      "talents": 10,
+      "deaths": [],
+      "foodRejected": 9258.17,
+      "firstHungerDay": 335,
+      "eventKinds": [
+        "harvest-trial",
+        "forest-route"
+      ],
+      "checkpoints": null,
+      "annual": [
+        {
+          "day": 336,
+          "living": 16,
+          "food": 8.19,
+          "wood": 184.83,
+          "hunger": 25.84,
+          "buildings": 10
+        },
+        {
+          "day": 672,
+          "living": 16,
+          "food": 387.64,
+          "wood": 188.9,
+          "hunger": 0,
+          "buildings": 10
+        }
+      ],
+      "reopenings": 2
+    },
+    {
+      "strategy": "gestion-activa-fields",
+      "seed": "analisis-inicio-7",
+      "initialPopulation": 16,
+      "day": 672,
+      "living": 19,
+      "food": 258.04,
+      "wood": 191.68,
+      "capacity": 1800,
+      "grade": 2,
+      "buildings": 11,
+      "health": 100,
+      "hunger": 0,
+      "jobs": {
+        "farmer": 8,
+        "builder": 1,
+        "woodcutter": 0,
+        "warrior": 2
+      },
+      "production": 43.93,
+      "consumption": [
+        18.25,
+        20.17
+      ],
+      "raids": 4,
+      "stories": 35,
+      "arrivals": 1,
+      "talents": 13,
+      "deaths": [],
+      "foodRejected": 19342.36,
+      "firstHungerDay": null,
+      "eventKinds": [
+        "harvest-trial",
+        "forest-route",
+        "visitors"
+      ],
+      "checkpoints": null,
+      "annual": [
+        {
+          "day": 336,
+          "living": 16,
+          "food": 457.21,
+          "wood": 101.17,
+          "hunger": 0,
+          "buildings": 11
+        },
+        {
+          "day": 672,
+          "living": 19,
+          "food": 258.04,
+          "wood": 191.68,
+          "hunger": 0,
+          "buildings": 11
+        }
+      ],
+      "reopenings": 2
+    }
+  ],
+  "repeticion": {
+    "prepareCancelLoops": 50,
+    "woodBefore": 92,
+    "woodAfter": 92,
+    "jobToggleLoops": 50,
+    "freeSkillGain": false,
+    "reloadSameChoiceSameResult": true,
+    "duplicateDecisionRejected": true,
+    "immediateGrade2Allowed": 64,
+    "sample": 64
+  }
+}

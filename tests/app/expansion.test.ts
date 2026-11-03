@@ -11,10 +11,18 @@ import { PersistentSession } from '../../src/app/persistence';
 import { createSave, parseSave } from '../../src/storage/schema';
 import { freezeDeep } from '../fixtures/simulation';
 
-const initial = () => generateVillage('ampliacion-0.2');
+// Escenario que ya ha completado el primer mes, nuevo requisito de ampliación.
+const initial = () => ({ ...generateVillage('ampliacion-0.2'), elapsedDays: 28 });
 const freeSlot = (village: ReturnType<typeof initial>) => village.constructionSlots.find((slot) => slot.buildingId === null)!.id;
 
 describe('Cierre 0.2: ampliación y mantenimiento preparado', () => {
+  it('la ampliación espera al primer mes y conserva los grados ya alcanzados', () => {
+    const fresh = generateVillage('ampliacion-0.2');
+    expect(selectExpansion(fresh).allowed).toBe(false);
+    expect(selectExpansion({ ...fresh, elapsedDays: 27 }).allowed).toBe(false);
+    expect(selectExpansion(initial()).allowed).toBe(true);
+    expect(selectExpansion({ ...fresh, grade: 2 }).completed).toBe(true);
+  });
   it('amplía en el límite aprobado, paga una vez y conserva personas, edificios, proyectos y RNG', () => {
     const original = initial();
     const boundary = freezeDeep(prepareConstruction({ ...original, inventory:{ food:150,wood:80 }, buildings:original.buildings.map((building)=>({...building,condition:80})) },freeSlot(original),'house'));
@@ -86,7 +94,8 @@ describe('Cierre 0.2: ampliación y mantenimiento preparado', () => {
 
   it('un fallo al ampliar conserva el grado anterior y reintenta sin cobrar ni añadir solares dos veces', async () => {
     const repo = new IndexedDbSaveRepository('expansion-failure',new IDBFactory()); const session = new PersistentSession(repo);
-    await session.load(); await session.perform({type:'create',slot:1,seed:'ampliacion-0.2',confirmReplacement:false});
+    await repo.write(createSave(initial(),1,1,'2026-11-03T00:00:00Z'),null);
+    await session.load(); session.read({type:'continue',slot:1});
     const before = session.village!; const write = vi.spyOn(repo,'write').mockRejectedValueOnce(new Error('interrumpido'));
     await expect(session.perform({type:'expand-village'})).rejects.toThrow(); expect(session.village).toBe(before);
     await session.retry(); expect(session.village!.inventory.wood).toBe(before.inventory.wood-50);

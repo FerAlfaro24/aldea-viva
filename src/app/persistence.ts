@@ -6,10 +6,10 @@ import { createSave, parseSave, SaveDataError } from '../storage/schema';
 import { activeVillage, createSession, reduceSession } from './session';
 import type { Session, SessionAction } from './session';
 
-export type PersistentAction = Extract<SessionAction, { type: 'create' | 'advance' | 'delete' | 'move-resident' | 'prepare-construction' | 'change-construction' | 'expand-village' | 'set-maintenance' | 'set-maintenance-reserve' | 'assign-work' | 'set-economy-policy' | 'resolve-attack' | 'resolve-story' }>;
+export type PersistentAction = Extract<SessionAction, { type: 'create' | 'advance' | 'delete' | 'move-resident' | 'prepare-construction' | 'change-construction' | 'expand-village' | 'set-maintenance' | 'set-maintenance-reserve' | 'assign-work' | 'assign-recommended-work' | 'adjust-work' | 'set-economy-policy' | 'resolve-attack' | 'resolve-story' }>;
 export type ReadAction = Exclude<SessionAction, PersistentAction>;
 export function isPersistentAction(action: SessionAction): action is PersistentAction {
-  return ['create', 'advance', 'delete', 'move-resident', 'prepare-construction', 'change-construction', 'expand-village', 'set-maintenance', 'set-maintenance-reserve', 'assign-work', 'set-economy-policy', 'resolve-attack', 'resolve-story'].includes(action.type);
+  return ['create', 'advance', 'delete', 'move-resident', 'prepare-construction', 'change-construction', 'expand-village', 'set-maintenance', 'set-maintenance-reserve', 'assign-work', 'assign-recommended-work', 'adjust-work', 'set-economy-policy', 'resolve-attack', 'resolve-story'].includes(action.type);
 }
 export type PersistencePhase = 'loading' | 'ready' | 'saving' | 'save-error' | 'load-error';
 
