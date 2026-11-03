@@ -2,6 +2,8 @@
 
 Publicación solicitada por el usuario. El repositorio GitHub conserva su visibilidad privada; se alojan públicamente los activos compilados del juego, no los documentos ni las partidas locales del navegador.
 
+**Dirección pública:** https://aldea-viva.pages.dev/. Proyecto `aldea-viva`, creado y desplegado con éxito desde `main`. Comprobados acceso público, fundación y avance de un día. Los siguientes cambios subidos a esa rama activan nuevas compilaciones.
+
 ## Configuración
 
 | Campo | Valor |
@@ -18,6 +20,8 @@ Publicación solicitada por el usuario. El repositorio GitHub conserva su visibi
 Cloudflare instala las dependencias y compila el repositorio. La integración Git permite nuevas publicaciones al subir cambios a `main`; la dirección pública efectiva se obtiene al completar la creación del proyecto. El contenido se aloja en Cloudflare, por lo que no depende de que el PC permanezca encendido.
 
 `public/_headers` obliga a revalidar HTML y evita guardar una copia obsoleta de `sw.js` en cachés HTTP. Los activos con hash se pueden conservar a largo plazo. El service worker sigue gestionando la disponibilidad offline y la activación manual de nuevas versiones.
+
+Pages redirige `/index.html` a `/`. El service worker normaliza la respuesta HTML almacenada cuando procede de una redirección, porque devolverla directamente en una navegación puede provocar `ERR_FAILED`. Comprobadas recarga y recarga offline en Brave con esa redirección reproducida localmente; verificar también el despliegue actualizado.
 
 Para comprobar la compilación local sin sustituir `dist/`, que en este entorno conserva una versión anterior del teléfono:
 

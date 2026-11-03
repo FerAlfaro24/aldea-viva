@@ -1,6 +1,6 @@
 # Aldea Viva — Candidata 1.0
 
-Estado actual: `1.0.0-rc.2`, preparada localmente. **No es todavía una 1.0 final aceptada en Android.** La subida del código y su documentación a GitHub está autorizada por el usuario para esta entrega. No hay etiqueta final, publicación web nueva ni APK.
+Estado actual: `1.0.0-rc.2`, publicada para pruebas en https://aldea-viva.pages.dev/ con autorización del usuario. **No es todavía una 1.0 final aceptada en Android.** No hay etiqueta final ni APK. Configuración y comprobaciones de publicación en `17_PUBLICACION_PAGES.md`.
 
 ## Ajuste visual rc.2
 

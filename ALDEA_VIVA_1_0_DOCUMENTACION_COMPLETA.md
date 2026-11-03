@@ -6,6 +6,8 @@
 
 **Repositorio:** [FerAlfaro24/aldea-viva](https://github.com/FerAlfaro24/aldea-viva), privado.
 
+**Publicación de pruebas posterior al corte:** https://aldea-viva.pages.dev/. Configuración y estado en [Publicación en Pages](docs/17_PUBLICACION_PAGES.md); no equivale a aceptación final en Android.
+
 **Objetivo:** explicar el juego que existe ahora, sus reglas, funcionamiento, código, comprobaciones y pendientes en un único archivo.
 
 Este documento describe la implementación actual. No convierte las propuestas históricas en funciones terminadas. Los valores de equilibrio siguen siendo ajustables y la aceptación física de esta candidata en Android está pendiente. Subir el código a GitHub no publica una web, no genera una APK ni convierte automáticamente la candidata en una versión final aprobada.

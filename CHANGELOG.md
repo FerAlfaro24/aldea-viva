@@ -1,9 +1,10 @@
 # Cambios de Aldea Viva
 
-## Preparación de publicación de pruebas — Cloudflare Pages
+## Publicación de pruebas — Cloudflare Pages
 
 - Compilación desde el repositorio privado, Node fijado en `.node-version` y encabezados para revalidar las actualizaciones de la PWA.
-- Procedimiento y configuración en `docs/17_PUBLICACION_PAGES.md`. El éxito y la URL deben confirmarse en el panel de Cloudflare.
+- Web pública: https://aldea-viva.pages.dev/. Procedimiento y configuración en `docs/17_PUBLICACION_PAGES.md`.
+- Normalizada la respuesta HTML del service worker para permitir recargar cuando Pages redirige `index.html` a `/`. Compilación, recarga y modo offline comprobados reproduciendo esa redirección.
 
 ### Corrección AV-UX-001
 

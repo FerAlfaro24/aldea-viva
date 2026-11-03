@@ -45,7 +45,12 @@ self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
   if (event.request.mode === 'navigate' && url.href.startsWith(self.registration.scope)) {
-    event.respondWith(caches.open(CACHE).then(cache => cache.match(SHELL)).then(response => response || fetch(event.request)));
+    // Pages redirige index.html a /. Una navegación no admite devolver
+    // directamente esa respuesta redirigida desde el service worker.
+    event.respondWith(caches.open(CACHE).then(cache => cache.match(SHELL)).then(response =>
+      response?.redirected
+        ? new Response(response.body, {status: response.status, statusText: response.statusText, headers: response.headers})
+        : response || fetch(event.request)));
   } else if (URLS.includes(url.href)) {
     // Vite puede responder Vary: Origin. Los módulos envían Origin y la
     // precarga no; estos archivos públicos propios tienen idéntico contenido.
