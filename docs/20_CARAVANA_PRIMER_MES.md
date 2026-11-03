@@ -2,7 +2,7 @@
 
 Fecha: 3 de noviembre de 2026.
 
-Estado: dirección de diseño aceptada por el usuario y preparada en una rama separada. Todavía no implementada. Este documento recoge la propuesta de la conversación; los valores de equilibrio y detalles señalados como provisionales se ajustarán jugando.
+Estado: dirección de diseño aceptada por el usuario. Primera semana de siete días implementada en una rama separada; los días 8–28 siguen pendientes. Este documento recoge la propuesta de la conversación; los valores de equilibrio y detalles señalados como provisionales se ajustarán jugando.
 
 ## 1. Objetivo y conservación
 
@@ -145,6 +145,34 @@ Verificación proporcionada: pruebas relevantes de resolución diaria y guardado
 
 El primer objetivo de aceptación es entender un día y querer jugar el siguiente. El del mes es conocer a los compañeros, saber mantenerlos y recordar decisiones que hicieron distinta la partida.
 
-## 11. Estado de esta entrega
+## 11. Primer bloque implementado
 
-Solo rama y documentación de la propuesta. No se ha implementado el modo caravana, cambiado el balance, modificado partidas, ocultado menús en ejecución ni desplegado una versión nueva.
+- Entrada de caravana con Lucía (caza), Bruno (vigilancia) e Inés (cocina). Tres adultos y protagonista no jugable; cuatro raciones diarias en total.
+- Seis tareas, asignación explícita y sugerencia revisable antes de aplicarla. Las órdenes se conservan entre jornadas; no existe avance de varios días.
+- Inicio provisional con ocho raciones. Recolección aporta 2–3; caza aporta 2–4 ingredientes más uno con Lucía. En este bloque la caza siempre obtiene algo, pero puede herir (18 % con Lucía, 30 % con los demás). Se reduce el rendimiento con cansancio alto. No confundir estos valores con el equilibrio definitivo del mes.
+- Cocina hasta tres ingredientes por persona: dos raciones por ingrediente o tres con Inés. Utiliza la carne de hoy. Descanso recupera hasta 18 de salud y reduce hasta 45 de cansancio. No se implementaron fallecimientos en este bloque.
+- Día 1: noche tranquila. Día 2: lobos; ahuyentarlos con probabilidades visibles según vigilancia o gastar dos raciones para evitar heridas. Día 3: escoger entre un hallazgo con cansancio adicional o recuperar fuerzas. Son escenas de aprendizaje del prototipo, no una regla de eventos diarios para todo el mes.
+- Resumen con causas, cantidades y consumo. Diario y Opciones. Reiniciar requiere confirmación y reemplaza solo la caravana.
+- Guardado separado, validado y confirmado antes de aplicar cada cambio; protege formatos desconocidos y detecta otras pestañas. Un error permite guardar el mismo resultado pendiente sin volver a simular.
+- El juego de aldea se conserva en `?modo=aldea`; no se convierten partidas antiguas. Solo aparecen las opciones implementadas de caravana, sin acceso de Mejoras vacío.
+- Código nuevo en `src/caravan/`, entrada en `src/main.ts`, pruebas en `tests/caravan/caravan.test.ts`. Sin dependencias nuevas.
+
+Comprobaciones: 15 pruebas pertinentes aprobadas y compilación con TypeScript correcta. Recorridos en Brave aislado de los tres días, ambas respuestas a lobos y hallazgo, cambio manual de tareas, reinicio confirmado/cancelado, recuperación de decisión pendiente y recarga sin conexión. Se provocó un fallo de escritura y se comprobó el reintento sin duplicar la jornada. Interfaz revisada en escritorio y móvil emulado; sin prueba física de Android. No se repitió la integración larga de la aldea.
+
+Pendiente: valorar la claridad y diversión con el usuario; equilibrar y ampliar a siete días con una primera mejora antes de completar los 28. No hubo commit, push ni despliegue de este bloque.
+
+## 12. Ampliación a la primera semana
+
+El usuario valoró positivamente los tres días y autorizó perfeccionar la semana con refugio, lluvia, reacciones y un cierre.
+
+- Día 4: se descubre Mejoras y la tarea «Reforzar el refugio». Coste único de 4 materiales y 2 jornadas de trabajo, visibles antes de avanzar. Recoger materiales y construir se pueden coordinar el mismo día; dos trabajadores pueden aportar las dos jornadas.
+- Días 5–6: lluvia anunciada. Sin refugio terminado añade 14 de cansancio por noche. Terminado evita esa penalización y reduce hasta 6 de cansancio por noche, incluso seca. No sustituye la vigilancia. Las cifras son provisionales.
+- Día 6: nueva amenaza de lobos anunciada el día anterior; resolverla no repite las tareas ni la noche. Sigue habiendo días sin una decisión extraordinaria.
+- Día 7: cierre con noches alimentados, reservas, refugio, noches protegidas de la lluvia e historia de decisiones. No se habilita un octavo día.
+- Reacciones breves asociadas a heridas, descanso, hambre, lluvia y finalización del techo. Las obras completadas no reasignan personas automáticamente: se indica que deben escoger otra tarea.
+- Guardados v1 del prototipo anterior se leen sin escribir y continúan al día 4; el siguiente cambio confirmado guarda v2. Revisiones, identidad, comida, registro y azar se conservan. Formatos desconocidos siguen protegidos.
+- Código ampliado en `src/caravan/` y pruebas en `tests/caravan/`. Mismo origen local 4177; sin dependencias nuevas. El usuario autorizó guardar y subir esta primera semana a `feature/caravana` en GitHub para continuar allí. Sin fusión con `main` ni cambios a la web pública.
+
+Comprobaciones del bloque: 26 pruebas pertinentes, TypeScript y compilación. Una semana completa jugada en Brave aislado, con construcción parcial y terminada antes de la lluvia; recuperación sin conexión de la decisión del día 6. Verificación de una caravana v1 terminada, continuada al día 4 con las mismas 14 raciones. Revisión visual de Mejoras en escritorio y campamento en móvil horizontal emulado; sin errores de ejecución observados ni desbordamiento horizontal. No probado en Android físico ni repetida la integración larga de aldea.
+
+Pendiente: valoración del usuario sobre la semana y ajustes de equilibrio antes de ampliar el mes.

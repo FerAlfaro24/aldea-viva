@@ -3,10 +3,16 @@
 ## Enfoque activo: caravana
 - Rama `feature/caravana`, creada desde `7122907` (rc.3). El usuario pidió conservar lo desarrollado y preparar el nuevo enfoque en una rama separada.
 - Referencia activa: `docs/20_CARAVANA_PRIMER_MES.md`. El inicio pasa a una caravana averiada con tres acompañantes adultos gestionables y un protagonista no jugable; progresión diaria y primer mes de 28 días.
-- Esta rama empieza con diseño, sin implementación del modo. No presentar sus opciones como funciones existentes. Las referencias anteriores describen la aldea conservada y no deben imponer su complejidad al comienzo de la caravana.
+- Primera semana implementada en `src/caravan/`: siete días, seis tareas iniciales, cocina tras obtener recursos, amenazas en días 2 y 6, hallazgo en día 3, refugio desde el día 4 y lluvia en días 5–6. Resumen, reacciones y cierre semanal. Todavía no existen días 8–28. Cuatro bocas, tres adultos gestionables; cifras de balance provisionales.
+- Entrada por defecto: caravana. `?modo=aldea` conserva el juego anterior. Guardado propio en IndexedDB `aldea-viva-caravana`, sin tocar `aldea-viva`. Estados de planificación, decisión, resumen y cierre; persistir antes de aplicar y reintentar el mismo candidato ante fallo.
+- Refugio: coste único de 4 materiales y 2 jornadas; los materiales de hoy se obtienen antes de construir. Terminado evita +14 de cansancio por lluvia y reduce hasta 6 cada noche. No reasignar trabajadores automáticamente al terminar; avisar y dejar elegir.
+- Guardado de caravana: escritor v2, lector v1–v2. Abrir v1 no escribe; el cierre antiguo de tres días se muestra como resumen para continuar al día 4 sin repetir comida, tareas ni azar. Las aldeas siguen totalmente independientes.
+- Vista previa independiente: `npm.cmd run build -- --outDir dist-caravana.local` y `npm.cmd run preview -- --outDir dist-caravana.local --port 4177`. Conservar compilaciones y orígenes anteriores. Pruebas pertinentes: `npm.cmd test -- tests/caravan` (26 al cierre de la primera semana).
+- Las referencias anteriores describen la aldea conservada y no deben imponer su complejidad al comienzo de la caravana. Los desbloqueos del mes descritos en el diseño siguen siendo propuestas, no funciones existentes.
 - Conservar sistemas y partidas anteriores. Preparar partidas independientes para la caravana; no convertir ni sobrescribir guardados antiguos automáticamente.
 - Primero construir y valorar tres días jugables; después ampliar a siete y a 28. Ocultar progresivamente los sistemas de aldea cuando se implemente, sin borrarlos. No añadir dependencias ni reconstruir sistemas útiles sin necesidad.
 - Crear esta rama no autoriza fusionarla con `main`, publicar cambios ni futuros commits o push ajenos a esta solicitud.
+- El usuario autorizó ahora guardar y subir la primera semana a `origin/feature/caravana` para continuar trabajando allí. No fusionar con `main` ni cambiar la publicación pública.
 
 ## Trabajo económico (preferencia del usuario)
 - Proyecto personal: español, respuestas breves y una sola pregunta necesaria por vez.

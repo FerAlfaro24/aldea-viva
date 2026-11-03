@@ -2,7 +2,18 @@
 
 Juego de simulación de aldeas, pensado primero para Android.
 
-**Nueva dirección — rama `feature/caravana`:** [Diseño del primer mes](docs/20_CARAVANA_PRIMER_MES.md). Inicio con tres acompañantes adultos y una caravana averiada; decisiones día a día y desbloqueo progresivo. Esta rama contiene por ahora la propuesta, no un modo jugable nuevo. La rc.3 y sus sistemas se conservan; la web pública sigue la rama `main`.
+**Nueva dirección — rama `feature/caravana`:** [Diseño y estado del primer mes](docs/20_CARAVANA_PRIMER_MES.md). Primera semana jugable con tres acompañantes adultos, tareas, comida, cocina, descanso, refugio, lluvia y decisiones. Todavía no existen los días 8–28. La rc.3 y sus sistemas se conservan; la web pública sigue la rama `main`.
+
+## Probar la caravana en esta rama
+
+```sh
+npm run build -- --outDir dist-caravana.local
+npm run preview -- --outDir dist-caravana.local --port 4177
+```
+
+Abre http://127.0.0.1:4177/. Revisa el reparto, confirma cada jornada y lee lo sucedido. Desde el día 4 se desbloquea Mejoras: prepara el refugio para la lluvia de los días 5 y 6. Puedes volver a empezar con confirmación desde Opciones o al terminar la semana. Las caravanas anteriores de tres días pueden continuar desde el día 4 sin perder progreso. El guardado es independiente: tus aldeas anteriores siguen accesibles en http://127.0.0.1:4177/?modo=aldea si pertenecían a este mismo origen. Las partidas de otras direcciones siguen en su dirección original.
+
+Comprobación del bloque: `npm run test -- tests/caravan`. Se conservan debajo los antecedentes y las instrucciones de la candidata de aldea.
 
 **Jugar en la web:** [aldea-viva.pages.dev](https://aldea-viva.pages.dev/). Publicación de pruebas de la candidata 1.0; configuración en [Cloudflare Pages](docs/17_PUBLICACION_PAGES.md). Las partidas pertenecen al navegador y a esta dirección.
 
@@ -12,7 +23,7 @@ Juego de simulación de aldeas, pensado primero para Android.
 
 **Candidata actual:** [Primer año — rc.3](docs/19_PRIMER_ANO_RC3.md): arreglos del informe, planificación de invierno, ritmo, decisiones y comprobaciones. La subida a `main` inicia la actualización automática de Pages; no supone aceptación final de la jugabilidad.
 
-## Base del proyecto
+## Base y antecedentes de la aldea
 
 - TypeScript + Vite.
 - Desarrollo local con VS Code y Codex.
