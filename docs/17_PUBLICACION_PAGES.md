@@ -23,6 +23,8 @@ Cloudflare instala las dependencias y compila el repositorio. La integración Gi
 
 Pages redirige `/index.html` a `/`. El service worker normaliza la respuesta HTML almacenada cuando procede de una redirección, porque devolverla directamente en una navegación puede provocar `ERR_FAILED`. Comprobadas recarga y recarga offline en Brave con esa redirección reproducida localmente; verificar también el despliegue actualizado.
 
+**Verificación pública completada:** desplegado `e712760`; en Brave aislado se fundó una aldea, se avanzó al día 2 y se recuperó después de actualizar la aplicación y recargar sin conexión. Sin errores de consola durante esa recarga ni desbordamiento horizontal a 844×390. Respuesta pública `200`, HTML con `no-cache` y `sw.js` con `no-store, must-revalidate, no-cache`. No sustituye una prueba física de esta candidata en Android.
+
 Para comprobar la compilación local sin sustituir `dist/`, que en este entorno conserva una versión anterior del teléfono:
 
 ```sh

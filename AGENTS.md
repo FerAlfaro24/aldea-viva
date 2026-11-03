@@ -30,7 +30,7 @@
 - Los orígenes tienen partidas distintas; no trasladar/borrar datos del usuario al cambiar direcciones.
 - Trabajar autónomamente en el proyecto autorizado; revisar Git antes de cambios importantes y respetar cambios existentes.
 - Sin commits, push, etiquetas, publicaciones, borrados destructivos ni ajustes del sistema sin autorización aplicable. El usuario autorizó expresamente guardar y subir a GitHub la candidata 1.0.0-rc.2 con su documentación integral en esta entrega. Esto no autoriza etiquetas finales, publicación web ni APK, ni subidas futuras no solicitadas.
-- Solo está autorizado el enlace temporal Cloudflare para pruebas; herramienta/registros ignorados en .tools.local/.
+- Publicación de pruebas en https://aldea-viva.pages.dev/ autorizada y verificada; el repositorio sigue privado. Herramienta/registros del túnel anterior ignorados en .tools.local/.
 - No acceder a sesiones personales ni incluir secretos. No cambiar modelo, instalar herramientas externas ni conectar proveedores sin petición concreta.
 
 - Publicación de pruebas en Cloudflare Pages autorizada expresamente por el usuario: puede prepararse y subirse a main la configuración y AV-UX-001 para desplegar desde el repositorio privado. Configuración en docs/17_PUBLICACION_PAGES.md; no confundir publicación de pruebas con aceptación final de 1.0.
