@@ -1,5 +1,13 @@
 # Aldea Viva — Instrucciones
 
+## Enfoque activo: caravana
+- Rama `feature/caravana`, creada desde `7122907` (rc.3). El usuario pidió conservar lo desarrollado y preparar el nuevo enfoque en una rama separada.
+- Referencia activa: `docs/20_CARAVANA_PRIMER_MES.md`. El inicio pasa a una caravana averiada con tres acompañantes adultos gestionables y un protagonista no jugable; progresión diaria y primer mes de 28 días.
+- Esta rama empieza con diseño, sin implementación del modo. No presentar sus opciones como funciones existentes. Las referencias anteriores describen la aldea conservada y no deben imponer su complejidad al comienzo de la caravana.
+- Conservar sistemas y partidas anteriores. Preparar partidas independientes para la caravana; no convertir ni sobrescribir guardados antiguos automáticamente.
+- Primero construir y valorar tres días jugables; después ampliar a siete y a 28. Ocultar progresivamente los sistemas de aldea cuando se implemente, sin borrarlos. No añadir dependencias ni reconstruir sistemas útiles sin necesidad.
+- Crear esta rama no autoriza fusionarla con `main`, publicar cambios ni futuros commits o push ajenos a esta solicitud.
+
 ## Trabajo económico (preferencia del usuario)
 - Proyecto personal: español, respuestas breves y una sola pregunta necesaria por vez.
 - Leer solo fragmentos pertinentes; aprovechar contexto y seguimiento. No releer todo el historial, dossier o repositorio por cada cambio.

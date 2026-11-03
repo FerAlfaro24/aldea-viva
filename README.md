@@ -2,6 +2,8 @@
 
 Juego de simulación de aldeas, pensado primero para Android.
 
+**Nueva dirección — rama `feature/caravana`:** [Diseño del primer mes](docs/20_CARAVANA_PRIMER_MES.md). Inicio con tres acompañantes adultos y una caravana averiada; decisiones día a día y desbloqueo progresivo. Esta rama contiene por ahora la propuesta, no un modo jugable nuevo. La rc.3 y sus sistemas se conservan; la web pública sigue la rama `main`.
+
 **Jugar en la web:** [aldea-viva.pages.dev](https://aldea-viva.pages.dev/). Publicación de pruebas de la candidata 1.0; configuración en [Cloudflare Pages](docs/17_PUBLICACION_PAGES.md). Las partidas pertenecen al navegador y a esta dirección.
 
 **Manual y referencia completa:** [Todo lo que contiene la candidata 1.0](ALDEA_VIVA_1_0_DOCUMENTACION_COMPLETA.md). Incluye pantallas, reglas, fórmulas, guardados, arquitectura, pruebas y pendientes.
